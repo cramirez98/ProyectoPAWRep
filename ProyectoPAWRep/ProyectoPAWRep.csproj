@@ -88,6 +88,7 @@
     <Content Include="img\nelson.jpeg" />
     <Content Include="img\opinionsbackground.jpg" />
     <Content Include="img\profile-mujer.jpg" />
+    <Content Include="img\profile\default-user.png" />
     <Content Include="img\serv-gym.png" />
     <Content Include="img\serv-piscina.png" />
     <Content Include="img\serv-rest.png" />
@@ -102,6 +103,7 @@
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\RangeSlider.js" />
     <Content Include="js\SorterLogic.js" />
+    <Content Include="pages\iniciosesion.aspx" />
     <Content Include="pages\registro.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -109,6 +111,13 @@
     <Compile Include="classes\UserDatabaseManager.cs" />
     <Compile Include="classes\Usuario.cs" />
     <Compile Include="classes\Utilities.cs" />
+    <Compile Include="pages\iniciosesion.aspx.cs">
+      <DependentUpon>iniciosesion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\iniciosesion.aspx.designer.cs">
+      <DependentUpon>iniciosesion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\registro.aspx.cs">
       <DependentUpon>registro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

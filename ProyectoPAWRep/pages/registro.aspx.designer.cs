@@ -150,6 +150,15 @@ namespace ProyectoPAWRep.pages
         protected global::System.Web.UI.WebControls.RequiredFieldValidator Val2Edad;
 
         /// <summary>
+        /// Control Val3Edad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator Val3Edad;
+
+        /// <summary>
         /// Control Direccion.
         /// </summary>
         /// <remarks>
@@ -157,15 +166,6 @@ namespace ProyectoPAWRep.pages
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Direccion;
-
-        /// <summary>
-        /// Control ValDireccion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator ValDireccion;
 
         /// <summary>
         /// Control Val2Direccion.
@@ -220,6 +220,15 @@ namespace ProyectoPAWRep.pages
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator Val2Correo;
+
+        /// <summary>
+        /// Control Val3Correo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Val3Correo;
 
         /// <summary>
         /// Control Contraseña.

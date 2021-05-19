@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Configuration;
 using System.Text;
 using System.Security.Cryptography;
+using ProyectoPAWRep.classes;
 
 namespace ProyectoPAWRep.classes
 {
@@ -23,8 +24,9 @@ namespace ProyectoPAWRep.classes
 
         public bool AddDatabaseRecord(Usuario usuario)
         {
-            string contraseña_encriptada = ComputeSha256Hash(usuario.Contraseña);
-            string strSQL = "INSERT INTO " + table + "([ID],[Nombres],[Apellidos],[Correo],[Contraseña],[Celular],[Cedula],[Direccion],[Ciudad],[Edad],[Tipo],[FechaRegistro]) VALUES " +
+            string profilepicture_directory = "../img/profile/default-user.png";
+            string contraseña_encriptada = Utilities.ComputarSHA256(usuario.Contraseña);
+            string strSQL = "INSERT INTO " + table + "([ID],[Nombres],[Apellidos],[Correo],[Contraseña],[Celular],[Cedula],[Direccion],[Ciudad],[Edad],[Tipo],[FechaRegistro],[ImagenPerfil]) VALUES " +
             "(NEWID(),'" +
             usuario.Nombres + "','" +
             usuario.Apellidos + "','" + 
@@ -36,7 +38,8 @@ namespace ProyectoPAWRep.classes
             usuario.Ciudad + "'," +
             usuario.Edad.ToString() +",'"+
             usuario.Tipo+
-            "',CURRENT_TIMESTAMP)";
+            "',CURRENT_TIMESTAMP,"+
+            "'"+ profilepicture_directory + "')";
 
             var cmd = new SqlCommand(strSQL, sqlConnection);
 
@@ -56,10 +59,39 @@ namespace ProyectoPAWRep.classes
         {
             return "Prueba";
         }
-        public DataSet ReadDatabaseRecord()
+        public DataSet ReadDatabaseRecord(string[] values, string[,] conditions, string[] logic_conditionals, string orderby = null, string direction = null)
         {
-            DataSet data = new DataSet();
-            return data;
+            string formatted_values;
+            string formatted_conditions;
+            string formatted_order = " ORDER BY ";
+
+            // Darle formato a los valores a traer de la base de datos
+            formatted_values = FormatValuestoSelect(values);
+
+            // Darle formato a las condiciones a traer de la base de datos
+            formatted_conditions = FormatConditiontoSelect(conditions, logic_conditionals);
+
+            // Darle formato al orden en el que se traera la informacion
+            if (!String.IsNullOrEmpty(orderby))
+            {
+                formatted_order += orderby + " " + direction;
+            }
+            else
+            {
+                formatted_order = "";
+            }
+
+            string strSQL = "SELECT " + formatted_values + " FROM " + table + formatted_conditions + formatted_order;
+
+            var cmd = new SqlCommand(strSQL, sqlConnection);
+
+            var ds = new DataSet();
+            var da = new SqlDataAdapter(cmd);
+            sqlConnection.Open();
+            da.Fill(ds, "tb_Usuarios");
+            sqlConnection.Close();
+
+            return ds;
         }
         public string UpdateDatabaseRecord(List<Usuario> usuarios)
         {
@@ -69,19 +101,61 @@ namespace ProyectoPAWRep.classes
         {
             return "hola";
         }
-        string ComputeSha256Hash(string rawData)
+        string FormatValuestoSelect(string[] values)
         {
-            SHA256 sha256Hash = SHA256.Create();
+            string formatted_values = "";
 
-            byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(rawData));
-
-            // Convert byte array to a string   
-            StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < bytes.Length; i++)
+            if (values.Length > 1)
             {
-                builder.Append(bytes[i].ToString("x2"));
+                for (int i = 0; i < values.Length; i++)
+                {
+                    if (i < values.Length-1)
+                    {
+                        formatted_values += "[" + values[i] + "],";
+                    }
+                    else
+                    {
+                        formatted_values += "[" + values[i] + "]";
+                    }
+                }
             }
-            return builder.ToString();
+            else if (values.Length == 1)
+            {
+                formatted_values += values[0] == "*" ? "*" : "[" + values[0] + "]";
+            }
+            else
+            {
+                formatted_values += "*";
+            }
+            return formatted_values;
+        }
+        string FormatConditiontoSelect(string[,] conditions, string[] logic_conditionals)
+        {
+            string formatted_conditions = " WHERE ";
+
+            if (conditions.GetLength(0)>1)
+            {
+                for (int i = 0; i < conditions.GetLength(0); i++)
+                {
+                    if (i < conditions.GetLength(0)-1)
+                    {
+                        formatted_conditions += conditions[i,0] + conditions[i, 1] + conditions[i,2] + " "+ logic_conditionals[i] + " ";
+                    }
+                    else
+                    {
+                        formatted_conditions += conditions[i,0] + conditions[i, 1] + conditions[i,2];
+                    }
+                }
+            }
+            else if (conditions.GetLength(0) == 1)
+            {
+                formatted_conditions += conditions[0, 0] + conditions[0, 1] + conditions[0, 2];
+            }
+            else
+            {
+                formatted_conditions = "";
+            }
+            return formatted_conditions;
         }
     }
 }

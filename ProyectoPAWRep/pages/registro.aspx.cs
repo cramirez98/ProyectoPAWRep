@@ -5,6 +5,9 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace ProyectoPAWRep.pages
 {
@@ -17,13 +20,16 @@ namespace ProyectoPAWRep.pages
 
         protected void BtnRegistrarse_Click(object sender, EventArgs e)
         {
+
+            
+
             Usuario usuario = new Usuario(Nombres.Text, Apellidos.Text, Correo.Text, Contraseña.Text, Celular.Text, Cedula.Text, Ciudad.Text, int.Parse(Edad.Text), "Cliente", Direccion.Text);
             UserDatabaseManager UserDatabaseManager = new UserDatabaseManager("SQLConnection", "[dbo].[Usuarios]");
             bool connection_success = UserDatabaseManager.AddDatabaseRecord(usuario);
 
             if (connection_success)
             {
-                alerta.InnerHtml = Utilities.GenerateBigAlarm("Registro completado!", "El registro de tu cuenta ha terminado con exito.", "Para iniciar sesion da <a href='/login.aspx' class='alert-link'>click aquí</a>","success");
+                alerta.InnerHtml = Utilities.GenerateBigAlarm("Registro completado!", "El registro de tu cuenta ha terminado con exito.", "Para iniciar sesion da <a href='iniciosesion.aspx' class='alert-link'>click aquí</a>","success");
             }
             else
             {

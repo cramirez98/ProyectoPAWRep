@@ -7,12 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS -->
-    <link rel="stylesheet" href="/css/bootstrap.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/custom.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/bootstrap.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/custom.css" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <!-- Javascript -->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/7e4e3039b1.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
@@ -32,9 +32,9 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-10 col-xl-10 mx-auto">
-                                  <form class="row g-3" runat="server">
+                            <form class="row g-3" runat="server">
                             <div class="text-center">
-                            <img src="../img/logo/logodark.png" class="m-2" alt="..." width="290" height="120">
+                            <img src="../img/logo/logodark.png" class="" alt="..." width="290" height="120">
                                 <asp:ScriptManager ID="ScriptManager1" runat="server">
                                 </asp:ScriptManager>
                           </div>
@@ -57,7 +57,9 @@
                                         <div class="d-flex flex-column justify-content-start">
                                             <asp:RegularExpressionValidator ID="ValCelular" class="text-danger small validacion-text" runat="server" ErrorMessage="Solo se admite valores numericos" ValidationExpression="^([0-9])*$" ControlToValidate="Celular" ValidationGroup="Requeridos" Display="Dynamic"></asp:RegularExpressionValidator>
                                             <asp:RequiredFieldValidator ID="Val2Celular" class="text-danger small validacion-text" runat="server" ControlToValidate="Celular" ErrorMessage="No puede estar vacío" ValidationGroup="Requeridos"></asp:RequiredFieldValidator> 
-                                        </div>                                      </div>
+                                        </div>                                      
+
+                                    </div>
                                       <div class="col-xl-4">
                                         <label for="Cedula" class="form-label">Numero de cedula</label>
                                         <asp:TextBox ID="Cedula" class="form-control form-control-lg" runat="server"></asp:TextBox>
@@ -70,15 +72,16 @@
                                         <label for="Edad" class="form-label">Edad</label>
                                         <asp:TextBox ID="Edad" class="form-control form-control-lg" runat="server"></asp:TextBox>
                                           <div class="d-flex flex-column justify-content-start">
-                                        <asp:RegularExpressionValidator ID="ValEdad" class="text-danger small validacion-text" runat="server" ErrorMessage="Solo se admiten valores numericos" ValidationExpression="^([0-9])*$" ControlToValidate="Edad" ValidationGroup="Requeridos" Display="Dynamic"></asp:RegularExpressionValidator>
-                                          <asp:RequiredFieldValidator ID="Val2Edad" class="text-danger small validacion-text" runat="server" ControlToValidate="Edad" ErrorMessage="No puede estar vacío" ValidationGroup="Requeridos"></asp:RequiredFieldValidator> 
+                                            <asp:RegularExpressionValidator ID="ValEdad" class="text-danger small validacion-text" runat="server" ErrorMessage="Solo se admiten valores numericos" ValidationExpression="^([0-9])*$" ControlToValidate="Edad" ValidationGroup="Requeridos" Display="Dynamic"></asp:RegularExpressionValidator>
+                                            <asp:RequiredFieldValidator ID="Val2Edad" class="text-danger small validacion-text" runat="server" ControlToValidate="Edad" ErrorMessage="No puede estar vacío" ValidationGroup="Requeridos" Display="Dynamic"></asp:RequiredFieldValidator> 
+                                            <asp:RangeValidator ID="Val3Edad" class="text-danger small validacion-text" runat="server" MaximumValue="80" MinimumValue="18" ValidationGroup="Requeridos" ControlToValidate="Edad" Display="Dynamic">Debe ser mayor de edad (+18 años)</asp:RangeValidator>
                                           </div>
                                       </div>
                                       <div class="col-xl-9">
                                         <label for="Direccion" class="form-label">Dirección de residencia</label>
                                         <asp:TextBox ID="Direccion" class="form-control form-control-lg" runat="server"></asp:TextBox>
                                         <div class="d-flex flex-column justify-content-start">
-                                            <asp:RegularExpressionValidator ID="ValDireccion" class="text-danger small validacion-text" runat="server" ErrorMessage="Solo se admite valores numericos" ValidationExpression="^([0-9])*$" ControlToValidate="Direccion" ValidationGroup="Requeridos" Display="Dynamic"></asp:RegularExpressionValidator>
+
                                             <asp:RequiredFieldValidator ID="Val2Direccion" class="text-danger small validacion-text" runat="server" ControlToValidate="Direccion" ErrorMessage="No puede estar vacío" ValidationGroup="Requeridos"></asp:RequiredFieldValidator> 
                                         </div>
                                       </div>
@@ -92,7 +95,8 @@
                                         <asp:TextBox ID="Correo" class="form-control form-control-lg" runat="server"></asp:TextBox>
                                         <div class="d-flex flex-column justify-content-start">
                                             <asp:RegularExpressionValidator ID="ValCorreo" class="text-danger small validacion-text" runat="server" ErrorMessage="Debe ingresar un correo valido" ValidationExpression="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" ControlToValidate="Correo" ValidationGroup="Requeridos" Display="Dynamic"></asp:RegularExpressionValidator>
-                                            <asp:RequiredFieldValidator ID="Val2Correo" class="text-danger small validacion-text" runat="server" ControlToValidate="Correo" ErrorMessage="No puede estar vacío" ValidationGroup="Requeridos"></asp:RequiredFieldValidator> 
+                                            <asp:RequiredFieldValidator ID="Val2Correo" class="text-danger small validacion-text" runat="server" ControlToValidate="Correo" ErrorMessage="No puede estar vacío" ValidationGroup="Requeridos" Display="Dynamic"></asp:RequiredFieldValidator>      
+                                            <div runat="server" id="Val3Correo"></div>
                                         </div>
                                       </div>
                                       <div class="col-xl-6">
@@ -114,6 +118,8 @@
                                       <asp:Button ID="BtnRegistrarse" class="btn btn-primary btn-lg w-75" runat="server" Text="Registrarse" OnClick="BtnRegistrarse_Click" ValidationGroup="Requeridos"/>
                                     </div>
                                   </form>
+
+
                                 <div class="mb-3 text-center m-3">
                                     <p>Ya posee una cuenta? <a href="/login.html">Ingrese aquí</a></p>
                                 </div>
