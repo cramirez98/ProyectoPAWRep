@@ -62,11 +62,11 @@
                                         <asp:Button ID="BtnLogin" class="btn btn-primary btn-lg btn-lg-height" runat="server" Text="Iniciar Sesion" ValidationGroup="Requeridos" OnClick="BtnLogin_Click"/>
                                       </div>
                                 </form>
-                                <div class="mb-3 m-1 text-left">
+                                <div class="mb-3 m-1 text-center">
                                     <p><a href="/recuperar.html">Se te olvido tu contraseña?</a></p>
                                 </div>
-                                <div class="mb-3 text-left">
-                                    <p>No posee una cuenta? <a href="/registro.aspx">Registrese aquí</a></p>
+                                <div class="mb-3 text-center">
+                                    <p>No posee una cuenta? <a href="registro.aspx">Registrese aquí</a></p>
                                 </div>
                         </div>
                     </div>

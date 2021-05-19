@@ -29,6 +29,7 @@ namespace ProyectoPAWRep.pages
             {
                 string uid = data.Tables[0].Rows[0]["ID"].ToString();
                 Session["User_ID"] = uid;
+                Response.Redirect("usuario.aspx");
             }
             else
             {

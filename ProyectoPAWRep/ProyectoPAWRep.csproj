@@ -101,13 +101,17 @@
     <Content Include="js\bootstrap.esm.min.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\EnableTextbox.js" />
     <Content Include="js\RangeSlider.js" />
     <Content Include="js\SorterLogic.js" />
     <Content Include="pages\iniciosesion.aspx" />
     <Content Include="pages\registro.aspx" />
+    <Content Include="pages\usuario.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classes\DatabaseManager.cs" />
+    <Compile Include="classes\ReservasDataBaseManager.cs" />
     <Compile Include="classes\UserDatabaseManager.cs" />
     <Compile Include="classes\Usuario.cs" />
     <Compile Include="classes\Utilities.cs" />
@@ -124,6 +128,13 @@
     </Compile>
     <Compile Include="pages\registro.aspx.designer.cs">
       <DependentUpon>registro.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\usuario.aspx.cs">
+      <DependentUpon>usuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\usuario.aspx.designer.cs">
+      <DependentUpon>usuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
