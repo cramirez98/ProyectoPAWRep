@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\admin.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\carousel-custom.css" />
@@ -95,6 +96,7 @@
     <Content Include="img\user_header.png" />
     <Content Include="img\welcome.png" />
     <Content Include="img\worldwide.jpg" />
+    <Content Include="js\Admin.js" />
     <Content Include="js\bootstrap.bundle.js" />
     <Content Include="js\bootstrap.bundle.min.js" />
     <Content Include="js\bootstrap.esm.js" />
@@ -104,6 +106,8 @@
     <Content Include="js\EnableTextbox.js" />
     <Content Include="js\RangeSlider.js" />
     <Content Include="js\SorterLogic.js" />
+    <Content Include="pages\CrearHabitacion.aspx" />
+    <Content Include="pages\EliminarHabitacion.aspx" />
     <Content Include="pages\iniciosesion.aspx" />
     <Content Include="pages\registro.aspx" />
     <Content Include="pages\usuario.aspx" />
@@ -111,10 +115,33 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes\DatabaseManager.cs" />
+    <Compile Include="classes\Habitacion.cs" />
+    <Compile Include="classes\HabitacionesDatabaseManager.cs" />
     <Compile Include="classes\ReservasDataBaseManager.cs" />
     <Compile Include="classes\UserDatabaseManager.cs" />
     <Compile Include="classes\Usuario.cs" />
     <Compile Include="classes\Utilities.cs" />
+    <Compile Include="pages\Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="pages\CrearHabitacion.aspx.cs">
+      <DependentUpon>CrearHabitacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\CrearHabitacion.aspx.designer.cs">
+      <DependentUpon>CrearHabitacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\EliminarHabitacion.aspx.cs">
+      <DependentUpon>EliminarHabitacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\EliminarHabitacion.aspx.designer.cs">
+      <DependentUpon>EliminarHabitacion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\iniciosesion.aspx.cs">
       <DependentUpon>iniciosesion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -146,6 +173,7 @@
     <Content Include="js\bootstrap.js.map" />
     <Content Include="js\bootstrap.min.js.map" />
     <None Include="packages.config" />
+    <Content Include="pages\Admin.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

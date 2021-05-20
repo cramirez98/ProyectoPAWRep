@@ -1,0 +1,201 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="ProyectoPAWRep.pages.Admin1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+        <!-- CSS -->
+    <link rel="stylesheet" href="../css/bootstrap.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/custom.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link rel="stylesheet" href="../css/RangeSlider.css">
+    <link rel="stylesheet" href="../css/carousel-custom.css">
+    <!-- Javascript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/7e4e3039b1.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script type="text/javascript" src="../js/RangeSlider.js"></script>
+    <!-- Load google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;700&family=Recursive:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,700;0,900;1,100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <script>
+      $(function() {
+        $('input[name="datetimes"]').daterangepicker({
+          timePicker: true,
+          startDate: moment().startOf('hour'),
+          endDate: moment().startOf('hour').add(32, 'hour'),
+          locale: {
+            format: 'M/DD hh:mm A'
+          }
+        });
+      });
+    </script>
+</head>
+<body class="body-roboto-font-family bg-less-light">
+   <div class="container-fluid d-flex h-100 flex-column px-0">
+      <div class="row flex-nowrap g-0 flex-fill">
+          <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 sidebar-bg-color d-block" id="sidebar">
+            <div class="text-center">
+              <img src="../img/logo/logonavbar.png" class="m-2" alt="..." width="150" height="60">
+            </div>
+              <div class="d-flex flex-column px-3">
+                <hr class="new3">
+                <a href="http://" class="sidebar-link"><i class="fa fa-tachometer-alt me-1"> </i>Panel de informacíon</a>
+                <hr class="new3">
+                <div class="sidebar-title">Habitaciones</div>
+
+                <a href="http://" class="sidebar-link mb-1"><i class="fas fa-hotel me-1"> </i>Ver habitaciones</a>
+
+                <div class="d-flex justify-content-between mb-1">
+                  <div class="sidebar-text">
+                    <i class="fas fa-wrench me-1"></i> Administrar
+                  </div>
+                  <a class="sidebar-link" id="DropdownHabitaciones" data-icon="collapse" data-bs-toggle="collapse" href="#Habitaciones" role="button" aria-expanded="false" aria-controls="Habitaciones"><i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="collapse" id="Habitaciones">
+                  <div class="sidebar-collapse mb-1">
+                    <div class="d-grid gap-1">
+                      <a class="link-sidebar-option"><i class="fa fa-plus-square me-1"></i> Agregar habitación</a>
+                      <a class="link-sidebar-option"><i class="fa fa-minus-square me-1"></i> Eliminar habitación</a>
+                      <a class="link-sidebar-option"><i class="fa fa-edit me-1"></i> Editar habitación</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Menu Usuarios -->
+                <hr class="new3">
+                <div class="sidebar-title">Usuarios</div>
+
+                <a href="http://" class="sidebar-link mb-2"><i class="fa fa-users me-1"> </i>Ver usuarios</a>
+
+                <div class="d-flex justify-content-between mb-2">
+                  <div class="sidebar-text">
+                    <i class="fa fa-users-cog me-1"></i> Administrar
+                  </div>
+                  <a class="sidebar-link" id="DropdownUsuarios" data-icon="collapse" data-bs-toggle="collapse" href="#Usuarios" role="button" aria-expanded="false" aria-controls="Usuarios"><i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="collapse" id="Usuarios">
+                  <div class="sidebar-collapse mb-1">
+                    <div class="d-grid gap-1">
+                      <a class="link-sidebar-option"><i class="fa fa-user-plus me-1"></i> Agregar usuario</a>
+                      <a class="link-sidebar-option"><i class="fa fa-user-minus me-1"></i> Eliminar usuario</a>
+                      <a class="link-sidebar-option"><i class="fa fa-user-edit me-1"></i> Editar usuario</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Cierra Menu Usuarios -->
+                <!-- Menu -->
+                <hr class="new3">
+                <div class="sidebar-title">Descuentos</div>
+
+                <a href="http://" class="sidebar-link mb-2"><i class="fa fa-tags me-1"> </i>Ver descuentos</a>
+
+                <div class="d-flex justify-content-between mb-1">
+                  <div class="sidebar-text">
+                    <i class="fa fa-pen-alt me-1"></i> Administrar
+                  </div>
+                  <a class="sidebar-link" id="DropdownDescuentos" data-icon="collapse" data-bs-toggle="collapse" href="#Descuentos" role="button" aria-expanded="false" aria-controls="Descuentos"><i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="collapse" id="Descuentos">
+                  <div class="sidebar-collapse mb-3">
+                    <div class="d-grid gap-1">
+                      <a class="link-sidebar-option"><i class="fa fa-plus-square me-1"></i> Agregar descuento</a>
+                      <a class="link-sidebar-option"><i class="fa fa-minus-square me-1"></i> Eliminar descuento</a>
+                      <a class="link-sidebar-option"><i class="fa fa-edit me-1"></i> Editar descuento</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Cierra Menu -->
+
+                <!-- Menu -->
+                <hr class="new3">
+                <div class="sidebar-title">Reservas</div>
+
+                <a href="http://" class="sidebar-link mb-2"><i class="fa fa-concierge-bell me-1"> </i>Ver reservas</a>
+
+                <div class="d-flex justify-content-between mb-1">
+                  <div class="sidebar-text">
+                    <i class="fa fa-pen-alt me-1"></i> Administrar
+                  </div>
+                  <a class="sidebar-link" id="DropdownReservas" data-icon="collapse" data-bs-toggle="collapse" href="#Reservas" role="button" aria-expanded="false" aria-controls="Reservas"><i class="fas fa-chevron-right"></i></a>
+                </div>
+                <div class="collapse" id="Reservas">
+                  <div class="sidebar-collapse mb-3">
+                    <div class="d-grid gap-1">
+                      <a class="link-sidebar-option"><i class="fa fa-plus-square me-1"></i> Agregar reserva</a>
+                      <a class="link-sidebar-option"><i class="fa fa-minus-square me-1"></i> Eliminar reserva</a>
+                      <a class="link-sidebar-option"><i class="fa fa-edit me-1"></i> Editar reserva</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Cierra Menu -->
+
+              </div>
+          </div>
+          <div class="col d-flex flex-column">
+            <div id="topbaradmin">
+              <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+                  <button class="colapse-button" data-collapsed-navbar="collapse"><i class="fa fa-chevron-left"></i></button>
+                  <span class="navbar-brand mb-0 h1 fw-bold">Sun Paradise Hotel</span>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarText">
+                    <span class="navbar-nav me-auto mb-2 mb-lg-0 navbar-text">
+                      Panel de administrador
+                    </span>
+                    <ul class="navbar-nav ml-auto">
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <img src="img/nelson.jpeg" class="rounded-circle" alt="..." width="50" height="50">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+                          <li><a class="dropdown-item" href="login.html">Perfil</a></li>
+                          <li><a class="dropdown-item" href="registro.html">Cerrar sesion</a></li>
+                        </ul>
+                      </li>
+                    </ul>   
+                  </div>
+                </div>
+              </nav>
+              
+            </div>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+          </div>
+      </div>
+  </div>
+<!-- Optional JavaScript -->
+<script src="/js/SorterLogic.js"></script>
+<script src="/js/Admin.js"></script>
+      <script>
+          $(window).scroll(function () {
+              $('nav').toggleClass('scrolled', $(this).scrollTop() > 50);
+              $('nav').toggleClass('scrolled-nav', $(this).scrollTop() > 50);
+          });
+          $("[name='camasrange']").on('input', function () {
+              val = $("[name='camasrange']").val();
+              $("[name='camasrange_label']").html("<b>Numero de camas:</b> " + val);
+          });
+          $(document).ready(function () {
+              $("[name='camasrange']").val(1);
+              var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+              var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                  return new bootstrap.Tooltip(tooltipTriggerEl)
+              })
+          });
+      </script>                      
+</body>
+</html>

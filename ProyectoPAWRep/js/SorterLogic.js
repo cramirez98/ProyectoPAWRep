@@ -1,5 +1,5 @@
 $( ".sorter" ).click(function(event) {
-    object_clicked = $("#"+event.target.id);
+    object_clicked = $("#"+event.currentTarget.id);
     object_with_sorter = $(".sorter.active");
     if(object_clicked.hasClass('active')){
       switch (object_clicked.data( "sort" )) {
