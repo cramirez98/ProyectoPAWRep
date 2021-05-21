@@ -36,7 +36,8 @@
                         <asp:TextBox ID="CHabitacionNumero" class="form-control" runat="server" placeholder="409"></asp:TextBox>
                         <div class="d-flex flex-column justify-content-start">
                             <asp:RegularExpressionValidator ID="ValNumeroH" class="text-danger small validacion-text" runat="server" ErrorMessage="Solo se admite valores enteros" ValidationExpression="^([0-9])*$" ControlToValidate="CHabitacionNumero" ValidationGroup="Requeridos" Display="Dynamic"></asp:RegularExpressionValidator>
-                            <asp:RequiredFieldValidator ID="Val2NumeroH" class="text-danger small validacion-text" runat="server" ControlToValidate="CHabitacionNumero" ErrorMessage="No puede estar vacío" ValidationGroup="Requeridos"></asp:RequiredFieldValidator> 
+                            <asp:RequiredFieldValidator ID="Val2NumeroH" class="text-danger small validacion-text" runat="server" ControlToValidate="CHabitacionNumero" ErrorMessage="No puede estar vacío" ValidationGroup="Requeridos" Display="Dynamic"></asp:RequiredFieldValidator> 
+                            <div class="text-danger small" runat="server" id="Val3NumeroH" visible="false">El numero de habitación ingresado ya existe</div>
                         </div>    
                       </div>
                       <div class="col-2">

@@ -11,187 +11,151 @@ namespace ProyectoPAWRep.pages
 {
 
 
-    public partial class CrearHabitacion
+    public partial class HabitacionPagina
     {
 
         /// <summary>
-        /// Control alertaspace.
+        /// Control PHabitacionFoto1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alertaspace;
+        protected global::System.Web.UI.HtmlControls.HtmlImage PHabitacionFoto1;
 
         /// <summary>
-        /// Control ScriptManager1.
+        /// Control PHabitacionFoto2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.HtmlControls.HtmlImage PHabitacionFoto2;
 
         /// <summary>
-        /// Control CHabitacionImg.
+        /// Control PHabitacionFoto3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload CHabitacionImg;
+        protected global::System.Web.UI.HtmlControls.HtmlImage PHabitacionFoto3;
 
         /// <summary>
-        /// Control ValFotos.
+        /// Control PHabitacionNumero.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ValFotos;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionNumero;
 
         /// <summary>
-        /// Control CHabitacionIcon.
+        /// Control PHabitacionTamaño.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload CHabitacionIcon;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionTamaño;
 
         /// <summary>
-        /// Control ValIcono.
+        /// Control PHabitacionConDescuento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ValIcono;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionConDescuento;
 
         /// <summary>
-        /// Control CHabitacionNumero.
+        /// Control PHabitacionPrecioSinDescuento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CHabitacionNumero;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionPrecioSinDescuento;
 
         /// <summary>
-        /// Control ValNumeroH.
+        /// Control PHabitacionDescuento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator ValNumeroH;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionDescuento;
 
         /// <summary>
-        /// Control Val2NumeroH.
+        /// Control PHabitacionPrecio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Val2NumeroH;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionPrecio;
 
         /// <summary>
-        /// Control Val3NumeroH.
+        /// Control PHabitacionSinDescuento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Val3NumeroH;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionSinDescuento;
 
         /// <summary>
-        /// Control CHabitacionCamas.
+        /// Control PHabitacionPrecioSinDescuento2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CHabitacionCamas;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionPrecioSinDescuento2;
 
         /// <summary>
-        /// Control CHabitacionSize.
+        /// Control PHabitacionDescripcion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CHabitacionSize;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionDescripcion;
 
         /// <summary>
-        /// Control CHabitacionPrecio.
+        /// Control PHabitacionDiscapacitados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CHabitacionPrecio;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionDiscapacitados;
 
         /// <summary>
-        /// Control ValPrecioH.
+        /// Control PHabitacionMascota.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator ValPrecioH;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionMascota;
 
         /// <summary>
-        /// Control Val2PrecioH.
+        /// Control PHabitacionCamas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Val2PrecioH;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionCamas;
 
         /// <summary>
-        /// Control CHabitacionMascotas.
+        /// Control PHabitacionTamaño2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CHabitacionMascotas;
-
-        /// <summary>
-        /// Control CHabitacionDiscapacitados.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CHabitacionDiscapacitados;
-
-        /// <summary>
-        /// Control CHabitacionDescripcion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CHabitacionDescripcion;
-
-        /// <summary>
-        /// Control ValDescH.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ValDescH;
-
-        /// <summary>
-        /// Control BtnCrearHabitacion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnCrearHabitacion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionTamaño2;
     }
 }

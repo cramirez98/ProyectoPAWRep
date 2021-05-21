@@ -11,34 +11,34 @@ namespace ProyectoPAWRep.pages
 {
 
 
-    public partial class EliminarHabitacion
+    public partial class Normal
     {
 
         /// <summary>
-        /// Control alertaspace.
+        /// Control head.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alertaspace;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
 
         /// <summary>
-        /// Control DHabitacionNumero.
+        /// Control navbar_changing.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DHabitacionNumero;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl navbar_changing;
 
         /// <summary>
-        /// Control submitbtneliminarh.
+        /// Control ContentPlaceHolder1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton submitbtneliminarh;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentPlaceHolder1;
     }
 }

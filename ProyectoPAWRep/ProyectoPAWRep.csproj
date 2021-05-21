@@ -108,6 +108,7 @@
     <Content Include="js\SorterLogic.js" />
     <Content Include="pages\CrearHabitacion.aspx" />
     <Content Include="pages\EliminarHabitacion.aspx" />
+    <Content Include="pages\habitacion_pagina.aspx" />
     <Content Include="pages\iniciosesion.aspx" />
     <Content Include="pages\registro.aspx" />
     <Content Include="pages\usuario.aspx" />
@@ -115,6 +116,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes\DatabaseManager.cs" />
+    <Compile Include="classes\Descuento.cs" />
+    <Compile Include="classes\DescuentosDatabaseManager.cs" />
     <Compile Include="classes\Habitacion.cs" />
     <Compile Include="classes\HabitacionesDatabaseManager.cs" />
     <Compile Include="classes\ReservasDataBaseManager.cs" />
@@ -142,12 +145,26 @@
     <Compile Include="pages\EliminarHabitacion.aspx.designer.cs">
       <DependentUpon>EliminarHabitacion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pages\habitacion_pagina.aspx.cs">
+      <DependentUpon>habitacion_pagina.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\habitacion_pagina.aspx.designer.cs">
+      <DependentUpon>habitacion_pagina.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\iniciosesion.aspx.cs">
       <DependentUpon>iniciosesion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pages\iniciosesion.aspx.designer.cs">
       <DependentUpon>iniciosesion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\Normal.Master.cs">
+      <DependentUpon>Normal.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\Normal.Master.designer.cs">
+      <DependentUpon>Normal.Master</DependentUpon>
     </Compile>
     <Compile Include="pages\registro.aspx.cs">
       <DependentUpon>registro.aspx</DependentUpon>
@@ -174,6 +191,7 @@
     <Content Include="js\bootstrap.min.js.map" />
     <None Include="packages.config" />
     <Content Include="pages\Admin.Master" />
+    <Content Include="pages\Normal.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

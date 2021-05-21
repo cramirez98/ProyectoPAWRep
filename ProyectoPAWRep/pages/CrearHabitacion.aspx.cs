@@ -19,10 +19,18 @@ namespace ProyectoPAWRep.pages
 
         protected void BtnCrearHabitacion_Click(object sender, EventArgs e)
         {
-            if ((CHabitacionImg.PostedFile != null) && (CHabitacionImg.PostedFile.ContentLength > 0) && (CHabitacionImg.PostedFiles.Count > 1 && CHabitacionImg.PostedFiles.Count < 4) && (CHabitacionIcon.PostedFile != null) && (CHabitacionIcon.PostedFile.ContentLength > 0))
+            HabitacionesDatabaseManager habitacionesDatabaseManager = new HabitacionesDatabaseManager("SQLConnection", "[dbo].[Habitaciones]");
+            string[] valores_a_seleccionar = new string[] { "ID" };
+            string[,] condiciones_para_seleccionar = new string[,] { { "Numero", "=", CHabitacionNumero.Text } };
+            string[] logic_conditions = null;
+            
+            int n_datos_encontrados = habitacionesDatabaseManager.CountFetchedData(valores_a_seleccionar, condiciones_para_seleccionar, logic_conditions);
+
+            if ((CHabitacionImg.PostedFile != null) && (CHabitacionImg.PostedFile.ContentLength > 0) && (CHabitacionImg.PostedFiles.Count > 1 && CHabitacionImg.PostedFiles.Count < 4) && (CHabitacionIcon.PostedFile != null) && (CHabitacionIcon.PostedFile.ContentLength > 0) && n_datos_encontrados == 0)
             {
                 ValFotos.Visible = false;
                 ValIcono.Visible = false;
+                Val3NumeroH.Visible = false;
 
                 string numero_habitacion_encriptada = Utilities.ComputarSHA128(CHabitacionNumero.Text);
                 var count = 0;
@@ -85,8 +93,6 @@ namespace ProyectoPAWRep.pages
                 string h = document.ToString();
                 Habitacion habitacion = new Habitacion(int.Parse(CHabitacionNumero.Text), CHabitacionDescripcion.Text, document, double.Parse(CHabitacionPrecio.Text), CHabitacionSize.SelectedValue.ToString(), 0, int.Parse(CHabitacionCamas.SelectedValue.ToString()), CHabitacionMascotas.Checked ? 1 : 0, CHabitacionDiscapacitados.Checked ? 1 : 0, 0, "", "");
 
-                HabitacionesDatabaseManager habitacionesDatabaseManager = new HabitacionesDatabaseManager("SQLConnection", "[dbo].[Habitaciones]");
-
                 bool success = habitacionesDatabaseManager.AddDatabaseRecord(habitacion);
 
                 if (success)
@@ -107,6 +113,10 @@ namespace ProyectoPAWRep.pages
                 if(CHabitacionIcon.PostedFile.ContentLength == 0)
                 {
                     ValIcono.Visible = true;
+                }
+                if (n_datos_encontrados != 0)
+                {
+                    Val3NumeroH.Visible = true;
                 }
                 
             }

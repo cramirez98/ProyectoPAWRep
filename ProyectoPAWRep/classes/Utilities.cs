@@ -93,5 +93,25 @@ namespace ProyectoPAWRep.classes
 
             return alarm;
         }
+        public static string GenerateUserDropdown(string profilepic_src)
+        {
+            string userDropdown = "<li class='nav-item dropdown'><a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>";
+            userDropdown += "<img src='"+profilepic_src+ "' class='rounded-circle' alt='...' width='50' height='50'>";
+            userDropdown += "</a><ul class='dropdown-menu dropdown-menu-lg-end' aria-labelledby='navbarDropdown'>";
+            userDropdown += "<li><a class='dropdown-item' href='usuario.aspx'>Perfil</a></li><li><a class='dropdown-item' href='cerrarsesion.aspx'>Cerrar sesion</a></li>";
+            userDropdown += "</ul></li>";
+
+            return userDropdown;
+        }
+        public static string GenerateNormalDropdown()
+        {
+            string userDropdown = "<li class='nav-item dropdown'><a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>";
+            userDropdown += "<span class='fas fa-user'></span>";
+            userDropdown += "</a><ul class='dropdown-menu dropdown-menu-lg-end' aria-labelledby='navbarDropdown'>";
+            userDropdown += "<li><a class='dropdown-item' href='iniciosesion.aspx'>Iniciar sesion</a></li><li><a class='dropdown-item' href='registro.aspx'>Registrarse</a></li>";
+            userDropdown += "</ul></li>";
+
+            return userDropdown;
+        }
     }
 }

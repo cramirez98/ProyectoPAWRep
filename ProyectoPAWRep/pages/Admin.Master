@@ -67,8 +67,8 @@
                 <div class="collapse" id="Habitaciones">
                   <div class="sidebar-collapse mb-1">
                     <div class="d-grid gap-1">
-                      <a class="link-sidebar-option"><i class="fa fa-plus-square me-1"></i> Agregar habitación</a>
-                      <a class="link-sidebar-option"><i class="fa fa-minus-square me-1"></i> Eliminar habitación</a>
+                      <a href="CrearHabitacion.aspx" class="link-sidebar-option"><i class="fa fa-plus-square me-1"></i> Agregar habitación</a>
+                      <a href="EliminarHabitacion.aspx" class="link-sidebar-option"><i class="fa fa-minus-square me-1"></i> Eliminar habitación</a>
                       <a class="link-sidebar-option"><i class="fa fa-edit me-1"></i> Editar habitación</a>
                     </div>
                   </div>

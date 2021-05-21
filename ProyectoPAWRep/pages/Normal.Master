@@ -1,0 +1,91 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Normal.master.cs" Inherits="ProyectoPAWRep.pages.Normal" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+  <body class="body-roboto-font-family bg-less-light">
+<div id="inicio"></div>
+<div id="navbar-principal">
+      <nav class="navbar navbar-expand-xl fixed-top navbar-dark bg-blue">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+              <img src="../img/logo/logonavbar.png" alt="" width="115" height="45">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/index.html"><i class="icon-camera-retro"></i>Inicio</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/habitaciones.html">Habitaciones</a>
+                </li>
+              </ul>
+  
+            <ul class="navbar-nav ml-auto" runat="server" id="navbar_changing">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="img/nelson.jpeg" class="rounded-circle" alt="..." width="50" height="50">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="login.html">Perfil</a></li>
+                  <li><a class="dropdown-item" href="registro.html">Cerrar sesion</a></li>
+                </ul>
+              </li>
+            </ul>            
+              
+            </div>
+          </div>
+        </nav>
+</div>
+
+      <header class="normal-page d-none d-xl-block">
+      </header>
+<asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+</asp:ContentPlaceHolder>
+<div class="seccion bg-dark">
+<div class="container-fluid">
+    <div class="row flex-nowrap justify-content-center flex-fill">
+    <div class="col-lg-2 col-6 align-self-center text-center">
+        <img src="/img/logo/logonavbar.png" class="img-fluid" alt="..." width="300" height="300">
+        <p class="text-white">Hospedate con nosotros!</p>
+    </div>
+    <div class="col-lg-10 d-flex flex-column">
+        <h4 class="text-white">Links</h4>
+        <a href="http://">Inicio</a>
+        <a href="http://">Habitaciones</a>
+        <a href="http://">Inicio de sesion</a>
+        <a href="http://">Registro</a>
+    </div>
+    </div>
+</div>
+</div>
+
+<!-- Optional JavaScript -->
+<script src="/js/SorterLogic.js"></script>
+      <script>
+        $(window).scroll(function(){
+          $('nav').toggleClass('scrolled', $(this).scrollTop() > 50);
+          $('nav').toggleClass('scrolled-nav', $(this).scrollTop() > 50);
+        });
+        $("[name='camasrange']").on('input', function () {
+          val = $("[name='camasrange']").val();
+          $("[name='camasrange_label']").html("<b>Numero de camas:</b> "+val);
+        });
+        $(document).ready(function () {
+          $("[name='camasrange']").val(1);
+          var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+          var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl)
+          })
+        });
+      </script>
+</body>
+</html>

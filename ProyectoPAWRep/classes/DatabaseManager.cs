@@ -53,7 +53,15 @@ namespace ProyectoPAWRep.classes
             formatted_values = FormatValuestoSelect(values);
 
             // Darle formato a las condiciones a traer de la base de datos
-            formatted_conditions = FormatConditiontoSelect(conditions, logic_conditionals);
+            if(conditions != null)
+            {
+                formatted_conditions = FormatConditiontoSelect(conditions, logic_conditionals);
+            }
+            else
+            {
+                formatted_conditions = "";
+            }
+
 
             // Darle formato al orden en el que se traera la informacion
             if (!String.IsNullOrEmpty(orderby))
@@ -82,8 +90,16 @@ namespace ProyectoPAWRep.classes
             string formatted_values;
             string formatted_conditions;
 
+            if (conditions != null)
+            {
+                formatted_conditions = FormatConditiontoSelect(conditions, logic_conditionals);
+            }
+            else
+            {
+                formatted_conditions = "";
+            }
             formatted_values = FormatValuesToUpdate(values_to_update);
-            formatted_conditions = FormatConditiontoSelect(conditions, logic_conditionals);
+
 
             string strSQL = "UPDATE " + table + formatted_values + formatted_conditions;
 
@@ -100,6 +116,14 @@ namespace ProyectoPAWRep.classes
             {
                 return false;
             }
+        }
+
+        public int CountFetchedData(string[] values, string[,] conditions, string[] logic_conditionals, string orderby = null, string direction = null)
+        {
+            DataSet data = ReadDatabaseRecord(values, conditions, logic_conditionals, orderby, direction);
+
+            return data.Tables[0].Rows.Count;
+
         }
         string FormatValuestoSelect(string[] values)
         {
