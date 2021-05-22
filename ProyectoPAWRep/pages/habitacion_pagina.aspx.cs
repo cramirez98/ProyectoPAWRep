@@ -56,10 +56,7 @@ namespace ProyectoPAWRep.pages
             List<string> sources = new List<string>();
 
             // Obtener las 3 fotos
-            foreach (XElement element in Fotos.Descendants("FotosHabitacion").Descendants("PaginaFotos").Nodes())
-            {
-                sources.Add(element.Attribute("src").Value);
-            }
+            Utilities.GetImagesHabitacion(Fotos, out sources);
 
             PHabitacionFoto1.Attributes["src"] = sources[0];
             PHabitacionFoto2.Attributes["src"] = sources[1];

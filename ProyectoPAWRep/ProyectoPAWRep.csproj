@@ -114,6 +114,7 @@
     <Content Include="pages\CrearDescuento.aspx" />
     <Content Include="pages\CrearHabitacion.aspx" />
     <Content Include="pages\EliminarHabitacion.aspx" />
+    <Content Include="pages\habitaciones.aspx" />
     <Content Include="pages\habitacion_pagina.aspx" />
     <Content Include="pages\iniciosesion.aspx" />
     <Content Include="pages\ModificarHabitacion.aspx" />
@@ -159,6 +160,13 @@
     </Compile>
     <Compile Include="pages\EliminarHabitacion.aspx.designer.cs">
       <DependentUpon>EliminarHabitacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\habitaciones.aspx.cs">
+      <DependentUpon>habitaciones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\habitaciones.aspx.designer.cs">
+      <DependentUpon>habitaciones.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\habitacion_pagina.aspx.cs">
       <DependentUpon>habitacion_pagina.aspx</DependentUpon>

@@ -43,12 +43,13 @@ namespace ProyectoPAWRep.classes
                 return false;
             }
         }
-        public DataSet ReadDatabaseRecord(string[] values, string[,] conditions, string[] logic_conditionals, string orderby = null, string direction = null)
+        public DataSet ReadDatabaseRecord(string[] values, string[,] conditions, string[] logic_conditionals, string orderby = null, string direction = null, int offset = 0, int fetchNext = 0)
         {
             string formatted_values;
             string formatted_conditions;
             string formatted_order = " ORDER BY ";
-
+            string formatted_offset = " OFFSET ";
+            string formatted_fetchNext = " FETCH NEXT ";
             // Darle formato a los valores a traer de la base de datos
             formatted_values = FormatValuestoSelect(values);
 
@@ -73,7 +74,25 @@ namespace ProyectoPAWRep.classes
                 formatted_order = "";
             }
 
-            string strSQL = "SELECT " + formatted_values + " FROM " + table + formatted_conditions + formatted_order;
+            if(offset != 0)
+            {
+                formatted_offset += offset.ToString() + " ROWS";
+            }
+            else
+            {
+                formatted_offset = "";
+            }
+
+            if(fetchNext != 0)
+            {
+                formatted_fetchNext += fetchNext.ToString() + " ROWS ONLY";
+            }
+            else
+            {
+                formatted_fetchNext = "";
+            }
+
+            string strSQL = "SELECT " + formatted_values + " FROM " + table + formatted_conditions + formatted_order + formatted_offset + formatted_fetchNext;
 
             var cmd = new SqlCommand(strSQL, sqlConnection);
 
