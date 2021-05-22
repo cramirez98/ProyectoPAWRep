@@ -70,6 +70,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\admin.css" />
+    <Content Include="css\bootstrap-datepicker.css" />
+    <Content Include="css\bootstrap-datepicker.standalone.css" />
+    <Content Include="css\bootstrap-datepicker.standalone.min.css" />
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\carousel-custom.css" />
@@ -97,6 +100,7 @@
     <Content Include="img\welcome.png" />
     <Content Include="img\worldwide.jpg" />
     <Content Include="js\Admin.js" />
+    <Content Include="js\bootstrap-datepicker.min.js" />
     <Content Include="js\bootstrap.bundle.js" />
     <Content Include="js\bootstrap.bundle.min.js" />
     <Content Include="js\bootstrap.esm.js" />
@@ -104,14 +108,18 @@
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\EnableTextbox.js" />
+    <Content Include="js\EnableTextboxHabitacion.js" />
     <Content Include="js\RangeSlider.js" />
     <Content Include="js\SorterLogic.js" />
+    <Content Include="pages\CrearDescuento.aspx" />
     <Content Include="pages\CrearHabitacion.aspx" />
     <Content Include="pages\EliminarHabitacion.aspx" />
     <Content Include="pages\habitacion_pagina.aspx" />
     <Content Include="pages\iniciosesion.aspx" />
+    <Content Include="pages\ModificarHabitacion.aspx" />
     <Content Include="pages\registro.aspx" />
     <Content Include="pages\usuario.aspx" />
+    <Content Include="pages\usuarioa.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +138,13 @@
     </Compile>
     <Compile Include="pages\Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="pages\CrearDescuento.aspx.cs">
+      <DependentUpon>CrearDescuento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\CrearDescuento.aspx.designer.cs">
+      <DependentUpon>CrearDescuento.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\CrearHabitacion.aspx.cs">
       <DependentUpon>CrearHabitacion.aspx</DependentUpon>
@@ -159,6 +174,13 @@
     <Compile Include="pages\iniciosesion.aspx.designer.cs">
       <DependentUpon>iniciosesion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pages\ModificarHabitacion.aspx.cs">
+      <DependentUpon>ModificarHabitacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\ModificarHabitacion.aspx.designer.cs">
+      <DependentUpon>ModificarHabitacion.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\Normal.Master.cs">
       <DependentUpon>Normal.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -179,6 +201,13 @@
     </Compile>
     <Compile Include="pages\usuario.aspx.designer.cs">
       <DependentUpon>usuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\usuarioa.aspx.cs">
+      <DependentUpon>usuarioa.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\usuarioa.aspx.designer.cs">
+      <DependentUpon>usuarioa.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

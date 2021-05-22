@@ -1,10 +1,14 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/pages/Normal.Master" AutoEventWireup="true" CodeBehind="usuario.aspx.cs" Inherits="ProyectoPAWRep.pages.usuario1" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title>Usuario</title>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="usuarioa.aspx.cs" Inherits="ProyectoPAWRep.pages.usuario" %>
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Pagina principal</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- CSS -->
-    <link rel="stylesheet" href="../css/bootstrap.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/custom.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/carousel-custom.css">
+    <link rel="stylesheet" href="/css/bootstrap.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/custom.css" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <!-- Javascript -->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -19,19 +23,68 @@
     <link href="https://fonts.googleapis.com/css2?family=Recursive:wght@300;400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <script>
-        $(function () {
-            $('input[name="datetimes"]').daterangepicker({
-                timePicker: true,
-                startDate: moment().startOf('hour'),
-                endDate: moment().startOf('hour').add(32, 'hour'),
-                locale: {
-                    format: 'M/DD hh:mm A'
-                }
-            });
+      $(function() {
+        $('input[name="datetimes"]').daterangepicker({
+          timePicker: true,
+          startDate: moment().startOf('hour'),
+          endDate: moment().startOf('hour').add(32, 'hour'),
+          locale: {
+            format: 'M/DD hh:mm A'
+          }
         });
-    </script>
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+      });
+      </script>
+  
+  </head>
+  <body class="body-roboto-font-family bg-less-light">
+<div id="inicio"></div>
+<div id="navbar-principal">
+      <nav class="navbar navbar-expand-xl fixed-top navbar-dark bg-blue">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+              <img src="../img/logo/logonavbar.png" alt="" width="115" height="45">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="/index.html"><i class="icon-camera-retro"></i>Inicio</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Habitaciones
+                  </a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="#">Habitaciones familiares</a></li>
+                    <li><a class="dropdown-item" href="#">Habitaciones Piso Ejecutivo</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Visualizar todas las habitaciones</a></li>
+                  </ul>
+                </li>
+              </ul>
+  
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="img/nelson.jpeg" class="rounded-circle" alt="..." width="50" height="50" runat="server" id="navbar_image_profile">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="login.html">Perfil</a></li>
+                  <li><a class="dropdown-item" href="registro.html">Cerrar sesion</a></li>
+                </ul>
+              </li>
+            </ul>            
+              
+            </div>
+          </div>
+        </nav>
+</div>
+
+      <header class="normal-page d-none d-xl-block">
+      </header>
+
       <div class="container-fluid mt-30 mb-3 mt-xl-3">
           <div class="row bg-less-light justify-content-md-center">
               <div class="col-xxl-3">
@@ -331,6 +384,24 @@
           </div>
       </div>
 
+      <div class="seccion bg-dark flex-grow-1">
+        <div class="container-fluid">
+          <div class="row justify-content-center">
+            <div class="col-lg-2 col-6 align-self-center text-center">
+              <img src="/img/logo/logonavbar.png" class="img-fluid" alt="..." width="300" height="300">
+              <p class="text-white">Hospedate con nosotros!</p>
+            </div>
+            <div class="col-lg-10 d-flex flex-column">
+              <h4 class="text-white">Links</h4>
+              <a href="http://">Inicio</a>
+              <a href="http://">Habitaciones</a>
+              <a href="http://">Inicio de sesion</a>
+              <a href="http://">Registro</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -416,5 +487,13 @@
   </div>
 </div>
 <!-- Optional JavaScript -->
-<script src="../js/EnableTextbox.js"></script>
-</asp:Content>
+      <script src="../js/EnableTextbox.js"></script>
+      <script>
+        $(window).scroll(function(){
+          $('nav').toggleClass('scrolled', $(this).scrollTop() > 50);
+          $('nav').toggleClass('scrolled-nav', $(this).scrollTop() > 50);
+        });
+        
+      </script>
+  </body>
+</html>

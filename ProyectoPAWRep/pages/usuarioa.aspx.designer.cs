@@ -11,8 +11,17 @@ namespace ProyectoPAWRep.pages
 {
 
 
-    public partial class usuario1
+    public partial class usuario
     {
+
+        /// <summary>
+        /// Control navbar_image_profile.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage navbar_image_profile;
 
         /// <summary>
         /// Control info_panel_image.

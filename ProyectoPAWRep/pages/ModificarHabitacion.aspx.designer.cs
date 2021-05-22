@@ -11,98 +11,8 @@ namespace ProyectoPAWRep.pages
 {
 
 
-    public partial class usuario1
+    public partial class ModificarHabitacion
     {
-
-        /// <summary>
-        /// Control info_panel_image.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage info_panel_image;
-
-        /// <summary>
-        /// Control info_panel_nombre.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl info_panel_nombre;
-
-        /// <summary>
-        /// Control info_panel_tiempo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl info_panel_tiempo;
-
-        /// <summary>
-        /// Control info_panel_tipo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl info_panel_tipo;
-
-        /// <summary>
-        /// Control info_panel_correo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl info_panel_correo;
-
-        /// <summary>
-        /// Control info_panel_celular.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl info_panel_celular;
-
-        /// <summary>
-        /// Control info_panel_cedula.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl info_panel_cedula;
-
-        /// <summary>
-        /// Control info_panel_direccion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl info_panel_direccion;
-
-        /// <summary>
-        /// Control info_panel_ciudad.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl info_panel_ciudad;
-
-        /// <summary>
-        /// Control ScriptManager1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
         /// Control alertaspace.
@@ -114,201 +24,210 @@ namespace ProyectoPAWRep.pages
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl alertaspace;
 
         /// <summary>
-        /// Control Nombres.
+        /// Control ScriptManager1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Nombres;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
-        /// Control ValNombres.
+        /// Control seleccionar_habitacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ValNombres;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl seleccionar_habitacion;
 
         /// <summary>
-        /// Control Apellidos.
+        /// Control MHabitacionNumeroToLoad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Apellidos;
+        protected global::System.Web.UI.WebControls.DropDownList MHabitacionNumeroToLoad;
 
         /// <summary>
-        /// Control ValApellidos.
+        /// Control cargarinformacionhabitacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ValApellidos;
+        protected global::System.Web.UI.HtmlControls.HtmlButton cargarinformacionhabitacion;
 
         /// <summary>
-        /// Control Celular.
+        /// Control MHabitacionImg.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Celular;
+        protected global::System.Web.UI.WebControls.FileUpload MHabitacionImg;
 
         /// <summary>
-        /// Control ValCelular.
+        /// Control ValFotos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator ValCelular;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ValFotos;
 
         /// <summary>
-        /// Control Val2Celular.
+        /// Control MHabitacionIcon.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Val2Celular;
+        protected global::System.Web.UI.WebControls.FileUpload MHabitacionIcon;
 
         /// <summary>
-        /// Control Cedula.
+        /// Control ValIcono.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Cedula;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ValIcono;
 
         /// <summary>
-        /// Control ValCedula.
+        /// Control MHabitacionNumero.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator ValCedula;
+        protected global::System.Web.UI.WebControls.TextBox MHabitacionNumero;
 
         /// <summary>
-        /// Control Val2Cedula.
+        /// Control ValNumeroH.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Val2Cedula;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator ValNumeroH;
 
         /// <summary>
-        /// Control Edad.
+        /// Control Val2NumeroH.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Edad;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Val2NumeroH;
 
         /// <summary>
-        /// Control ValEdad.
+        /// Control Val3NumeroH.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator ValEdad;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Val3NumeroH;
 
         /// <summary>
-        /// Control Val2Edad.
+        /// Control MHabitacionCamas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Val2Edad;
+        protected global::System.Web.UI.WebControls.DropDownList MHabitacionCamas;
 
         /// <summary>
-        /// Control Val3Edad.
+        /// Control MHabitacionSize.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator Val3Edad;
+        protected global::System.Web.UI.WebControls.DropDownList MHabitacionSize;
 
         /// <summary>
-        /// Control Direccion.
+        /// Control MHabitacionPrecio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Direccion;
+        protected global::System.Web.UI.WebControls.TextBox MHabitacionPrecio;
 
         /// <summary>
-        /// Control Val2Direccion.
+        /// Control ValPrecioH.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Val2Direccion;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator ValPrecioH;
 
         /// <summary>
-        /// Control Ciudad.
+        /// Control Val2PrecioH.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Ciudad;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator Val2PrecioH;
 
         /// <summary>
-        /// Control ValCiudad.
+        /// Control MHabitacionMascotas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ValCiudad;
+        protected global::System.Web.UI.WebControls.CheckBox MHabitacionMascotas;
 
         /// <summary>
-        /// Control Contraseña.
+        /// Control MHabitacionDiscapacitados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Contraseña;
+        protected global::System.Web.UI.WebControls.CheckBox MHabitacionDiscapacitados;
 
         /// <summary>
-        /// Control RContraseña.
+        /// Control MHabitacionDescripcion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox RContraseña;
+        protected global::System.Web.UI.WebControls.TextBox MHabitacionDescripcion;
 
         /// <summary>
-        /// Control ValPass.
+        /// Control ValDescH.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator ValPass;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ValDescH;
 
         /// <summary>
-        /// Control Val2Pass.
+        /// Control MHabitacionDescuentoDropdown.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Val2Pass;
+        protected global::System.Web.UI.WebControls.DropDownList MHabitacionDescuentoDropdown;
+
+        /// <summary>
+        /// Control BtnModificarHabitacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnModificarHabitacion;
     }
 }

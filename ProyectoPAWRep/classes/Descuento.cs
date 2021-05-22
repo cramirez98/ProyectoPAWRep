@@ -7,22 +7,22 @@ namespace ProyectoPAWRep.classes
 {
     public class Descuento
     {
-        private float porcentaje;
-        private DateTime FechaInicio;
-        private DateTime FechaFinalizacion;
+        private int porcentaje;
+        private DateTime fechaInicio;
+        private DateTime fechaFinalizacion;
         private string nombre;
 
-        public Descuento(float porcentaje, DateTime fechaInicio, DateTime fechaFinalizacion, string nombre)
+        public Descuento(int porcentaje, DateTime fechaInicio, DateTime fechaFinalizacion, string nombre)
         {
             this.porcentaje = porcentaje;
-            FechaInicio = fechaInicio;
-            FechaFinalizacion = fechaFinalizacion;
+            this.fechaInicio = fechaInicio;
+            this.fechaFinalizacion = fechaFinalizacion;
             this.nombre = nombre;
         }
 
-        public float Porcentaje { get => porcentaje; set => porcentaje = value; }
-        public DateTime FechaInicio1 { get => FechaInicio; set => FechaInicio = value; }
-        public DateTime FechaFinalizacion1 { get => FechaFinalizacion; set => FechaFinalizacion = value; }
+        public int Porcentaje { get => porcentaje; set => porcentaje = value; }
+        public DateTime FechaInicio { get => fechaInicio; set => fechaInicio = value; }
+        public DateTime FechaFinalizacion { get => fechaFinalizacion; set => fechaFinalizacion = value; }
         public string Nombre { get => nombre; set => nombre = value; }
     }
 }

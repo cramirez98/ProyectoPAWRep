@@ -75,12 +75,22 @@ namespace ProyectoPAWRep.pages
                 string[,] condiciones_descuentos = new string[,] { { "ID", "=", "'" + descuento_id + "'" } };
                 string[] logic_descuentos = null;
                 DataSet data_descuento = descuentosDatabaseManager.ReadDatabaseRecord(valores_descuentos,condiciones_descuentos,logic_descuentos);
+
+                PHabitacionConDescuento.Visible = true;
+                PHabitacionSinDescuento.Visible = false;
+
+                PHabitacionPrecioSinDescuento.InnerText = double.Parse(data.Tables[0].Rows[0]["Precio"].ToString()).ToString("c0") + " COP";
+                double precio_sin_descuento = double.Parse(data.Tables[0].Rows[0]["Precio"].ToString());
+                int porcentaje_descuento = int.Parse(data_descuento.Tables[0].Rows[0]["Porcentaje"].ToString());
+                double precio_con_descuento = precio_sin_descuento * (1 - (porcentaje_descuento/100.00));
+                PHabitacionPrecioConDescuento.InnerText = precio_con_descuento.ToString("c0") + " COP";
+                PHabitacionDescuento.InnerText = porcentaje_descuento.ToString() + "%";
             }
             else
             {
                 PHabitacionConDescuento.Visible = false;
                 PHabitacionSinDescuento.Visible = true;
-                PHabitacionPrecioSinDescuento2.InnerText = int.Parse(data.Tables[0].Rows[0]["Precio"].ToString()).ToString("c0") + " COP";
+                PHabitacionPrecioSinDescuento2.InnerText = double.Parse(data.Tables[0].Rows[0]["Precio"].ToString()).ToString("c0") + " COP";
             }
         }
 

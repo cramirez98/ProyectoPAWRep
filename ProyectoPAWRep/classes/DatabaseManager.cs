@@ -125,6 +125,21 @@ namespace ProyectoPAWRep.classes
             return data.Tables[0].Rows.Count;
 
         }
+
+        public bool CheckIfExists(string[] values, string[,] conditions, string[] logic_conditionals, string orderby = null, string direction = null)
+        {
+            DataSet data = ReadDatabaseRecord(values, conditions, logic_conditionals, orderby, direction);
+
+            if (data.Tables[0].Rows.Count > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
         string FormatValuestoSelect(string[] values)
         {
             string formatted_values = "";

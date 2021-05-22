@@ -87,13 +87,13 @@ namespace ProyectoPAWRep.pages
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionDescuento;
 
         /// <summary>
-        /// Control PHabitacionPrecio.
+        /// Control PHabitacionPrecioConDescuento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionPrecio;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionPrecioConDescuento;
 
         /// <summary>
         /// Control PHabitacionSinDescuento.

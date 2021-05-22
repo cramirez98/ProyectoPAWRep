@@ -91,7 +91,7 @@
                                     </div>
                                     <span class="fc-blue ff-oswaldo" runat="server" id="PHabitacionDescuento">50% OFF</span>
                                 </div>
-                                <div class="habitacion-info-precio fc-orange" runat="server" id="PHabitacionPrecio">
+                                <div class="habitacion-info-precio fc-orange" runat="server" id="PHabitacionPrecioConDescuento">
                                     $230.150 COP
                                 </div>
                                 <div class="habitacion-precio-desc">Por noche</div>

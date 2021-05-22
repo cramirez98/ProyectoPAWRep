@@ -7,18 +7,50 @@ using System.Web.UI.WebControls;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using ProyectoPAWRep.classes;
-
+using System.Data;
 namespace ProyectoPAWRep.pages
 {
     public partial class CrearHabitacion : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                DescuentosDatabaseManager descuentosDatabaseManager = new DescuentosDatabaseManager("SQLConnection", "[dbo].[Descuentos]");
 
+                DataSet data = descuentosDatabaseManager.ReadDatabaseRecord(
+                    new string[] { "Nombre" },
+                    null,
+                    null
+                );
+
+                CHabitacionDescuentoDropdown.DataTextField = data.Tables[0].Columns["Nombre"].ToString();
+                CHabitacionDescuentoDropdown.DataValueField = data.Tables[0].Columns["Nombre"].ToString();
+                CHabitacionDescuentoDropdown.DataSource = data.Tables[0];
+                CHabitacionDescuentoDropdown.DataBind();
+
+                CHabitacionDescuentoDropdown.Items.Insert(0, new ListItem("Sin descuento", "Sin Descuento"));
+                CHabitacionDescuentoDropdown.SelectedValue = "Sin Descuento";
+            }
         }
 
         protected void BtnCrearHabitacion_Click(object sender, EventArgs e)
         {
+            DescuentosDatabaseManager descuentosDatabaseManager = new DescuentosDatabaseManager("SQLConnection", "[dbo].[Descuentos]");
+            string descuento_id;
+            if (CHabitacionDescuentoDropdown.SelectedValue.ToString() == "Sin Descuento")
+            {
+                descuento_id = "";
+            }
+            else
+            {
+                DataSet data_descuentos = descuentosDatabaseManager.ReadDatabaseRecord(
+                    new string[] { "ID" },
+                    new string[,] { { "Nombre", "=", "'" + CHabitacionDescuentoDropdown.SelectedValue.ToString() + "'" } },
+                    null
+                );
+                descuento_id = data_descuentos.Tables[0].Rows[0]["ID"].ToString();
+            }
             HabitacionesDatabaseManager habitacionesDatabaseManager = new HabitacionesDatabaseManager("SQLConnection", "[dbo].[Habitaciones]");
             string[] valores_a_seleccionar = new string[] { "ID" };
             string[,] condiciones_para_seleccionar = new string[,] { { "Numero", "=", CHabitacionNumero.Text } };
@@ -26,7 +58,7 @@ namespace ProyectoPAWRep.pages
             
             int n_datos_encontrados = habitacionesDatabaseManager.CountFetchedData(valores_a_seleccionar, condiciones_para_seleccionar, logic_conditions);
 
-            if ((CHabitacionImg.PostedFile != null) && (CHabitacionImg.PostedFile.ContentLength > 0) && (CHabitacionImg.PostedFiles.Count > 1 && CHabitacionImg.PostedFiles.Count < 4) && (CHabitacionIcon.PostedFile != null) && (CHabitacionIcon.PostedFile.ContentLength > 0) && n_datos_encontrados == 0)
+            if ((CHabitacionImg.PostedFile != null) && (CHabitacionImg.PostedFile.ContentLength > 0) && CHabitacionImg.PostedFiles.Count == 3 && (CHabitacionIcon.PostedFile != null) && (CHabitacionIcon.PostedFile.ContentLength > 0) && n_datos_encontrados == 0)
             {
                 ValFotos.Visible = false;
                 ValIcono.Visible = false;
@@ -91,7 +123,7 @@ namespace ProyectoPAWRep.pages
 
 
                 string h = document.ToString();
-                Habitacion habitacion = new Habitacion(int.Parse(CHabitacionNumero.Text), CHabitacionDescripcion.Text, document, double.Parse(CHabitacionPrecio.Text), CHabitacionSize.SelectedValue.ToString(), 0, int.Parse(CHabitacionCamas.SelectedValue.ToString()), CHabitacionMascotas.Checked ? 1 : 0, CHabitacionDiscapacitados.Checked ? 1 : 0, 0, "", "");
+                Habitacion habitacion = new Habitacion(int.Parse(CHabitacionNumero.Text), CHabitacionDescripcion.Text, document, double.Parse(CHabitacionPrecio.Text), CHabitacionSize.SelectedValue.ToString(), 0, int.Parse(CHabitacionCamas.SelectedValue.ToString()), CHabitacionMascotas.Checked ? 1 : 0, CHabitacionDiscapacitados.Checked ? 1 : 0, 0, "", descuento_id);
 
                 bool success = habitacionesDatabaseManager.AddDatabaseRecord(habitacion);
 

@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/pages/Admin.Master" AutoEventWireup="true" CodeBehind="CrearHabitacion.aspx.cs" Inherits="ProyectoPAWRep.pages.CrearHabitacion" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>Crear habitación</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
               <div class="container-fluid px-4 py-3">
@@ -91,6 +92,12 @@
                       <div class="col-12">
                         <asp:TextBox ID="CHabitacionDescripcion" class="form-control" placeholder="Descripción" runat="server" TextMode="MultiLine" Rows="3"></asp:TextBox>
                           <asp:RequiredFieldValidator ID="ValDescH" class="text-danger small validacion-text" runat="server" ControlToValidate="CHabitacionDescripcion" ErrorMessage="No puede estar vacío" ValidationGroup="Requeridos"></asp:RequiredFieldValidator> 
+                      </div>
+                    <h1>Descuento</h1>
+                      <div class="col-2">
+                        <label for="CHabitacionDescuentoDropdown" class="form-label">Descuento de la habitación</label>
+                        <asp:DropDownList ID="CHabitacionDescuentoDropdown" class="form-select" runat="server">
+                        </asp:DropDownList>
                       </div>
                       <div class="col-12 text-center">
                           <asp:Button ID="BtnCrearHabitacion" ValidationGroup="Requeridos" class="btn btn-primary btn-lg" runat="server" Text="Crear habitacíon" OnClick="BtnCrearHabitacion_Click" />

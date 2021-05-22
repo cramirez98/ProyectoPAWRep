@@ -32,6 +32,8 @@ namespace ProyectoPAWRep.pages
                 submitbtneliminarh.Visible = false;
             }
 
+            alertaspace.InnerHtml = "";
+
         }
 
         protected void BtnEliminar_Click(object sender, EventArgs e)

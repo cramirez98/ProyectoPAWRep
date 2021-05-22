@@ -12,17 +12,16 @@ using System.Globalization;
 
 namespace ProyectoPAWRep.pages
 {
-    public partial class usuario1 : System.Web.UI.Page
+    public partial class usuario : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             Contraseña.Attributes["type"] = "password";
             RContraseña.Attributes["type"] = "password";
             // Cargar informacion
-            if (!IsPostBack)
+            if(!IsPostBack)
             {
-                if (!String.IsNullOrEmpty(Session["User_ID"] as string))
-                {
+                if (!String.IsNullOrEmpty(Session["User_ID"] as string)) {
                     string user_id = Session["User_ID"] as string;
                     UserDatabaseManager UserDatabaseManager = new UserDatabaseManager("SQLConnection", "[dbo].[Usuarios]");
                     string[] valores_a_traer = new string[] { "Nombres",
@@ -56,7 +55,7 @@ namespace ProyectoPAWRep.pages
             string user_id = Session["User_ID"] as string;
 
             UserDatabaseManager userDatabaseManager = new UserDatabaseManager("SQLConnection", "[dbo].[Usuarios]");
-            string[] valores_a_traer = new string[] { "Contraseña" };
+            string[] valores_a_traer = new string[] {"Contraseña"};
             string[,] condiciones_primero = new string[,] { { "ID", "=", "'" + user_id + "'" } };
             string[] logic_condiciones_primero = new string[] { "" };
             DataSet user_data = userDatabaseManager.ReadDatabaseRecord(valores_a_traer, condiciones_primero, logic_condiciones_primero);
@@ -130,11 +129,12 @@ namespace ProyectoPAWRep.pages
             info_panel_image.Attributes["src"] = data.Tables[0].Rows[0]["ImagenPerfil"].ToString();
             info_panel_tipo.InnerText = data.Tables[0].Rows[0]["Tipo"].ToString();
 
+            navbar_image_profile.Attributes["src"] = data.Tables[0].Rows[0]["ImagenPerfil"].ToString();
 
             DateTime FechaRegistro = (DateTime)data.Tables[0].Rows[0]["FechaRegistro"];
             CultureInfo culture = new System.Globalization.CultureInfo("es-ES");
             string fecha_registro = DateTime.Now.ToString("D", culture);
-            info_panel_tiempo.InnerText = "Miembro desde " + fecha_registro;
+            info_panel_tiempo.InnerText = "Miembro desde "+fecha_registro;
         }
     }
 }

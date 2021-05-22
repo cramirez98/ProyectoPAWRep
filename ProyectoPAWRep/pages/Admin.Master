@@ -5,9 +5,6 @@
 <html>
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-    <asp:ContentPlaceHolder ID="head" runat="server">
-    </asp:ContentPlaceHolder>
         <!-- CSS -->
     <link rel="stylesheet" href="../css/bootstrap.css" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/custom.css" crossorigin="anonymous">
@@ -30,18 +27,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <script>
-      $(function() {
-        $('input[name="datetimes"]').daterangepicker({
-          timePicker: true,
-          startDate: moment().startOf('hour'),
-          endDate: moment().startOf('hour').add(32, 'hour'),
-          locale: {
-            format: 'M/DD hh:mm A'
-          }
-        });
-      });
-    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
 </head>
 <body class="body-roboto-font-family bg-less-light">
    <div class="container-fluid d-flex h-100 flex-column px-0">
@@ -69,7 +56,7 @@
                     <div class="d-grid gap-1">
                       <a href="CrearHabitacion.aspx" class="link-sidebar-option"><i class="fa fa-plus-square me-1"></i> Agregar habitación</a>
                       <a href="EliminarHabitacion.aspx" class="link-sidebar-option"><i class="fa fa-minus-square me-1"></i> Eliminar habitación</a>
-                      <a class="link-sidebar-option"><i class="fa fa-edit me-1"></i> Editar habitación</a>
+                      <a href="ModificarHabitacion.aspx" class="link-sidebar-option"><i class="fa fa-edit me-1"></i> Editar habitación</a>
                     </div>
                   </div>
                 </div>
@@ -110,7 +97,7 @@
                 <div class="collapse" id="Descuentos">
                   <div class="sidebar-collapse mb-3">
                     <div class="d-grid gap-1">
-                      <a class="link-sidebar-option"><i class="fa fa-plus-square me-1"></i> Agregar descuento</a>
+                      <a href="CrearDescuento.aspx" class="link-sidebar-option"><i class="fa fa-plus-square me-1"></i> Agregar descuento</a>
                       <a class="link-sidebar-option"><i class="fa fa-minus-square me-1"></i> Eliminar descuento</a>
                       <a class="link-sidebar-option"><i class="fa fa-edit me-1"></i> Editar descuento</a>
                     </div>
@@ -159,7 +146,7 @@
                     <ul class="navbar-nav ml-auto">
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src="img/nelson.jpeg" class="rounded-circle" alt="..." width="50" height="50">
+                            <img src="img/nelson.jpeg" class="rounded-circle" alt="..." width="50" height="50" runat="server" id="imagen_perfil_load">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
                           <li><a class="dropdown-item" href="login.html">Perfil</a></li>
@@ -178,6 +165,7 @@
       </div>
   </div>
 <!-- Optional JavaScript -->
+<script src="@@path/vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
 <script src="/js/SorterLogic.js"></script>
 <script src="/js/Admin.js"></script>
       <script>
