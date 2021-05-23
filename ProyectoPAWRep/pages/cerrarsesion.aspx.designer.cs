@@ -11,25 +11,16 @@ namespace ProyectoPAWRep.pages
 {
 
 
-    public partial class habitaciones
+    public partial class cerrarsesion
     {
 
         /// <summary>
-        /// Control habitaciones_cartas_lugar.
+        /// Control form1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl habitaciones_cartas_lugar;
-
-        /// <summary>
-        /// Control seccion_paginacion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl seccion_paginacion;
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
     }
 }

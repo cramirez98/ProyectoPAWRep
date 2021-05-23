@@ -13,7 +13,10 @@ namespace ProyectoPAWRep.pages
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(!String.IsNullOrEmpty(Session["User_ID"] as string))
+            {
+                Response.Redirect("usuario.aspx");
+            }
         }
 
         protected void BtnLogin_Click(object sender, EventArgs e)

@@ -148,7 +148,7 @@
                 <div class="container-fluid habitaciones-contenido pt-2 pb-3 ">
                   <h2 class="text-center fw-bold">Habitaciones disponibles</h2>
                   <div class="habitaciones-ruler d-flex flex-column flex-sm-row justify-content-evenly align-items-center">
-                    <p class="active sorter" id="precio" data-sort="down"><i class="fa fa-sort-numeric-down-alt" aria-hidden="true"></i> Precio</p>
+                    <p class="active sorter" id="precio" data-sort="up"><i class="fa fa-sort-numeric-up-alt" aria-hidden="true"></i> Precio</p>
                     <p class="sorter" id="camas">Cantidad de camas</p>
                     <p class="sorter" id="puntaje">Puntaje</p>
                   </div>
@@ -223,6 +223,9 @@
                   </div>      
                   <!-- Finalizan las tarjeta de las habitaciones -->
                         </div>
+                    <div runat="server" id="seccion_paginacion">
+
+                    </div>
                 </div>
               </div>
           </div>

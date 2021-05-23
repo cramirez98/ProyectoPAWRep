@@ -12,7 +12,7 @@ $(document).ready(function() {
       prefix: '$'
     });
     noUiSlider.create(rangeSlider, {
-      start: [500000, 1000000],
+      start: [100000, 2000000],
       step: 1,
       range: {
         'min': [100000],

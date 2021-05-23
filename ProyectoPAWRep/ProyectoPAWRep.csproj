@@ -113,6 +113,7 @@
     <Content Include="js\RangeSlider.js" />
     <Content Include="js\RatingInput.js" />
     <Content Include="js\SorterLogic.js" />
+    <Content Include="pages\cerrarsesion.aspx" />
     <Content Include="pages\CrearDescuento.aspx" />
     <Content Include="pages\CrearHabitacion.aspx" />
     <Content Include="pages\EliminarHabitacion.aspx" />
@@ -145,6 +146,13 @@
     </Compile>
     <Compile Include="pages\Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="pages\cerrarsesion.aspx.cs">
+      <DependentUpon>cerrarsesion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\cerrarsesion.aspx.designer.cs">
+      <DependentUpon>cerrarsesion.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\CrearDescuento.aspx.cs">
       <DependentUpon>CrearDescuento.aspx</DependentUpon>

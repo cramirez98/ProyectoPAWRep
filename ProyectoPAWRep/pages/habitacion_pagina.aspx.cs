@@ -197,7 +197,7 @@ namespace ProyectoPAWRep.pages
 
                 if (success)
                 {
-                    alertaspace_comentario.InnerHtml = Utilities.GenerateAlarm("<i class='fas fa-check-circle'></i> Se ha enviado de forma satisfactoria tu reseña!","success",true);
+                    alertaspace_comentario.InnerHtml = Utilities.GenerateAlarm("<i class='fas fa-check-circle'></i> Se ha enviado de forma satisfactoria tu reseña!, si no puedes verla, actualiza la pagina.","success",true);
                     alertaspace_comentario.Style["margin-top"] = "5pt";
                     seccion_dejar_comentario_formulario.Visible = false;
                 }

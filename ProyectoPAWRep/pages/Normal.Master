@@ -25,7 +25,7 @@
                   <a class="nav-link active" aria-current="page" href="/index.html"><i class="icon-camera-retro"></i>Inicio</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/habitaciones.html">Habitaciones</a>
+                  <a class="nav-link" href="habitaciones.aspx">Habitaciones</a>
                 </li>
               </ul>
   
@@ -59,10 +59,10 @@
     </div>
     <div class="col-lg-10 d-flex flex-column">
         <h4 class="text-white">Links</h4>
-        <a href="http://">Inicio</a>
-        <a href="http://">Habitaciones</a>
-        <a href="http://">Inicio de sesion</a>
-        <a href="http://">Registro</a>
+        <a href="inicio.aspx">Inicio</a>
+        <a href="habitaciones.aspx">Habitaciones</a>
+        <a href="iniciosesion.aspx">Inicio de sesion</a>
+        <a href="registro.aspx">Registro</a>
     </div>
     </div>
 </div>
