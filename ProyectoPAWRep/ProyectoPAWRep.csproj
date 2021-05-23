@@ -78,6 +78,7 @@
     <Content Include="css\carousel-custom.css" />
     <Content Include="css\custom.css" />
     <Content Include="css\RangeSlider.css" />
+    <Content Include="css\StartRating.css" />
     <Content Include="img\Aboutus1.png" />
     <Content Include="img\Aboutus2.png" />
     <Content Include="img\Aboutus3.jpg" />
@@ -129,7 +130,11 @@
     <Compile Include="classes\DescuentosDatabaseManager.cs" />
     <Compile Include="classes\Habitacion.cs" />
     <Compile Include="classes\HabitacionesDatabaseManager.cs" />
+    <Compile Include="classes\Reserva.cs" />
     <Compile Include="classes\ReservasDataBaseManager.cs" />
+    <Compile Include="classes\ReservasDatasetManager.cs" />
+    <Compile Include="classes\Testimonio.cs" />
+    <Compile Include="classes\TestimoniosDatabaseManager.cs" />
     <Compile Include="classes\UserDatabaseManager.cs" />
     <Compile Include="classes\Usuario.cs" />
     <Compile Include="classes\Utilities.cs" />

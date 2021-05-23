@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="../css/bootstrap.css" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/custom.css" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/carousel-custom.css">
+    <link href="../css/StartRating.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <!-- Javascript -->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -66,13 +67,13 @@
                       <div class="row g-0 border-bottom-1">
                         <div class="col-lg-8">
                             <div class="d-flex flex-row">
-                                <div class="ff-oswaldo text-uppercase">20 opiniones</div>
+                                <div class="ff-oswaldo text-uppercase" runat="server" id="PHabitacionNumOpiniones">20 opiniones</div>
                                   <div class="habitacion-info-review">
                                     <div class="stars-outer">
-                                        <div class="stars-inner" style="width: 80%;"></div>
+                                        <div class="stars-inner" style="" runat="server" id="PHabitacionPorcentajeEstrellas"></div>
                                       </div>
                                     </div>
-                                    <div class="fc-gray fw-bold ff-oswaldo">4</div>
+                                    <div class="fc-gray fw-bold ff-oswaldo" runat="server" id="PHabitacionPromedioEstrellas">4</div>
                                   </div>
                                 <div class="d-flex flex-column">
                                     <div class="habitacion-info-title text-center text-lg-start" runat="server" id="PHabitacionNumero">
@@ -184,22 +185,34 @@
                               </div>
                             </div>
                         </div>
+                      <div runat="server" id="seccion_dejar_comentario">
                         <!-- Dejar reseña -->
+                          <form runat="server">
+                            <asp:ScriptManager ID="ScriptManager1" runat="server">
+                            </asp:ScriptManager>
                             <div class="ff-oswaldo text-uppercase fs-4 border-bottom-1 mt-3">
                               Califica y cuentanos tu experiencia en esta habitacion
                           </div>
+                          <div runat="server" id="alertaspace_comentario"></div>
+                          <div runat="server" id="seccion_dejar_comentario_formulario">
                           <div class="mt-2 fc-blue fw-bold text-uppercase">Calificacion de 0 a 5 estrellas:</div>
-                          <div class="">En progreso</div>
+                          <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label></div>
+                          <asp:TextBox ID="CCComentarioDescripcion" Visible="false" runat="server" ClientIDMode="Static" Rows="4"></asp:TextBox>
                           <div class="mt-2 fc-blue fw-bold text-uppercase">Reseña de tu experiencia:</div>
-                          <textarea class="form-control round-edges form-control-lg " id="inputApellido" rows="5" placeholder="Cuentanos tu experiencia cuando te hospedaste en esta habitacion."></textarea>
+                          <asp:TextBox ID="CComentarioDescripcion" class="form-control round-edges form-control-lg" placeholder="Cuentanos tu experiencia cuando te hospedaste en esta habitacion." runat="server" TextMode="MultiLine" Rows="4"></asp:TextBox>
+                          <asp:RequiredFieldValidator ID="ValDescH" class="text-danger small validacion-text" runat="server" ControlToValidate="CComentarioDescripcion" ErrorMessage="No puede estar vacío" ValidationGroup="Requeridos"></asp:RequiredFieldValidator> 
                           <div class="d-grid gap-2 col-xl-2 col-md-4 col-6 mx-auto mt-2">
-                            <button class="btn btn-primary btn-lg" type="button"><i class="fa fa-comments" aria-hidden="true"></i> Enviar reseña</button>
+                            <button class="btn btn-primary btn-lg" runat="server" onserverclick="EnviarComentarios_ServerClick" ValidationGroup="Requeridos" type="button"><i class="fa fa-comments" aria-hidden="true"></i> Enviar reseña</button>
                           </div>
+                              </div>
+                          </form>
                           <!-- Dejar reseña-->
+                      </div>
                          <!-- Reseñas de otros clientes -->
                          <div class="ff-oswaldo text-uppercase fs-4 border-bottom-1 mt-3">
                           Reseñas de otros clientes
                           </div>
+                      <div runat="server" id="seccion_comentarios_load">
                           <!-- Empieza comentario -->
                           <div class="comentario-body mt-3">
                             <div class="container-fluid">
@@ -225,31 +238,7 @@
                             </div>
                           </div>
                           <!-- Acaba comentario -->
-                          <!-- Empieza comentario -->
-                          <div class="comentario-body mt-3">
-                            <div class="container-fluid">
-                              <div class="row">
-                                <div class="col-lg-2 my-auto text-center">
-                                  <img src="img/profile-mujer.jpg" class="border border-5 img-fluid rounded-circle" alt="..." width="200" height="200">
-                                </div>
-                                <div class="col-lg-10">
-                                  <div class="d-flex flex-column">
-                                    <div class="comentario-title fc-blue">Isabel Naranjo Herrera</div>
-                                    <div class="d-flex">
-                                      <div class="stars-outer">
-                                        <div class="stars-inner" style="width: 60%;"></div>
-                                      </div>
-                                      <div class="fc-gray fw-bold ff-oswaldo">3</div>
-                                    </div>
-                                    <div class="comentario mt-2">
-                                      Elit enim adipisicing anim esse incididunt occaecat sunt minim duis proident aliquip. Cillum exercitation dolor sint non Lorem est nostrud proident nostrud. Consectetur excepteur laboris exercitation magna velit culpa. Sunt laborum ipsum officia dolore. Voluptate veniam ea aliqua adipisicing labore. Do cillum deserunt adipisicing duis Lorem ex est. Elit enim adipisicing anim esse incididunt occaecat sunt minim duis proident aliquip. Cillum exercitation dolor sint non Lorem est nostrud proident nostrud.
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
                           </div>
-                          <!-- Acaba comentario -->
                          <!-- Reseñas de otros clientes -->
                 </div>
             </div>

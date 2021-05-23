@@ -67,7 +67,7 @@ namespace ProyectoPAWRep.classes
 
             return alarm;
         }
-        public static string GenerateAlarm(string body, string alarm_type)
+        public static string GenerateAlarm(string body, string alarm_type, bool button)
         {
             string alarm;
             switch (alarm_type)
@@ -91,7 +91,15 @@ namespace ProyectoPAWRep.classes
                     alarm = "<div class='alert alert-dark d-flex align-items-center alert-dismissible fade show' role='alert'>";
                     break;
             }
-            alarm += "<div>"+body+ "</div> <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button> <div>";
+            alarm += "<div>" + body + "</div>";
+            if (button)
+            {
+                alarm += "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button> </div>";
+            }
+            else
+            {
+                alarm += "</div>";
+            }
 
             return alarm;
         }
@@ -126,7 +134,26 @@ namespace ProyectoPAWRep.classes
                 cards += "<div class='habitacion-card mt-3'> <div class='container-fluid'> <div class='row g-1'> <div class='col-xxl-3 text-center text-xxl-start'>";
                 cards += "<img src='" + GetIconPhoto(XDocument.Parse(row["Fotos"].ToString())) + "' class='img-fluid rounded-3 img-thumbnail' alt='...' width='210' height='210'>";
                 cards += "</div> <div class='col-xxl-9'> <div class='row g-0'> <div class='col-lg-8 col-sm-8'> <div class='d-flex flex-column'> <div class='d-flex'>";
-                cards += "<div class='habitacion-puntaje'>"+"30"+" opiniones <div class='stars-outer'> <div class='stars-inner' style='width: "+"30"+"%;'></div> </div> </div> <div class='fs-12 fc-gray fw-bold ff-oswaldo'>"+"4"+"</div> </div>";
+
+                TestimoniosDatabaseManager testimoniosDatabaseManager = new TestimoniosDatabaseManager("SQLConnection", "[dbo].[Testimonios]");
+
+                DataSet testimonios_data = testimoniosDatabaseManager.ReadDatabaseRecord(
+                    new string[] {"*"},
+                    new string[,] { {"Habitacion_ID","=","'"+row["ID"]+"'"} },
+                    null
+                );
+                if (testimonios_data.Tables[0].Rows.Count > 0)
+                {
+                    double promedio = CalculateTestimonialsMean(testimonios_data);
+                    double width_star = (promedio / 5)*100;
+                    string width_star_s = width_star.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+                    cards += "<div class='habitacion-puntaje'>"+ testimonios_data.Tables[0].Rows.Count.ToString() + " opiniones <div class='stars-outer'> <div class='stars-inner' style='width: " + width_star_s + "%;'></div> </div> </div> <div class='fs-12 fc-gray fw-bold ff-oswaldo'>" + promedio.ToString() + "</div> </div>";
+                }
+                else
+                {
+                    cards += "<div class='habitacion-puntaje'>No hay opiniones <div class='stars-outer'> <div class='stars-inner' style='width: " + "0" + "%;'></div> </div> </div> <div class='fs-12 fc-gray fw-bold ff-oswaldo'>" + "0" + "</div> </div>";
+                }
+
                 cards += "<div class='habitacion-titulo'>Habitación " + row["Numero"].ToString() + "</div> <div class='habitacion-subtitulo'>" + row["Tamaño"].ToString() + "</div> </div> </div> <div class='col-lg-4 col-sm-4 mb-2'> ";
                 
                 // Agregar precio con descuento o sin descuento
@@ -162,6 +189,34 @@ namespace ProyectoPAWRep.classes
                 cards += "<div class='row d-flex'> <span class='fa-stack fa-2x fs-5' data-bs-toggle='tooltip' data-bs-placement='top' title='"+ (row["BañosPDiscapacitadas"].ToString() == "1" ? "Si posee baños para discapacitados" : "No posee baños para discapacitados") + "'> <i class='fas fa-square fa-stack-2x iconbackground-" + (row["BañosPDiscapacitadas"].ToString() == "1" ? "true" : "false") + "'></i> <i class='fab fa-accessible-icon fa-stack-1x fa-inverse'></i> </span> <span class='fa-stack fa-2x fs-5' data-bs-toggle='tooltip' data-bs-placement='top' title='" + (row["Mascotas"].ToString() == "1" ? "Si admite mascotas" : "No admite mascotas") + "'> <i class='fas fa-square fa-stack-2x iconbackground-" + (row["Mascotas"].ToString() == "1" ? "true" : "false") + "'></i> <i class='fa fa-dog fa-stack-1x fa-inverse'></i> </span> </div> </div>";
 
                 cards += "<div class='col-lg-4 d-flex justify-content-center justify-content-md-end'> <a href='habitacion_pagina.aspx?h="+row["Numero"].ToString()+"' class='btn btn-primary btn-lg mt-2 mt-md-0'><i class='fa fa-eye' aria-hidden='true'></i> Ver mas detalles</a> </div> </div> </div> </div>";
+            }
+
+            return cards;
+        }
+
+        public static string GenerateTestimoniosCards(DataSet testimonios_data)
+        {
+            string cards = "";
+            UserDatabaseManager userDatabaseManager = new UserDatabaseManager("SQLConnection", "[dbo].[Usuarios]");
+            DataSet usuario_data;
+            foreach (DataRow row in testimonios_data.Tables[0].Rows)
+            {
+                cards += "<div class='comentario-body mt-3'> <div class='container-fluid'> <div class='row'> <div class='col-lg-2 my-auto text-center'>";
+
+                usuario_data = userDatabaseManager.ReadDatabaseRecord(
+                    new string[]{"Nombres","Apellidos","ImagenPerfil"},
+                    new string[,] { {"ID","=","'"+row["Cliente_ID"]+"'"} },
+                    null
+                );
+
+                cards += "<img src='"+usuario_data.Tables[0].Rows[0]["ImagenPerfil"]+"' class='border border-5 img-fluid rounded-circle' alt='...' width='200' height='200'> </div> <div class='col-lg-10'> <div class='d-flex flex-column'>";
+                cards += "<div class='comentario-title fc-blue'>"+usuario_data.Tables[0].Rows[0]["Nombres"]+" " + usuario_data.Tables[0].Rows[0]["Apellidos"] + "</div>";
+
+                double width_star = (double.Parse(row["Puntaje"].ToString()) / 5) * 100;
+                string width_star_s = width_star.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+
+                cards += "<div class='d-flex'> <div class='stars-outer'> <div class='stars-inner' style='width: "+ width_star_s + "%;'></div> </div> <div class='fc-gray fw-bold ff-oswaldo'>"+ row["Puntaje"].ToString() + "</div> </div>";
+                cards += "<div class='comentario mt-2'>" + row["Comentario"] + "</div> </div> </div> </div> </div> </div>";
             }
 
             return cards;
@@ -204,6 +259,29 @@ namespace ProyectoPAWRep.classes
             {
                 return false;
             }
+        }
+
+        public static double CalculateTestimonialsMean(DataSet testimonials)
+        {
+            List<int> testimonials_puntaje = new List<int>();
+
+            testimonials_puntaje = (from DataRow row in testimonials.Tables[0].Rows select int.Parse(row["Puntaje"].ToString())).ToList();
+
+            double promedio;
+
+            if(testimonials_puntaje.Count == 0)
+            {
+                promedio = 0.0;
+            }else if(testimonials_puntaje.Count == 1)
+            {
+                promedio = testimonials_puntaje[0];
+            }
+            else
+            {
+                promedio = testimonials_puntaje.Average();
+            }
+
+            return promedio;
         }
     }
 }

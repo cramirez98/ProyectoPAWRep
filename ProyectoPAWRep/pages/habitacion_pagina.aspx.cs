@@ -28,6 +28,7 @@ namespace ProyectoPAWRep.pages
 
                 if (habitacion_data.Tables[0].Rows.Count > 0)
                 {
+
                     LlenarInformacionHabitacion(habitacion_data);
                 }
                 else
@@ -73,15 +74,24 @@ namespace ProyectoPAWRep.pages
                 string[] logic_descuentos = null;
                 DataSet data_descuento = descuentosDatabaseManager.ReadDatabaseRecord(valores_descuentos,condiciones_descuentos,logic_descuentos);
 
-                PHabitacionConDescuento.Visible = true;
-                PHabitacionSinDescuento.Visible = false;
+                if (Utilities.CheckIfDiscountIsValid( DateTime.Parse(data_descuento.Tables[0].Rows[0]["FechaFinalizacion"].ToString()), DateTime.Parse(data_descuento.Tables[0].Rows[0]["FechaInicio"].ToString())))
+                {
+                    PHabitacionConDescuento.Visible = true;
+                    PHabitacionSinDescuento.Visible = false;
 
-                PHabitacionPrecioSinDescuento.InnerText = double.Parse(data.Tables[0].Rows[0]["Precio"].ToString()).ToString("c0") + " COP";
-                double precio_sin_descuento = double.Parse(data.Tables[0].Rows[0]["Precio"].ToString());
-                int porcentaje_descuento = int.Parse(data_descuento.Tables[0].Rows[0]["Porcentaje"].ToString());
-                double precio_con_descuento = precio_sin_descuento * (1 - (porcentaje_descuento/100.00));
-                PHabitacionPrecioConDescuento.InnerText = precio_con_descuento.ToString("c0") + " COP";
-                PHabitacionDescuento.InnerText = porcentaje_descuento.ToString() + "%";
+                    PHabitacionPrecioSinDescuento.InnerText = double.Parse(data.Tables[0].Rows[0]["Precio"].ToString()).ToString("c0") + " COP";
+                    double precio_sin_descuento = double.Parse(data.Tables[0].Rows[0]["Precio"].ToString());
+                    int porcentaje_descuento = int.Parse(data_descuento.Tables[0].Rows[0]["Porcentaje"].ToString());
+                    double precio_con_descuento = precio_sin_descuento * (1 - (porcentaje_descuento / 100.00));
+                    PHabitacionPrecioConDescuento.InnerText = precio_con_descuento.ToString("c0") + " COP";
+                    PHabitacionDescuento.InnerText = porcentaje_descuento.ToString() + "%";
+                }
+                else
+                {
+                    PHabitacionConDescuento.Visible = false;
+                    PHabitacionSinDescuento.Visible = true;
+                    PHabitacionPrecioSinDescuento2.InnerText = double.Parse(data.Tables[0].Rows[0]["Precio"].ToString()).ToString("c0") + " COP";
+                }
             }
             else
             {
@@ -89,7 +99,85 @@ namespace ProyectoPAWRep.pages
                 PHabitacionSinDescuento.Visible = true;
                 PHabitacionPrecioSinDescuento2.InnerText = double.Parse(data.Tables[0].Rows[0]["Precio"].ToString()).ToString("c0") + " COP";
             }
+
+            TestimoniosDatabaseManager testimoniosDatabaseManager = new TestimoniosDatabaseManager("SQLConnection", "[dbo].[Testimonios]");
+
+            DataSet testimonios_data = testimoniosDatabaseManager.ReadDatabaseRecord(
+                new string[] { "*" },
+                new string[,] { { "Habitacion_ID", "=", "'" + data.Tables[0].Rows[0]["ID"] + "'" } },
+                null
+            );
+
+            if (testimonios_data.Tables[0].Rows.Count > 0)
+            {
+                double promedio = Utilities.CalculateTestimonialsMean(testimonios_data);
+                double width_star = (promedio / 5) * 100;
+                string width_star_s = width_star.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+
+                PHabitacionNumOpiniones.InnerText = testimonios_data.Tables[0].Rows.Count.ToString() + " opiniones";
+                PHabitacionPorcentajeEstrellas.Style["width"] = width_star_s + "%";
+                PHabitacionPromedioEstrellas.InnerText = promedio.ToString();
+
+                seccion_comentarios_load.InnerHtml = Utilities.GenerateTestimoniosCards(testimonios_data);
+            }
+            else
+            {
+                PHabitacionNumOpiniones.InnerText = "No hay opiniones";
+                PHabitacionPorcentajeEstrellas.Style["width"] = "0%";
+                PHabitacionPromedioEstrellas.InnerText = "0";
+
+                seccion_comentarios_load.InnerHtml = "<div class='fw-bold ff-oswaldo text-uppercase text-muted mt-2 fc-2'>No hay testimonios</div>";
+            }
+
+            if (!String.IsNullOrEmpty(Session["User_ID"] as string))
+            {
+                ReservasDataBaseManager reservasDataBaseManager = new ReservasDataBaseManager("SQLConnection", "[dbo].[Reservas]");
+
+                bool exists_reserva = reservasDataBaseManager.CheckIfExists(
+                    new string[] { "*" },
+                    new string[,] {
+                        { "Cliente_ID", "=", "'" + Session["User_ID"] as string + "'" },
+                        { "Habitacion_ID", "=", "'" + data.Tables[0].Rows[0]["ID"] + "'" },
+                        { "Cancelada", "!=", "1" },
+                    },
+                    new string[] { "AND", "AND" }
+                );
+
+                bool exists_testimonio = testimoniosDatabaseManager.CheckIfExists(
+                    new string[] { "ID" },
+                    new string[,] {
+                        {"Cliente_ID","=","'"+Session["User_ID"] as string+"'"},
+                        {"Habitacion_ID","=","'"+data.Tables[0].Rows[0]["ID"]+"'"}
+                    },
+                    new string[] { "AND", "AND" }
+                );
+
+                if (exists_reserva)
+                {
+                    if (!exists_testimonio)
+                    {
+                        seccion_dejar_comentario.Visible = true;
+                    }
+                    else
+                    {
+                        seccion_dejar_comentario_formulario.InnerHtml = Utilities.GenerateAlarm("<i class='fas fa-info-circle'></i> Ya ingresaste una reseña.", "warning", false);
+                        seccion_dejar_comentario_formulario.Style["margin-top"] = "5pt";
+                    }
+                }
+                else
+                {
+                    seccion_dejar_comentario.Visible = false;
+                }
+            }
+            else
+            {
+                seccion_dejar_comentario.Visible = false;
+            }
         }
 
+        protected void EnviarComentarios_ServerClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

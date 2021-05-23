@@ -99,7 +99,7 @@ namespace ProyectoPAWRep.classes
             var ds = new DataSet();
             var da = new SqlDataAdapter(cmd);
             sqlConnection.Open();
-            da.Fill(ds, "tb_Usuarios");
+            da.Fill(ds);
             sqlConnection.Close();
 
             return ds;
