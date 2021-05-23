@@ -111,6 +111,7 @@
     <Content Include="js\EnableTextbox.js" />
     <Content Include="js\EnableTextboxHabitacion.js" />
     <Content Include="js\RangeSlider.js" />
+    <Content Include="js\RatingInput.js" />
     <Content Include="js\SorterLogic.js" />
     <Content Include="pages\CrearDescuento.aspx" />
     <Content Include="pages\CrearHabitacion.aspx" />

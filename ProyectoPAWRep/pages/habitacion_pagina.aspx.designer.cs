@@ -222,13 +222,13 @@ namespace ProyectoPAWRep.pages
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl seccion_dejar_comentario_formulario;
 
         /// <summary>
-        /// Control CCComentarioDescripcion.
+        /// Control CCComentarioRating.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CCComentarioDescripcion;
+        protected global::System.Web.UI.WebControls.TextBox CCComentarioRating;
 
         /// <summary>
         /// Control CComentarioDescripcion.

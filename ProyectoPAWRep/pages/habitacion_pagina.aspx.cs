@@ -28,17 +28,19 @@ namespace ProyectoPAWRep.pages
 
                 if (habitacion_data.Tables[0].Rows.Count > 0)
                 {
-
-                    LlenarInformacionHabitacion(habitacion_data);
+                    if (!IsPostBack)
+                    {
+                        LlenarInformacionHabitacion(habitacion_data);
+                    }
                 }
                 else
                 {
-                    //Response.Redirect("habitaciones.aspx");
+                    Response.Redirect("habitaciones.aspx");
                 }
             }
             else
             {
-                //Response.Redirect("habitaciones.aspx");
+                Response.Redirect("habitaciones.aspx");
             }
         }
 
@@ -177,6 +179,33 @@ namespace ProyectoPAWRep.pages
 
         protected void EnviarComentarios_ServerClick(object sender, EventArgs e)
         {
+            string num_habitacion = Request.QueryString["h"];
+            HabitacionesDatabaseManager habitacionesDatabaseManager = new HabitacionesDatabaseManager("SQLConnection", "[dbo].[Habitaciones]");
+            DataSet data_habitacion = habitacionesDatabaseManager.ReadDatabaseRecord(
+                new string[] { "ID" },
+                new string[,] { { "Numero", "=", num_habitacion.ToString() } },
+                null
+            );
+
+            if (!String.IsNullOrEmpty(Session["User_ID"] as string) && data_habitacion.Tables[0].Rows.Count > 0)
+            {
+                Testimonio testimonio = new Testimonio(Session["User_ID"] as string, CComentarioDescripcion.Text, int.Parse(CCComentarioRating.Text), data_habitacion.Tables[0].Rows[0]["ID"].ToString());
+
+                TestimoniosDatabaseManager testimoniosDatabaseManager = new TestimoniosDatabaseManager("SQLConnection", "[dbo].[Testimonios]");
+
+                bool success = testimoniosDatabaseManager.AddDatabaseRecord(testimonio);
+
+                if (success)
+                {
+                    alertaspace_comentario.InnerHtml = Utilities.GenerateAlarm("<i class='fas fa-check-circle'></i> Se ha enviado de forma satisfactoria tu reseña!","success",true);
+                    alertaspace_comentario.Style["margin-top"] = "5pt";
+                    seccion_dejar_comentario_formulario.Visible = false;
+                }
+                else
+                {
+                    alertaspace_comentario.InnerHtml = Utilities.GenerateAlarm("<i class='fas fa-exclamation-circle'></i> Ha habido un error y no se pudo enviar tu reseña.", "danger", true);
+                }
+            }
 
         }
     }

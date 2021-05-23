@@ -197,7 +197,7 @@
                           <div runat="server" id="seccion_dejar_comentario_formulario">
                           <div class="mt-2 fc-blue fw-bold text-uppercase">Calificacion de 0 a 5 estrellas:</div>
                           <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label></div>
-                          <asp:TextBox ID="CCComentarioDescripcion" Visible="false" runat="server" ClientIDMode="Static" Rows="4"></asp:TextBox>
+                          <asp:TextBox ID="CCComentarioRating" runat="server" ClientIDMode="Static" Rows="4"></asp:TextBox>
                           <div class="mt-2 fc-blue fw-bold text-uppercase">Reseña de tu experiencia:</div>
                           <asp:TextBox ID="CComentarioDescripcion" class="form-control round-edges form-control-lg" placeholder="Cuentanos tu experiencia cuando te hospedaste en esta habitacion." runat="server" TextMode="MultiLine" Rows="4"></asp:TextBox>
                           <asp:RequiredFieldValidator ID="ValDescH" class="text-danger small validacion-text" runat="server" ControlToValidate="CComentarioDescripcion" ErrorMessage="No puede estar vacío" ValidationGroup="Requeridos"></asp:RequiredFieldValidator> 
@@ -245,4 +245,5 @@
                   <!-- Termina informacion de la habitacion -->
               </div>
           </div>
+    <script src="../js/RatingInput.js"></script>
 </asp:Content>
