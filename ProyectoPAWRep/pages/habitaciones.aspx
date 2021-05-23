@@ -139,7 +139,7 @@
                       </div>
                     </div> 
                     <div class="d-grid gap-2 col-6 mx-auto mt-3">
-                      <button class="btn btn-primary btn-lg" type="button">Aplicar criterios</button>
+                      <button class="btn btn-primary btn-lg" name="button-advanceSearch" data-initializedb="false" type="button">Aplicar criterios</button>
                     </div>        
                   </div>
                 </div>
@@ -148,9 +148,9 @@
                 <div class="container-fluid habitaciones-contenido pt-2 pb-3 ">
                   <h2 class="text-center fw-bold">Habitaciones disponibles</h2>
                   <div class="habitaciones-ruler d-flex flex-column flex-sm-row justify-content-evenly align-items-center">
-                    <p class="active sorter" id="precio" data-sort="up"><i class="fa fa-sort-numeric-up-alt" aria-hidden="true"></i> Precio</p>
-                    <p class="sorter" id="camas">Cantidad de camas</p>
-                    <p class="sorter" id="puntaje">Puntaje</p>
+                    <p class="active sorter" id="Precio" data-sort="asc"><i class="fa fa-sort-numeric-up-alt" aria-hidden="true"></i> Precio</p>
+                    <p class="sorter" id="NumeroCamas">Cantidad de camas</p>
+                    <p class="sorter" id="Puntaje">Puntaje</p>
                   </div>
                     <div runat="server" id="habitaciones_cartas_lugar" name="habitaciones_cartas_lugar">
                   <!-- Comienzan las tarjeta de las diferentes habitaciones -->  
@@ -223,11 +223,48 @@
                   </div>      
                   <!-- Finalizan las tarjeta de las habitaciones -->
                         </div>
-                    <div runat="server" id="seccion_paginacion">
-
+                    <div runat="server" id="seccion_paginacion" name="seccion_paginacion" class="d-flex flex-row justify-content-end mt-2">
+<div class="btn-group me-2" role="group" aria-label="First group">
+    <button type="button" class="btn btn-dark">1</button>
+    <button type="button" class="btn btn-dark" disabled>2</button>
+    <button type="button" class="btn btn-dark">3</button>
+    <button type="button" class="btn btn-dark">4</button>
+  </div>
+<%--<nav aria-label="Page navigation example mt-3">
+  <ul class="pagination justify-content-end">
+    <li class="page-item">
+      <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><i class="fas fa-angle-left"></i></a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#"><i class="fas fa-angle-right"></i></a>
+    </li>
+  </ul>
+</nav>--%>
                     </div>
                 </div>
               </div>
           </div>
       </div>
+<!-- Optional JavaScript -->
+    <script src="../js/SortHabitaciones.js"></script>
+      <script>
+          $(window).scroll(function () {
+              $('nav').toggleClass('scrolled', $(this).scrollTop() > 50);
+              $('nav').toggleClass('scrolled-nav', $(this).scrollTop() > 50);
+          });
+          $("[name='camasrange']").on('input', function () {
+              val = $("[name='camasrange']").val();
+              $("[name='camasrange_label']").html("<b>Numero de camas:</b> " + val);
+          });
+          $(document).ready(function () {
+              $("[name='camasrange']").val(1);
+              var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+              var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                  return new bootstrap.Tooltip(tooltipTriggerEl)
+              })
+          });
+      </script>
 </asp:Content>

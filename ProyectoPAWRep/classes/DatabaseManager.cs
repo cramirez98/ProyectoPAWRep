@@ -43,7 +43,7 @@ namespace ProyectoPAWRep.classes
                 return false;
             }
         }
-        public DataSet ReadDatabaseRecord(string[] values, string[,] conditions, string[] logic_conditionals, string orderby = null, string direction = null, int offset = 0, int fetchNext = 0)
+        public DataSet ReadDatabaseRecord(string[] values, string[,] conditions, string[] logic_conditionals, string orderby = null, string direction = null, int ?offset = null, int fetchNext = 0)
         {
             string formatted_values;
             string formatted_conditions;
@@ -74,7 +74,7 @@ namespace ProyectoPAWRep.classes
                 formatted_order = "";
             }
 
-            if(offset != 0)
+            if(offset != null)
             {
                 formatted_offset += offset.ToString() + " ROWS";
             }

@@ -13,7 +13,7 @@ namespace ProyectoPAWRep.classes
         private XDocument fotos;
         private double precios;
         private string tamaño;
-        private int puntaje;
+        private double puntaje;
         private int camas;
         private int mascotas;
         private int bañosdiscapacitados;
@@ -21,7 +21,7 @@ namespace ProyectoPAWRep.classes
         private string cliente_id;
         private string descuento_id;
 
-        public Habitacion(int numero, string descripcion, XDocument fotos, double precios, string tamaño, int puntaje, int camas, int mascotas, int bañosdiscapacitados, int ocupada, string cliente_id, string descuento_id)
+        public Habitacion(int numero, string descripcion, XDocument fotos, double precios, string tamaño, double puntaje, int camas, int mascotas, int bañosdiscapacitados, int ocupada, string cliente_id, string descuento_id)
         {
             this.numero = numero;
             this.descripcion = descripcion;
@@ -42,7 +42,7 @@ namespace ProyectoPAWRep.classes
         public XDocument Fotos { get => fotos; set => fotos = value; }
         public double Precios { get => precios; set => precios = value; }
         public string Tamaño { get => tamaño; set => tamaño = value; }
-        public int Puntaje { get => puntaje; set => puntaje = value; }
+        public double Puntaje { get => puntaje; set => puntaje = value; }
         public int Camas { get => camas; set => camas = value; }
         public int Mascotas { get => mascotas; set => mascotas = value; }
         public int Bañosdiscapacitados { get => bañosdiscapacitados; set => bañosdiscapacitados = value; }

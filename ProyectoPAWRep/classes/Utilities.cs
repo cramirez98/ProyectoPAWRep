@@ -124,7 +124,7 @@ namespace ProyectoPAWRep.classes
             return userDropdown;
         }
 
-        public static string GenerateHabitacionCards(DataSet data, bool unica_pagina)
+        public static string GenerateHabitacionCards(DataSet data)
         {
             string cards = "";
 
@@ -284,5 +284,60 @@ namespace ProyectoPAWRep.classes
             return promedio;
         }
 
+        public static string GeneratePagination(int numero_paginas, int elementos_por_pagina, int? pagina_actual = null)
+        {
+            string button_style = "primary";
+            string pagination_buttons = "";
+            if (numero_paginas > 1)
+            {
+                pagination_buttons += "<div class='btn-group me-2' name='pagination-markup' role='group' aria-label='First group' data-total-pages='"+numero_paginas.ToString()+"' data-elements-page='"+elementos_por_pagina.ToString()+"'>";
+
+                if (pagina_actual == 1 || pagina_actual == null)
+                {
+                    pagination_buttons += "<button type='button' name='button-pagination-before' data-button-page='izq' class='btn btn-" + button_style + "' disabled ><i class='fas fa-angle-left'></i></button>";
+                }
+                else
+                {
+                    pagination_buttons += "<button type='button' name='button-pagination-before' data-button-page='izq' class='btn btn-" + button_style + "'><i class='fas fa-angle-left'></i></button>";
+                }
+
+                for (int i = 1; i <= numero_paginas; i++)
+                {
+                    if(pagina_actual != null)
+                    {
+                        if(i == pagina_actual)
+                        {
+                            pagination_buttons += "<button type='button' name='button-page' data-button-page='" + i.ToString() + "' class='btn btn-" + button_style + "' disabled>" + i.ToString() + "</button>";
+                        }
+                        else
+                        {
+                            pagination_buttons += "<button type='button' name='button-page' data-button-page='" + i.ToString() + "' class='btn btn-" + button_style + "'>" + i.ToString() + "</button>";
+                        }
+                    }
+                    else 
+                    {
+                        if (i == 1)
+                        {
+                            pagination_buttons += "<button type='button' name='button-page' data-button-page='" + i.ToString() + "' class='btn btn-" + button_style + "' disabled>" + i.ToString() + "</button>";
+                        }
+                        else
+                        {
+                            pagination_buttons += "<button type='button' name='button-page' data-button-page='" + i.ToString() + "' class='btn btn-" + button_style + "'>" + i.ToString() + "</button>";
+                        }
+                    }
+                }
+
+                if(pagina_actual == numero_paginas)
+                {
+                    pagination_buttons += "<button type='button' name='button-pagination-after' data-button-page='der' class='btn btn-" + button_style + "' disabled><i class='fas fa-angle-right'></i></button>";
+                }
+                else
+                {
+                    pagination_buttons += "<button type='button' name='button-pagination-after' data-button-page='der' class='btn btn-" + button_style + "'><i class='fas fa-angle-right'></i></button>";
+                }
+                pagination_buttons += "</div>";
+            }
+            return pagination_buttons;
+        }
     }
 }

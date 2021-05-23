@@ -183,7 +183,7 @@ namespace ProyectoPAWRep.pages
             HabitacionesDatabaseManager habitacionesDatabaseManager = new HabitacionesDatabaseManager("SQLConnection", "[dbo].[Habitaciones]");
             DataSet data_habitacion = habitacionesDatabaseManager.ReadDatabaseRecord(
                 new string[] { "ID" },
-                new string[,] { { "Numero", "=", num_habitacion.ToString() } },
+                new string[,] { { "Numero", "=", num_habitacion } },
                 null
             );
 

@@ -122,8 +122,7 @@ namespace ProyectoPAWRep.pages
                 nodoraiz.Add(icono);
 
 
-                string h = document.ToString();
-                Habitacion habitacion = new Habitacion(int.Parse(CHabitacionNumero.Text), CHabitacionDescripcion.Text, document, double.Parse(CHabitacionPrecio.Text), CHabitacionSize.SelectedValue.ToString(), 0, int.Parse(CHabitacionCamas.SelectedValue.ToString()), CHabitacionMascotas.Checked ? 1 : 0, CHabitacionDiscapacitados.Checked ? 1 : 0, 0, "", descuento_id);
+                Habitacion habitacion = new Habitacion(int.Parse(CHabitacionNumero.Text), CHabitacionDescripcion.Text, document, double.Parse(CHabitacionPrecio.Text), CHabitacionSize.SelectedValue.ToString(), 0.0, int.Parse(CHabitacionCamas.SelectedValue.ToString()), CHabitacionMascotas.Checked ? 1 : 0, CHabitacionDiscapacitados.Checked ? 1 : 0, 0, "", descuento_id);
 
                 bool success = habitacionesDatabaseManager.AddDatabaseRecord(habitacion);
 

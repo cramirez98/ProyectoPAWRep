@@ -110,9 +110,11 @@
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\EnableTextbox.js" />
     <Content Include="js\EnableTextboxHabitacion.js" />
+    <Content Include="js\Pagination.js" />
     <Content Include="js\RangeSlider.js" />
     <Content Include="js\RatingInput.js" />
     <Content Include="js\SorterLogic.js" />
+    <Content Include="js\SortHabitaciones.js" />
     <Content Include="pages\cerrarsesion.aspx" />
     <Content Include="pages\CrearDescuento.aspx" />
     <Content Include="pages\CrearHabitacion.aspx" />
@@ -132,6 +134,7 @@
     <Compile Include="classes\DescuentosDatabaseManager.cs" />
     <Compile Include="classes\Habitacion.cs" />
     <Compile Include="classes\HabitacionesDatabaseManager.cs" />
+    <Compile Include="classes\PaginationObject.cs" />
     <Compile Include="classes\Reserva.cs" />
     <Compile Include="classes\ReservasDataBaseManager.cs" />
     <Compile Include="classes\ReservasDatasetManager.cs" />

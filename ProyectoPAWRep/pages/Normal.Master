@@ -67,25 +67,5 @@
     </div>
 </div>
 </div>
-
-<!-- Optional JavaScript -->
-<script src="/js/SorterLogic.js"></script>
-      <script>
-        $(window).scroll(function(){
-          $('nav').toggleClass('scrolled', $(this).scrollTop() > 50);
-          $('nav').toggleClass('scrolled-nav', $(this).scrollTop() > 50);
-        });
-        $("[name='camasrange']").on('input', function () {
-          val = $("[name='camasrange']").val();
-          $("[name='camasrange_label']").html("<b>Numero de camas:</b> "+val);
-        });
-        $(document).ready(function () {
-          $("[name='camasrange']").val(1);
-          var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-          var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl)
-          })
-        });
-      </script>
 </body>
 </html>
