@@ -53,6 +53,7 @@ namespace ProyectoPAWRep.pages
             PHabitacionDiscapacitados.InnerText = data.Tables[0].Rows[0]["BañosPDiscapacitadas"].ToString() == "1" ? "Si posee" : "No posee";
             PHabitacionMascota.InnerText = data.Tables[0].Rows[0]["Mascotas"].ToString() == "1" ? "Si posee" : "No posee";
             PHabitacionCamas.InnerText = data.Tables[0].Rows[0]["NumeroCamas"].ToString() + " camas";
+            seccion_reservar_habitacion.Attributes["data-numerh"] = data.Tables[0].Rows[0]["Numero"].ToString();
 
             XDocument Fotos = XDocument.Parse(data.Tables[0].Rows[0]["Fotos"].ToString());
 
@@ -131,11 +132,13 @@ namespace ProyectoPAWRep.pages
                 seccion_comentarios_load.InnerHtml = "<div class='fw-bold ff-oswaldo text-uppercase text-muted mt-2 fc-2'>No hay testimonios</div>";
             }
 
+            ReservasDatabaseManager reservasDatabaseManager = new ReservasDatabaseManager("SQLConnection", "[dbo].[Reservas]");
+
             if (!String.IsNullOrEmpty(Session["User_ID"] as string))
             {
-                ReservasDataBaseManager reservasDataBaseManager = new ReservasDataBaseManager("SQLConnection", "[dbo].[Reservas]");
+                
 
-                bool exists_reserva = reservasDataBaseManager.CheckIfExists(
+                DataSet reserva_data = reservasDatabaseManager.ReadDatabaseRecord(
                     new string[] { "*" },
                     new string[,] {
                         { "Cliente_ID", "=", "'" + Session["User_ID"] as string + "'" },
@@ -154,7 +157,7 @@ namespace ProyectoPAWRep.pages
                     new string[] { "AND", "AND" }
                 );
 
-                if (exists_reserva)
+                if (reserva_data.Tables[0].Rows.Count > 0 && Utilities.CheckIfTestimonioReservaIsValid( DateTime.Parse(reserva_data.Tables[0].Rows[0]["FechaInicio"].ToString()) ) )
                 {
                     if (!exists_testimonio)
                     {
@@ -170,10 +173,38 @@ namespace ProyectoPAWRep.pages
                 {
                     seccion_dejar_comentario.Visible = false;
                 }
+
+                reserva_data = reservasDatabaseManager.ReadDatabaseRecord(
+                    new string[] {"*"},
+                    new string[,] {
+                        {"Habitacion_ID","=","'"+data.Tables[0].Rows[0]["ID"]+"'"},
+                        {"Cancelada","=","0"},
+                        {"Cliente_ID","=","'"+ Session["User_ID"] as string +"'"}
+                    },
+                    new string[] {"AND","OR"}
+                );
+
+                string mensaje = "";
+                bool posibilidad_de_reserva = true;
+
+                foreach (DataRow row in reserva_data.Tables[0].Rows)
+                {
+                    if ( Utilities.CheckIfReservaIsValid( DateTime.Parse(row["FechaFinalizacion"].ToString())) )
+                    {
+                        posibilidad_de_reserva = false;
+                        break;
+                    }
+                }
+
+                if (!posibilidad_de_reserva)
+                {
+                    seccion_reservar_habitacion.InnerHtml = Utilities.GenerateAlarm("<i class='fas fa-exclamation-circle'></i> Ya posees una reserva activa o esta habitación ya esta reservada.", "danger", false);
+                }
             }
             else
             {
                 seccion_dejar_comentario.Visible = false;
+                seccion_reservar_habitacion.InnerHtml = Utilities.GenerateAlarm("<i class='fas fa-exclamation-circle'></i> Debes tener una cuenta para reservar habitaciones.", "warning",false);
             }
         }
 

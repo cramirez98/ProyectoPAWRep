@@ -11,268 +11,205 @@ namespace ProyectoPAWRep.pages
 {
 
 
-    public partial class HabitacionPagina
+    public partial class checkout
     {
 
         /// <summary>
-        /// Control PHabitacionFoto1.
+        /// Control CheckoutNumeroHabitacion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage PHabitacionFoto1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CheckoutNumeroHabitacion;
 
         /// <summary>
-        /// Control PHabitacionFoto2.
+        /// Control CheckoutSize.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage PHabitacionFoto2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CheckoutSize;
 
         /// <summary>
-        /// Control PHabitacionFoto3.
+        /// Control CheckoutNumeroCamas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage PHabitacionFoto3;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CheckoutNumeroCamas;
 
         /// <summary>
-        /// Control PHabitacionNumOpiniones.
+        /// Control CheckoutBañosDiscapacitados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionNumOpiniones;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CheckoutBañosDiscapacitados;
 
         /// <summary>
-        /// Control PHabitacionPorcentajeEstrellas.
+        /// Control CheckoutMascotas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionPorcentajeEstrellas;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CheckoutMascotas;
 
         /// <summary>
-        /// Control PHabitacionPromedioEstrellas.
+        /// Control CheckoutPrecio1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionPromedioEstrellas;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CheckoutPrecio1;
 
         /// <summary>
-        /// Control PHabitacionNumero.
+        /// Control seccion_precio_descuento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionNumero;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl seccion_precio_descuento;
 
         /// <summary>
-        /// Control PHabitacionTamaño.
+        /// Control CheckoutNumeroHabitacion2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionTamaño;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CheckoutNumeroHabitacion2;
 
         /// <summary>
-        /// Control PHabitacionConDescuento.
+        /// Control CheckoutPrecio2.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionConDescuento;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CheckoutPrecio2;
 
         /// <summary>
-        /// Control PHabitacionPrecioSinDescuento.
+        /// Control CheckoutDescuento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionPrecioSinDescuento;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CheckoutDescuento;
 
         /// <summary>
-        /// Control PHabitacionDescuento.
+        /// Control CheckoutValorDescuento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionDescuento;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CheckoutValorDescuento;
 
         /// <summary>
-        /// Control PHabitacionPrecioConDescuento.
+        /// Control CheckoutNumeroHabitacion3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionPrecioConDescuento;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CheckoutNumeroHabitacion3;
 
         /// <summary>
-        /// Control PHabitacionSinDescuento.
+        /// Control CheckoutPrecioConDescuento.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionSinDescuento;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CheckoutPrecioConDescuento;
 
         /// <summary>
-        /// Control PHabitacionPrecioSinDescuento2.
+        /// Control CheckoutPrecioTotal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionPrecioSinDescuento2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CheckoutPrecioTotal;
 
         /// <summary>
-        /// Control PHabitacionDescripcion.
+        /// Control CheckoutNumeroNoches.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionDescripcion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CheckoutNumeroNoches;
 
         /// <summary>
-        /// Control PHabitacionDiscapacitados.
+        /// Control CheckoutNombres.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionDiscapacitados;
+        protected global::System.Web.UI.WebControls.TextBox CheckoutNombres;
 
         /// <summary>
-        /// Control PHabitacionMascota.
+        /// Control CheckoutApellidos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionMascota;
+        protected global::System.Web.UI.WebControls.TextBox CheckoutApellidos;
 
         /// <summary>
-        /// Control PHabitacionCamas.
+        /// Control CheckoutTelefono.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionCamas;
+        protected global::System.Web.UI.WebControls.TextBox CheckoutTelefono;
 
         /// <summary>
-        /// Control PHabitacionTamaño2.
+        /// Control CheckoutCorreo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PHabitacionTamaño2;
+        protected global::System.Web.UI.WebControls.TextBox CheckoutCorreo;
 
         /// <summary>
-        /// Control seccion_reservar_habitacion.
+        /// Control CheckoutDireccion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl seccion_reservar_habitacion;
+        protected global::System.Web.UI.WebControls.TextBox CheckoutDireccion;
 
         /// <summary>
-        /// Control boton_submit_reserva.
+        /// Control CheckoutCiudad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl boton_submit_reserva;
+        protected global::System.Web.UI.WebControls.TextBox CheckoutCiudad;
 
         /// <summary>
-        /// Control seccion_dejar_comentario.
+        /// Control CheckoutCedula.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl seccion_dejar_comentario;
-
-        /// <summary>
-        /// Control ScriptManager1.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
-
-        /// <summary>
-        /// Control alertaspace_comentario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alertaspace_comentario;
-
-        /// <summary>
-        /// Control seccion_dejar_comentario_formulario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl seccion_dejar_comentario_formulario;
-
-        /// <summary>
-        /// Control CCComentarioRating.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CCComentarioRating;
-
-        /// <summary>
-        /// Control CComentarioDescripcion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox CComentarioDescripcion;
-
-        /// <summary>
-        /// Control ValDescH.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ValDescH;
-
-        /// <summary>
-        /// Control seccion_comentarios_load.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl seccion_comentarios_load;
+        protected global::System.Web.UI.WebControls.TextBox CheckoutCedula;
     }
 }

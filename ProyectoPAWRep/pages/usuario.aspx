@@ -417,4 +417,10 @@
 </div>
 <!-- Optional JavaScript -->
 <script src="../js/EnableTextbox.js"></script>
+      <script>
+          $(window).scroll(function () {
+              $('nav').toggleClass('scrolled', $(this).scrollTop() > 50);
+              $('nav').toggleClass('scrolled-nav', $(this).scrollTop() > 50);
+          });
+      </script>
 </asp:Content>

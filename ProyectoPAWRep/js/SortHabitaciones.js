@@ -13,7 +13,7 @@ function CreatePaginationObject(changed_order) {
         if (changed_order) {
             PaginationObject.numero_paginas = $("[name=pagination-markup]").data("total-pages");
             PaginationObject.elementos_por_pagina = $("[name=pagination-markup]").data("elements-page");
-            PaginationObject.order_by = $(".sorter.active").id;
+            PaginationObject.order_by = $(".sorter.active").data("orderby");
             PaginationObject.direction = $(".sorter.active").data("sort").toUpperCase();
             PaginationObject.advanceSearch = "false";
             PaginationObject.changed_order = "true";
@@ -21,7 +21,7 @@ function CreatePaginationObject(changed_order) {
             PaginationObject.pagina_actual = $("[name=button-page]:disabled").data("button-page");
             PaginationObject.numero_paginas = $("[name=pagination-markup]").data("total-pages");
             PaginationObject.elementos_por_pagina = $("[name=pagination-markup]").data("elements-page");
-            PaginationObject.order_by = $(".sorter.active").id;
+            PaginationObject.order_by = $(".sorter.active").data("orderby");
             PaginationObject.direction = $(".sorter.active").data("sort").toUpperCase();
             PaginationObject.advanceSearch = "false";
             PaginationObject.changed_order = "false";
@@ -33,14 +33,19 @@ function CreatePaginationObject(changed_order) {
 function LoadHabitaciones(PaginationObject) {
     $.ajax({
         type: "POST",
-        url: "habitaciones.aspx/SayHello",
+        url: "habitaciones.aspx/ActualizarInformacion",
         data: '{paginationobj: ' + JSON.stringify(PaginationObject) + '}',
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (msg) {
-            var strings = msg.d.split("||@@||");
+            var strings = msg.d.split("<---CambioDePagina--->");
             $("div[name=habitaciones_cartas_lugar]").html(strings[0]);
             $("div[name=seccion_paginacion]").html(strings[1]);
+            $(window).scrollTop(120);
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl)
+            })
         }
     });
 }

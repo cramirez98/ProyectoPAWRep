@@ -43,6 +43,33 @@ namespace ProyectoPAWRep.classes
                 return false;
             }
         }
+
+        public bool[] RemoveThisElementFromDatabasesRecords(string[,] conditions, string[] logic_conditionals, string[] databases)
+        {
+            bool[] success = new bool[databases.Length];
+            string formatted_conditions;
+            formatted_conditions = FormatConditiontoSelect(conditions, logic_conditionals);
+            for (int i = 0; i < databases.Length; i++)
+            {
+                string strSQL = "DELETE FROM " + databases[i] + formatted_conditions;
+
+                var cmd = new SqlCommand(strSQL, SqlConnection);
+
+                try
+                {
+                    SqlConnection.Open();
+                    cmd.ExecuteNonQuery();
+                    SqlConnection.Close();
+                    success[i] = true;
+                }
+                catch (Exception er)
+                {
+                    success[i] = false;
+                }
+            }
+
+            return success;
+        }
         public DataSet ReadDatabaseRecord(string[] values, string[,] conditions, string[] logic_conditionals, string orderby = null, string direction = null, int ?offset = null, int fetchNext = 0)
         {
             string formatted_values;

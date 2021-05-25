@@ -12,16 +12,16 @@ namespace ProyectoPAWRep.classes
         private DateTime fechainicio;
         private DateTime fechafinalizacion;
         private double valorpago;
-        private DateTime fechapago;
+        private int numeropersonas;
 
-        public Reserva(string habitacion_id, string cliente_id, DateTime fechainicio, DateTime fechafinalizacion, double valorpago, DateTime fechapago)
+        public Reserva(string habitacion_id, string cliente_id, DateTime fechainicio, DateTime fechafinalizacion, double valorpago, int numeropersonas)
         {
             this.habitacion_id = habitacion_id;
             this.cliente_id = cliente_id;
             this.fechainicio = fechainicio;
             this.fechafinalizacion = fechafinalizacion;
             this.valorpago = valorpago;
-            this.fechapago = fechapago;
+            this.numeropersonas = numeropersonas;
         }
 
         public string Habitacion_id { get => habitacion_id; set => habitacion_id = value; }
@@ -29,6 +29,6 @@ namespace ProyectoPAWRep.classes
         public DateTime Fechainicio { get => fechainicio; set => fechainicio = value; }
         public DateTime Fechafinalizacion { get => fechafinalizacion; set => fechafinalizacion = value; }
         public double Valorpago { get => valorpago; set => valorpago = value; }
-        public DateTime Fechapago { get => fechapago; set => fechapago = value; }
+        public int Numeropersonas { get => numeropersonas; set => numeropersonas = value; }
     }
 }

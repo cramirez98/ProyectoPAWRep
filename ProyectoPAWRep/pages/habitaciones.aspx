@@ -148,13 +148,13 @@
                 <div class="container-fluid habitaciones-contenido pt-2 pb-3 ">
                   <h2 class="text-center fw-bold">Habitaciones disponibles</h2>
                   <div class="habitaciones-ruler d-flex flex-column flex-sm-row justify-content-evenly align-items-center">
-                    <p class="active sorter" id="Precio" data-sort="asc"><i class="fa fa-sort-numeric-up-alt" aria-hidden="true"></i> Precio</p>
-                    <p class="sorter" id="NumeroCamas">Cantidad de camas</p>
-                    <p class="sorter" id="Puntaje">Puntaje</p>
+                    <p class="active sorter" id="Precio" data-orderby="Precio" data-sort="asc"><i class="fa fa-sort-numeric-up-alt" aria-hidden="true"></i> Precio</p>
+                    <p class="sorter" id="NumeroCamas" data-orderby="NumeroCamas">Cantidad de camas</p>
+                    <p class="sorter" id="Puntaje" data-orderby="Puntaje">Puntaje</p>
                   </div>
-                    <div runat="server" id="habitaciones_cartas_lugar" name="habitaciones_cartas_lugar">
+                    <div runat="server" id="habitaciones_cartas_lugar" class="mt-3" name="habitaciones_cartas_lugar">
                   <!-- Comienzan las tarjeta de las diferentes habitaciones -->  
-                  <div class="habitacion-card mt-3">
+                  <div class="habitacion-card">
                     <div class="container-fluid">
                       <div class="row g-1">
                         <div class="col-xxl-3 text-center text-xxl-start">
@@ -224,12 +224,6 @@
                   <!-- Finalizan las tarjeta de las habitaciones -->
                         </div>
                     <div runat="server" id="seccion_paginacion" name="seccion_paginacion" class="d-flex flex-row justify-content-end mt-2">
-<div class="btn-group me-2" role="group" aria-label="First group">
-    <button type="button" class="btn btn-dark">1</button>
-    <button type="button" class="btn btn-dark" disabled>2</button>
-    <button type="button" class="btn btn-dark">3</button>
-    <button type="button" class="btn btn-dark">4</button>
-  </div>
 <%--<nav aria-label="Page navigation example mt-3">
   <ul class="pagination justify-content-end">
     <li class="page-item">

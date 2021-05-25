@@ -21,12 +21,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <script>
         $(function () {
-            $('input[name="datetimes"]').daterangepicker({
-                timePicker: true,
-                startDate: moment().startOf('hour'),
-                endDate: moment().startOf('hour').add(32, 'hour'),
+            $('input[name="formfechainiciofinalizacion"]').daterangepicker({
+                "startDate": moment().add(2, 'day'),
+                "minDate": moment().add(2, 'day'),
+                endDate: moment().add(6, 'day'),
                 locale: {
-                    format: 'M/DD hh:mm A'
+                    format: 'Y-MM-DD'
                 }
             });
         });
@@ -171,18 +171,32 @@
                                 </div>
                             </div>
                             <div class="col-xl-3">
-                              <div class="ff-oswaldo text-uppercase fs-4 border-bottom-1 mb-3">
-                                Reserva la habitación
-                            </div>
-                              <div class="row">
-                                <div class="form-group">
-                                  <label for="formGroupExampleInput">Fecha y hora de llegada y de salida</label>
-                                  <input type="text" class="form-control" name="datetimes" />
-                                </div> 
-                                <div class="d-grid gap-2 col-xl-12 col-8 mx-auto mt-2">
-                                  <button class="btn btn-primary btn-lg" type="button"><i class="fa fa-key" aria-hidden="true"></i> Reservar habitación</button>
+                                <div class="ff-oswaldo text-uppercase fs-4 border-bottom-1 mb-3">
+                                    Reserva la habitación
                                 </div>
-                              </div>
+                                    <form action="checkout.aspx" method="post">
+                                      <div class="row" runat="server" id="seccion_reservar_habitacion" name="seccion_reservar_habitacion" data-numeroh="">
+                                        <div class="form-group">
+                                          <label for="formGroupExampleInput">Fecha y hora de llegada y de salida</label>
+                                          <input type="text" class="form-control" name="formfechainiciofinalizacion" />
+                                        </div> 
+                                        <div class="form-group">
+                                          <label for="inputnpersonas">Cantidad de personas</label>
+                                            <select id="inputnpersonas" name="formnumeropersonas" class="form-select">
+                                              <option value="1" selected>1</option>
+                                              <option value="2">2</option>
+                                              <option value="3">3</option>
+                                              <option value="4">4</option>
+                                              <option value="5">5</option>
+                                              <option value="6">6</option>
+                                            </select>
+                                        </div> 
+                                          <input type="text" class="form-control" name="formnumerohabitacion" />
+                                        <div class="d-grid gap-2 col-xl-12 col-8 mx-auto mt-2" runat="server" id="boton_submit_reserva">
+                                          <button class="btn btn-primary btn-lg" type="submit"><i class="fa fa-key" aria-hidden="true"></i> Reservar habitación</button>
+                                        </div>
+                                      </div>
+                                    </form>
                             </div>
                         </div>
                       <div runat="server" id="seccion_dejar_comentario">
@@ -246,4 +260,15 @@
               </div>
           </div>
     <script src="../js/RatingInput.js"></script>
+      <script>
+          $(window).scroll(function () {
+              $('nav').toggleClass('scrolled', $(this).scrollTop() > 50);
+              $('nav').toggleClass('scrolled-nav', $(this).scrollTop() > 50);
+          });
+          $(document).ready(function () {
+              $('input[name="formnumerohabitacion"]').hide();
+              $('input[name="formnumerohabitacion"]').val($('div[name=seccion_reservar_habitacion]').data("numerh"));
+          });
+
+      </script>
 </asp:Content>

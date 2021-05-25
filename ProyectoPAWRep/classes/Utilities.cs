@@ -131,7 +131,7 @@ namespace ProyectoPAWRep.classes
             foreach (DataRow row in data.Tables[0].Rows)
             {
 
-                cards += "<div class='habitacion-card mt-3'> <div class='container-fluid'> <div class='row g-1'> <div class='col-xxl-3 text-center text-xxl-start'>";
+                cards += "<div class='habitacion-card mb-2'> <div class='container-fluid'> <div class='row g-1'> <div class='col-xxl-3 text-center text-xxl-start'>";
                 cards += "<img src='" + GetIconPhoto(XDocument.Parse(row["Fotos"].ToString())) + "' class='img-fluid rounded-3 img-thumbnail' alt='...' width='210' height='210'>";
                 cards += "</div> <div class='col-xxl-9'> <div class='row g-0'> <div class='col-lg-8 col-sm-8'> <div class='d-flex flex-column'> <div class='d-flex'>";
 
@@ -188,7 +188,7 @@ namespace ProyectoPAWRep.classes
 
                 cards += "<div class='row d-flex'> <span class='fa-stack fa-2x fs-5' data-bs-toggle='tooltip' data-bs-placement='top' title='"+ (row["BañosPDiscapacitadas"].ToString() == "1" ? "Si posee baños para discapacitados" : "No posee baños para discapacitados") + "'> <i class='fas fa-square fa-stack-2x iconbackground-" + (row["BañosPDiscapacitadas"].ToString() == "1" ? "true" : "false") + "'></i> <i class='fab fa-accessible-icon fa-stack-1x fa-inverse'></i> </span> <span class='fa-stack fa-2x fs-5' data-bs-toggle='tooltip' data-bs-placement='top' title='" + (row["Mascotas"].ToString() == "1" ? "Si admite mascotas" : "No admite mascotas") + "'> <i class='fas fa-square fa-stack-2x iconbackground-" + (row["Mascotas"].ToString() == "1" ? "true" : "false") + "'></i> <i class='fa fa-dog fa-stack-1x fa-inverse'></i> </span> </div> </div>";
 
-                cards += "<div class='col-lg-4 d-flex justify-content-center justify-content-md-end'> <a href='habitacion_pagina.aspx?h="+row["Numero"].ToString()+"' class='btn btn-primary btn-lg mt-2 mt-md-0'><i class='fa fa-eye' aria-hidden='true'></i> Ver mas detalles</a> </div> </div> </div> </div>";
+                cards += "<div class='col-lg-4 d-flex justify-content-center justify-content-md-end'> <a href='habitacion_pagina.aspx?h="+row["Numero"].ToString()+ "' class='btn btn-primary btn-lg mt-2 mt-md-0' target='_blank'><i class='fa fa-eye' aria-hidden='true'></i> Ver mas detalles</a> </div> </div> </div> </div>";
             }
 
             return cards;
@@ -252,6 +252,32 @@ namespace ProyectoPAWRep.classes
         {
             DateTime fechaActual = DateTime.Now;
             if ((fechaActual-fecha_inicio).TotalSeconds > 0 && (fecha_finalizacion-fechaActual).TotalSeconds > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool CheckIfTestimonioReservaIsValid(DateTime fecha_inicio)
+        {
+            DateTime fechaActual = DateTime.Now;
+            if ((fechaActual - fecha_inicio).TotalSeconds > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool CheckIfReservaIsValid(DateTime fecha_finalizacion)
+        {
+            DateTime fechaActual = DateTime.Now;
+            if ((fecha_finalizacion - fechaActual).TotalSeconds > 0)
             {
                 return true;
             }
@@ -338,6 +364,81 @@ namespace ProyectoPAWRep.classes
                 pagination_buttons += "</div>";
             }
             return pagination_buttons;
+        }
+
+        public static DataSet ManuallyOffcet(DataSet data, int offcet, int fetchtop)
+        {
+            DataSet cropped_data = new DataSet();
+
+            if (offcet+fetchtop > data.Tables[0].Rows.Count)
+            {
+                offcet = data.Tables[0].Rows.Count - offcet;
+            }
+
+            DataTable dtNew = data.Tables[0].Select().Skip(offcet).Take(fetchtop).CopyToDataTable();
+
+            cropped_data.Tables.Add(dtNew);
+
+            return cropped_data;
+        }
+
+        public static DataSet OrderByPrice(DataSet data, string direction)
+        {
+            DescuentosDatabaseManager descuentosDatabaseManager = new DescuentosDatabaseManager("SQLConnection", "[dbo].[Descuentos]");
+            DataSet data_descuentos;
+            //System.Diagnostics.Debug.WriteLine(data.Tables[0].Columns["Precio"].DataType.Name.ToString());
+            data.Tables[0].Columns.Add(new DataColumn("PrecioConDescuento", typeof(decimal)));
+            foreach  (DataRow row in data.Tables[0].Rows)
+            {
+                if (!String.IsNullOrEmpty(row["Descuento_ID"] as string))
+                {
+                    data_descuentos = descuentosDatabaseManager.ReadDatabaseRecord(
+                        new string[] {"*"},
+                        new string[,] { {"ID","=","'"+ row["Descuento_ID"] as string + "'"} },
+                        null
+                    );
+
+                    if (CheckIfDiscountIsValid(DateTime.Parse(data_descuentos.Tables[0].Rows[0]["FechaFinalizacion"].ToString()), DateTime.Parse(data_descuentos.Tables[0].Rows[0]["FechaInicio"].ToString())))
+                    {
+                        row["PrecioConDescuento"] = Convert.ToDecimal(CalculateDiscountPrice(double.Parse(row["Precio"].ToString()), int.Parse(data_descuentos.Tables[0].Rows[0]["Porcentaje"].ToString())));
+                    }
+                    else
+                    {
+                        row["PrecioConDescuento"] = row["Precio"];
+                    }
+                }
+                else
+                {
+                    row["PrecioConDescuento"] = row["Precio"];
+                }
+            }
+            DataSet sorted_data = new DataSet();
+            DataView dv = data.Tables[0].DefaultView;
+            dv.Sort = "PrecioConDescuento " + direction;
+
+            sorted_data.Tables.Add(dv.ToTable());
+
+            return sorted_data;
+        }
+
+        public static int CalculateNumberOfPages(int total_habitaciones, int elementos_por_pagina)
+        {
+            double division = (double)total_habitaciones / elementos_por_pagina;
+            int numero_paginas;
+            if (division <= 1 && division > 0)
+            {
+                numero_paginas = 1;
+            }
+            else if (division > 1)
+            {
+                numero_paginas = (int)Math.Ceiling(division);
+            }
+            else
+            {
+                numero_paginas = 0;
+            }
+
+            return numero_paginas;
         }
     }
 }

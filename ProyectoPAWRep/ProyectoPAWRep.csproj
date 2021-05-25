@@ -77,6 +77,7 @@
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\carousel-custom.css" />
     <Content Include="css\custom.css" />
+    <Content Include="css\estilos_tarjeta_credito.css" />
     <Content Include="css\RangeSlider.css" />
     <Content Include="css\StartRating.css" />
     <Content Include="img\Aboutus1.png" />
@@ -86,7 +87,15 @@
     <Content Include="img\habitaciones\409\foto1.png" />
     <Content Include="img\habitaciones\409\foto2.png" />
     <Content Include="img\habitaciones\409\foto3.png" />
+    <Content Include="img\img_tarjeta_credito\bg-tarjeta\bg-tarjeta-01.jpg" />
+    <Content Include="img\img_tarjeta_credito\bg-tarjeta\bg-tarjeta-02.jpg" />
+    <Content Include="img\img_tarjeta_credito\bg-tarjeta\bg-tarjeta-03.jpg" />
+    <Content Include="img\img_tarjeta_credito\chip-tarjeta.png" />
+    <Content Include="img\img_tarjeta_credito\logos\mastercard.png" />
+    <Content Include="img\img_tarjeta_credito\logos\visa.png" />
     <Content Include="img\login.jpg" />
+    <Content Include="img\logopaypal.png" />
+    <Content Include="img\logopse.png" />
     <Content Include="img\logo\logo1.png" />
     <Content Include="img\logo\logodark.png" />
     <Content Include="img\logo\logonavbar.png" />
@@ -108,19 +117,23 @@
     <Content Include="js\bootstrap.esm.min.js" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\Checkout.js" />
     <Content Include="js\EnableTextbox.js" />
     <Content Include="js\EnableTextboxHabitacion.js" />
+    <Content Include="js\main.js" />
     <Content Include="js\Pagination.js" />
     <Content Include="js\RangeSlider.js" />
     <Content Include="js\RatingInput.js" />
     <Content Include="js\SorterLogic.js" />
     <Content Include="js\SortHabitaciones.js" />
     <Content Include="pages\cerrarsesion.aspx" />
+    <Content Include="pages\checkout.aspx" />
     <Content Include="pages\CrearDescuento.aspx" />
     <Content Include="pages\CrearHabitacion.aspx" />
     <Content Include="pages\EliminarHabitacion.aspx" />
     <Content Include="pages\habitaciones.aspx" />
     <Content Include="pages\habitacion_pagina.aspx" />
+    <Content Include="pages\inicio.aspx" />
     <Content Include="pages\iniciosesion.aspx" />
     <Content Include="pages\ModificarHabitacion.aspx" />
     <Content Include="pages\registro.aspx" />
@@ -135,9 +148,11 @@
     <Compile Include="classes\Habitacion.cs" />
     <Compile Include="classes\HabitacionesDatabaseManager.cs" />
     <Compile Include="classes\PaginationObject.cs" />
+    <Compile Include="classes\Pago.cs" />
+    <Compile Include="classes\PagoDatabaseManager.cs" />
+    <Compile Include="classes\PaymentObject.cs" />
     <Compile Include="classes\Reserva.cs" />
-    <Compile Include="classes\ReservasDataBaseManager.cs" />
-    <Compile Include="classes\ReservasDatasetManager.cs" />
+    <Compile Include="classes\ReservasDatabaseManager.cs" />
     <Compile Include="classes\Testimonio.cs" />
     <Compile Include="classes\TestimoniosDatabaseManager.cs" />
     <Compile Include="classes\UserDatabaseManager.cs" />
@@ -156,6 +171,13 @@
     </Compile>
     <Compile Include="pages\cerrarsesion.aspx.designer.cs">
       <DependentUpon>cerrarsesion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\checkout.aspx.cs">
+      <DependentUpon>checkout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\checkout.aspx.designer.cs">
+      <DependentUpon>checkout.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\CrearDescuento.aspx.cs">
       <DependentUpon>CrearDescuento.aspx</DependentUpon>
@@ -191,6 +213,13 @@
     </Compile>
     <Compile Include="pages\habitacion_pagina.aspx.designer.cs">
       <DependentUpon>habitacion_pagina.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\inicio.aspx.cs">
+      <DependentUpon>inicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\inicio.aspx.designer.cs">
+      <DependentUpon>inicio.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\iniciosesion.aspx.cs">
       <DependentUpon>iniciosesion.aspx</DependentUpon>
