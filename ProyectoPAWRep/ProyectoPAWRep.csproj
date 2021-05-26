@@ -126,6 +126,9 @@
     <Content Include="js\RatingInput.js" />
     <Content Include="js\SorterLogic.js" />
     <Content Include="js\SortHabitaciones.js" />
+    <Content Include="js\usuario.js" />
+    <Content Include="pages\adminaboutus.aspx" />
+    <Content Include="pages\adminpanel.aspx" />
     <Content Include="pages\cerrarsesion.aspx" />
     <Content Include="pages\checkout.aspx" />
     <Content Include="pages\CrearDescuento.aspx" />
@@ -142,6 +145,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classes\AboutUsDatabaseManager.cs" />
     <Compile Include="classes\DatabaseManager.cs" />
     <Compile Include="classes\Descuento.cs" />
     <Compile Include="classes\DescuentosDatabaseManager.cs" />
@@ -164,6 +168,20 @@
     </Compile>
     <Compile Include="pages\Admin.Master.designer.cs">
       <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="pages\adminaboutus.aspx.cs">
+      <DependentUpon>adminaboutus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\adminaboutus.aspx.designer.cs">
+      <DependentUpon>adminaboutus.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\adminpanel.aspx.cs">
+      <DependentUpon>adminpanel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\adminpanel.aspx.designer.cs">
+      <DependentUpon>adminpanel.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\cerrarsesion.aspx.cs">
       <DependentUpon>cerrarsesion.aspx</DependentUpon>

@@ -37,7 +37,7 @@ namespace ProyectoPAWRep.classes
             }
             return builder.ToString();
         }
-        public static string GenerateBigAlarm(string title, string body, string footer, string alarm_type)
+        public static string GenerateBigAlarm(string title, string body, string footer, string alarm_type, bool button = true)
         {
             string alarm;
             switch (alarm_type)
@@ -63,7 +63,16 @@ namespace ProyectoPAWRep.classes
             }
             alarm += "<h4 class='alert-heading'>"+title+"</h4>";
             alarm += "<p>"+body+"</p><hr>";
-            alarm += "<p class='mb-0'>"+footer+ "</p><button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
+            alarm += "<p class='mb-0'>"+footer+ "</p>";
+
+            if (button)
+            {
+                alarm += "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
+            }
+            else
+            {
+                alarm += "</div>";
+            }
 
             return alarm;
         }
@@ -113,6 +122,17 @@ namespace ProyectoPAWRep.classes
 
             return userDropdown;
         }
+
+        public static string GenerateAdminDropdown(string profilepic_src)
+        {
+            string userDropdown = "<li class='nav-item dropdown'><a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>";
+            userDropdown += "<img src='" + profilepic_src + "' class='rounded-circle' alt='...' width='50' height='50'>";
+            userDropdown += "</a><ul class='dropdown-menu dropdown-menu-lg-end' aria-labelledby='navbarDropdown'>";
+            userDropdown += "<li><a class='dropdown-item' href='adminpanel.aspx'>Panel de administrador</a></li><li><a class='dropdown-item' href='usuario.aspx'>Perfil</a></li><li><a class='dropdown-item' href='cerrarsesion.aspx'>Cerrar sesion</a></li>";
+            userDropdown += "</ul></li>";
+
+            return userDropdown;
+        }
         public static string GenerateNormalDropdown()
         {
             string userDropdown = "<li class='nav-item dropdown'><a class='nav-link dropdown-toggle' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>";
@@ -124,6 +144,81 @@ namespace ProyectoPAWRep.classes
             return userDropdown;
         }
 
+        public static string GenerateReservasHistory(DataSet reservas_data)
+        {
+            string table_rows = "";
+            HabitacionesDatabaseManager habitacionesDatabaseManager = new HabitacionesDatabaseManager("SQLConnection", "[dbo].[Habitaciones]");
+            DataSet habitacion_data = new DataSet();
+            int contador = 1;
+            foreach (DataRow row in reservas_data.Tables[0].Rows)
+            {
+                table_rows += "<tr>";
+                habitacion_data = habitacionesDatabaseManager.ReadDatabaseRecord(
+                    new string[] {"Numero"},
+                    new string[,] { {"ID","=","'"+row["Habitacion_ID"]+"'"} },
+                    null
+                );
+
+                table_rows += "<th scope='row'>" + contador + "</th>";
+                table_rows += "<td>"+DateTime.Parse(row["FechaInicio"].ToString()).ToString("yyy/MM/dd") +"</td>";
+                table_rows += "<td>" + DateTime.Parse(row["FechaFinalizacion"].ToString()).ToString("yyy/MM/dd") + "</td>";
+                table_rows += "<td>" + DateTime.Parse(row["FechaPago"].ToString()).ToString("yyy/MM/dd") + "</td>";
+                table_rows += "<td>" + MoneyFormat( row["ValorPago"].ToString() ) + "</td>";
+                table_rows += "<td class='text-center'>" + row["NumeroPersonas"] + "</td>";
+
+                if (row["Cancelada"].ToString().Equals("1"))
+                {
+                    table_rows += "<td><span class='badge bg-danger'>Cancelada</span></td>";
+                }
+                else
+                {
+                    if (CheckIfReservaIsValid(DateTime.Parse(row["FechaFinalizacion"].ToString())))
+                    {
+                        table_rows += "<td><span class='badge bg-success'>Activa</span></td>";
+                    }
+                    else
+                    {
+                        table_rows += "<td><span class='badge bg-secondary'>Vencida</span></td>";
+                    }
+                }
+
+                table_rows += "<td><button type='button' name='CargarDatosModal' class='btn btn-outline-primary round-edges-20' data-bs-toggle='modal' data-numeroh='" + habitacion_data.Tables[0].Rows[0]["Numero"].ToString() + "' data-bs-target='#exampleModal'> <i class='fa fa-eye' aria-hidden='true'></i> Ver habitación </button></td>";
+                table_rows += "</tr>";
+                contador++;
+            }
+            return table_rows;
+        }
+
+        public static string GenerateHabitacionModal(DataSet data)
+        {
+            string modal_part1 = "";
+            string modal_part2 = "";
+
+            List<string> sources = new List<string>();
+
+            GetImagesHabitacion(XDocument.Parse(data.Tables[0].Rows[0]["Fotos"].ToString()), out sources);
+
+            modal_part1 += "<div class='carousel-item active'> <img src='" + sources[0] + "' class='d-block w-100' alt='...'> </div>";
+            modal_part1 += "<div class='carousel-item'> <img src='" + sources[1] + "' class='d-block w-100' alt='...'> </div>";
+            modal_part1 += "<div class='carousel-item'> <img src='" + sources[2] + "' class='d-block w-100' alt='...'> </div>";
+
+            modal_part2 += "<div class='col-sm-4 mb-2'> <div class='usuario-info-label-sidebar text-start'>Habitación:</div> </div>";
+            modal_part2 += "<div class='col-sm-8 mb-2'> <div class='usuario-info-text-sidebar text-start'>"+data.Tables[0].Rows[0]["Numero"]+"</div> </div>";
+
+            modal_part2 += "<div class='col-sm-4 mb-2'> <div class='usuario-info-label-sidebar text-start'>Tamaño de habitacion:</div> </div>";
+            modal_part2 += "<div class='col-sm-8 mb-2'> <div class='usuario-info-text-sidebar text-start'>" + data.Tables[0].Rows[0]["Tamaño"] + "</div> </div>";
+
+            modal_part2 += "<div class='col-sm-4 mb-2'> <div class='usuario-info-label-sidebar text-start'>Numero de camas de la habitacion:</div> </div>";
+            modal_part2 += "<div class='col-sm-8 mb-2'> <div class='usuario-info-text-sidebar text-start'>" + data.Tables[0].Rows[0]["NumeroCamas"] + "</div> </div>";
+
+            modal_part2 += "<div class='col-sm-4 mb-2'> <div class='usuario-info-label-sidebar text-start'>Baño para discapacitados:</div> </div>";
+            modal_part2 += "<div class='col-sm-8 mb-2'> <div class='usuario-info-text-sidebar text-start'>"+(data.Tables[0].Rows[0]["BañosPDiscapacitadas"].ToString().Equals("1") ? "Si" : "No") +"</div> </div>";
+
+            modal_part2 += "<div class='col-sm-4 mb-2'> <div class='usuario-info-label-sidebar text-start'>Admite mascotas:</div> </div>";
+            modal_part2 += "<div class='col-sm-8 mb-2'> <div class='usuario-info-text-sidebar text-start'>" + (data.Tables[0].Rows[0]["Mascotas"].ToString().Equals("1") ? "Si" : "No") + "</div> </div>";
+
+            return modal_part1 + "<--CambioDeInformacion-->" + modal_part2;
+        }
         public static string GenerateHabitacionCards(DataSet data)
         {
             string cards = "";
@@ -278,6 +373,19 @@ namespace ProyectoPAWRep.classes
         {
             DateTime fechaActual = DateTime.Now;
             if ((fecha_finalizacion - fechaActual).TotalSeconds > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static bool CheckIfBookingIsActive(DateTime fecha_inicio)
+        {
+            DateTime fechaActual = DateTime.Now;
+            if ((fechaActual - fecha_inicio).TotalSeconds > 0)
             {
                 return true;
             }

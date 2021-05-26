@@ -41,6 +41,18 @@ namespace ProyectoPAWRep.pages
                     DataSet user_data = UserDatabaseManager.ReadDatabaseRecord(valores_a_traer, condiciones, logic_condiciones);
 
                     ShowUserInformation(user_data);
+
+                    ReservasDatabaseManager reservasDatabaseManager = new ReservasDatabaseManager("SQLConnection", "[dbo].[Reservas]");
+
+                    DataSet reservas_data = reservasDatabaseManager.ReadDatabaseRecord(
+                        new string[] {"*"},
+                        new string[,] { {"Cliente_ID","=","'"+ Session["User_ID"] as string + "'"} },
+                        null,
+                        "FechaFinalizacion",
+                        "DESC"
+                    );
+
+                    ShowReservasInformation(reservas_data);
                 }
                 else
                 {
@@ -135,6 +147,40 @@ namespace ProyectoPAWRep.pages
             CultureInfo culture = new System.Globalization.CultureInfo("es-ES");
             string fecha_registro = DateTime.Now.ToString("D", culture);
             info_panel_tiempo.InnerText = "Miembro desde "+fecha_registro;
+        }
+
+        private void ShowReservasInformation(DataSet reservas_data)
+        {
+            if (reservas_data.Tables[0].Rows.Count > 0)
+            {
+                bool reserva_vigente = false;
+
+                foreach (DataRow row in reservas_data.Tables[0].Rows)
+                {
+                    if (Utilities.CheckIfReservaIsValid( DateTime.Parse(row["FechaFinalizacion"].ToString()) ))
+                    {
+                        reserva_vigente = true;
+                    }
+                }
+
+                if (reserva_vigente)
+                {
+                    info_reserva_fechapago.InnerText = reservas_data.Tables[0].Rows[0]["FechaPago"].ToString();
+                    info_reserva_fechainicio.InnerText = reservas_data.Tables[0].Rows[0]["FechaInicio"].ToString();
+                    info_reserva_fechafinalizacion.InnerText = reservas_data.Tables[0].Rows[0]["FechaFinalizacion"].ToString();
+                    info_reserva_valorpago.InnerText = Utilities.MoneyFormat(reservas_data.Tables[0].Rows[0]["ValorPago"].ToString());
+                    
+
+                }
+                else
+                {
+                    info_reserva_seccion.InnerHtml = Utilities.GenerateBigAlarm("No hay reserva activa", "No hemos encontrado que poseas alguna reserva que se encuentre activa", "Si deseas ver las habitaciones disponibles, da <a href='habitaciones.aspx'>click aquí</a>", "warning");
+                }
+            }
+            else
+            {
+                info_reserva_seccion.InnerHtml = Utilities.GenerateBigAlarm("No hay reserva activa", "No hemos encontrado que poseas alguna reserva que se encuentre activa", "Si deseas ver las habitaciones disponibles, da <a href='habitaciones.aspx'>click aquí</a>","warning");
+            }
         }
     }
 }

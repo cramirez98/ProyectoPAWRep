@@ -16,14 +16,20 @@ namespace ProyectoPAWRep.pages
             if (!String.IsNullOrEmpty(Session["User_ID"] as string))
             {
                 UserDatabaseManager userDatabaseManager = new UserDatabaseManager("SQLConnection", "[dbo].[Usuarios]");
-                string[] datos_a_seleccionar = new string[] { "ImagenPerfil" };
+                string[] datos_a_seleccionar = new string[] { "ImagenPerfil","Tipo" };
                 string[,] condiciones = new string[,] { { "ID", "=", "'" + Session["User_ID"] as string + "'" } };
                 string[] logic = null;
 
                 DataSet user_data = userDatabaseManager.ReadDatabaseRecord(datos_a_seleccionar, condiciones, logic);
 
-
-                navbar_changing.InnerHtml = Utilities.GenerateUserDropdown(user_data.Tables[0].Rows[0]["ImagenPerfil"].ToString());
+                if (user_data.Tables[0].Rows[0]["Tipo"].ToString().Equals("Cliente"))
+                {
+                    navbar_changing.InnerHtml = Utilities.GenerateUserDropdown(user_data.Tables[0].Rows[0]["ImagenPerfil"].ToString());
+                }
+                else
+                {
+                    navbar_changing.InnerHtml = Utilities.GenerateAdminDropdown(user_data.Tables[0].Rows[0]["ImagenPerfil"].ToString());
+                }
             }
             else
             {

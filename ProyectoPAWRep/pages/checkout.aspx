@@ -323,12 +323,14 @@
                                         <label for="paypalemail" class="col-sm-2 col-form-label">Correo</label>
                                         <div class="col-sm-10">
                                           <input type="email" class="form-control" id="paypalemail">
+                                            <div class="text-danger small validacion-text d-none" id="ValCorreoPaypal">Debe ingresar un valor.</div>
                                         </div>
                                       </div>
                                       <div class="row mb-3">
                                         <label for="paypalpass" class="col-sm-2 col-form-label">Contraseña</label>
                                         <div class="col-sm-10">
                                           <input type="password" class="form-control" id="paypalpass">
+                                            <div class="text-danger small validacion-text d-none" id="ValPassPaypal">Debe ingresar un valor.</div>
                                         </div>
                                       </div>
                                     <div class="d-grid gap-2 col-6 mx-auto">
@@ -358,6 +360,7 @@
                                         <label for="pseemail" class="col-sm-2 col-form-label">E-mail</label>
                                         <div class="col-sm-10">
                                           <input type="email" class="form-control" id="pseemail" placeholder="E-mail registrado en PSE">
+                                             <div class="text-danger small validacion-text d-none" id="ValEmailPSE">Debe ingresar un valor.</div>
                                         </div>
                                     </div>
                                     <div class="d-grid gap-2 d-md-flex justify-content-md-end">

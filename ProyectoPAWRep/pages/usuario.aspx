@@ -106,16 +106,9 @@
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                           <h2 class="text-center fw-bold">Informacion de la reserva activa</h2>
                             <div class="container">
-                                <div class="row">
-<!--                                   <div class="alert alert-primary" role="alert">
-                                    <h4 class="alert-heading"><i class="fas fa-inbox"></i> No posees ninguna reserva activa</h4>
-                                    <p>No poseemos ningún registro de que poseas una reserva activa, cuando realices una reservación para una habitación, en este lugar aparecerá la información de dicha reserva
-                                      y también se te dará la opción de cancelarla siempre y cuando te encuentres dentro del tiempo estipulado para realizar dicha cancelación.
-                                    </p>
-                                    <hr>
-                                    <p class="mb-0">Encuentra la habitacion ideal y preparate para una experiencia inolvidable, solo debes revisar las habitaciones disponibles dando <a href="#" class="alert-link">click aquí</a>!</p>
-                                  </div> -->
-                                  <div class="col-sm-12">
+                                <div runat="server" id="info_reserva_alertspace"></div>
+                                <div class="row" runat="server" id="info_reserva_seccion">
+                                  <div class="col-sm-12" runat="server" id="info_reserva_alertacancelacion">
                                     <div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
                                       <span class="fa fa-exclamation-triangle flex-shrink-0 me-2"></span>
                                       <div>
@@ -125,70 +118,64 @@
                                     </div>
                                   </div>
                                   <div class="col-sm-3 mb-2">
-                                    <div class="usuario-info-label-sidebar text-start">Estado:</div>
-                                  </div>
-                                  <div class="col-sm-9 mb-2">
-                                    <span class="badge rounded-pill bg-success">Activa</span>
-                                  </div>
-                                  <hr>
-                                  <div class="col-sm-3 mb-2">
                                     <div class="usuario-info-label-sidebar text-start">Fecha de pago:</div>
                                   </div>
                                   <div class="col-sm-9 mb-2">
-                                    <div class="usuario-info-text-sidebar text-start">20/07/2020</div>
+                                    <div class="usuario-info-text-sidebar text-start" runat="server" id="info_reserva_fechapago">20/07/2020</div>
                                   </div>
                                   <div class="col-sm-3 mb-2">
                                     <div class="usuario-info-label-sidebar text-start">Fecha de llegada:</div>
                                   </div>
                                   <div class="col-sm-9 mb-2">
-                                    <div class="usuario-info-text-sidebar text-start">01/09/2020</div>
+                                    <div class="usuario-info-text-sidebar text-start" runat="server" id="info_reserva_fechainicio">01/09/2020</div>
                                   </div>
                                   <div class="col-sm-3 mb-2">
                                     <div class="usuario-info-label-sidebar text-start">Fecha de salida:</div>
                                   </div>
                                   <div class="col-sm-9 mb-2">
-                                    <div class="usuario-info-text-sidebar text-start">07/09/2020</div>
+                                    <div class="usuario-info-text-sidebar text-start" runat="server" id="info_reserva_fechafinalizacion">07/09/2020</div>
                                   </div>
                                   <div class="col-sm-3 mb-2">
                                     <div class="usuario-info-label-sidebar text-start">Valor del pago:</div>
                                   </div>
                                   <div class="col-sm-9 mb-2">
-                                    <div class="usuario-info-text-sidebar text-start">300.000 pesos</div>
+                                    <div class="usuario-info-text-sidebar text-start" runat="server" id="info_reserva_valorpago">300.000 pesos</div>
                                   </div>
                                   <hr>
                                   <div class="col-sm-3 mb-2">
                                     <div class="usuario-info-label-sidebar text-start">Habitación reservada:</div>
                                   </div>
                                   <div class="col-sm-9 mb-2">
-                                    <div class="usuario-info-text-sidebar text-start">407</div>
+                                    <div class="usuario-info-text-sidebar text-start" runat="server" id="info_reserva_habitacion_numero">407</div>
                                   </div>
                                   <div class="col-sm-3 mb-2">
                                     <div class="usuario-info-label-sidebar text-start">Tamaño de habitacion:</div>
                                   </div>
                                   <div class="col-sm-9 mb-2">
-                                    <div class="usuario-info-text-sidebar text-start">Familiar</div>
+                                    <div class="usuario-info-text-sidebar text-start" runat="server" id="info_reserva_habitacion_tamaño">Familiar</div>
                                   </div>
                                   <div class="col-sm-3 mb-2">
                                     <div class="usuario-info-label-sidebar text-start">Numero de camas de la habitacion:</div>
                                   </div>
                                   <div class="col-sm-9 mb-2">
-                                    <div class="usuario-info-text-sidebar text-start">4</div>
+                                    <div class="usuario-info-text-sidebar text-start" runat="server" id="info_reserva_habitacion_numerocamas">4</div>
                                   </div>
                                   <div class="col-sm-3 mb-2">
                                     <div class="usuario-info-label-sidebar text-start">Baño para discapacitados:</div>
                                   </div>
                                   <div class="col-sm-9 mb-2">
-                                    <div class="usuario-info-text-sidebar text-start">Si</div>
+                                    <div class="usuario-info-text-sidebar text-start" runat="server" id="info_reserva_habitacion_bañodiscapacitados">Si</div>
                                   </div>
                                   <div class="col-sm-3 mb-2">
                                     <div class="usuario-info-label-sidebar text-start">Posibilidad de mascota:</div>
                                   </div>
                                   <div class="col-sm-9 mb-2">
-                                    <div class="usuario-info-text-sidebar text-start">Si</div>
+                                    <div class="usuario-info-text-sidebar text-start" runat="server" id="info_reserva_habitacion_mascotas">Si</div>
                                   </div>
                                   <div class="col-sm-12 text-center">
-                                    <button type="button" class="btn btn-outline-danger btn-lg round-edges-20"><i class="fas fa-calendar-times"></i> Cancelar la reserva</button>
+                                    <button type="button" class="btn btn-outline-danger btn-lg round-edges-20" runat="server" onserverclick="info_reserva_botoncancelar_ServerClick" id="info_reserva_botoncancelar"><i class="fas fa-calendar-times"></i> Cancelar la reserva</button>
                                   </div>
+
                                 </div>
                             </div>
                         </div>
@@ -200,20 +187,24 @@
                                 <thead class="table-blue">
                                   <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Habitacion</th>
                                     <th scope="col">Fecha de llegada</th>
                                     <th scope="col">Fecha de salida</th>
                                     <th scope="col">Fecha de pago</th>
-                                    <th scope="col">Caracteristicas</th>
+                                    <th scope="col">Valor del pago</th>
+                                    <th scope="col">Numero de personas</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Habitación</th>
                                   </tr>
                                 </thead>
-                                <tbody>
+                                <tbody runat="server" id="reservas_table_info">
                                   <tr>
                                     <th scope="row">1</th>
-                                    <td>407</td>
+                                    <td>4</td>
                                     <td>11/12/2020</td>
                                     <td>19/12/2020</td>
                                     <td>30/11/2020</td>
+                                    <td>$ 12.350.400 COP</td>
+                                    <td><span class="badge bg-danger">Cancelada</span></td>
                                     <td><button type="button" class="btn btn-outline-primary round-edges-20" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                       <i class="fa fa-eye" aria-hidden="true"></i> Ver habitación
                                     </button></td>
@@ -229,7 +220,21 @@
                             <form runat="server" class="row justify-content-center">
                                 <asp:ScriptManager ID="ScriptManager1" runat="server">
                                 </asp:ScriptManager>
+
+                                <div class="row d-flex justify-content-center">
+                                    <div class="col-xs-4 d-flex justify-content-center text-center">
+                                        <img src="../img/nelson.jpeg" class="m-2 border border-5 img-fluid rounded-circle" alt="..." width="200" height="200" runat="server" id="ImagePerfilPaginaModificar">
+
+                                    </div>
+                                </div>
+
                                 <div runat="server" id="alertaspace"></div>
+                                <div class="row justify-content-center mb-3">
+                                    <div class="col-xl-6">
+                                      <label for="FotoPerfil" class="form-label">Foto de perfil</label>
+                                      <asp:FileUpload ID="FotoPerfil" runat="server" class="form-control"/>
+                                    </div>
+                                </div>
                                     <div class="col-xl-6">
                                       <label for="Nombres" class="form-label">Nombres</label>
                                         <div class="input-group">
@@ -346,16 +351,7 @@
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
           </div>
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="/img/Aboutus1.png" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="/img/Aboutus1.png" class="d-block w-100" alt="...">
-            </div>
-            <div class="carousel-item">
-              <img src="/img/Aboutus1.png" class="d-block w-100" alt="...">
-            </div>
+          <div class="carousel-inner" id="modal-habitacion-fotos">
           </div>
           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -368,43 +364,7 @@
         </div>
 
         <div class="container-fluid mt-2">
-          <div class="row">
-            <div class="col-sm-4 mb-2">
-              <div class="usuario-info-label-sidebar text-start">Habitación:</div>
-            </div>
-            <div class="col-sm-8 mb-2">
-              <div class="usuario-info-text-sidebar text-start">407</div>
-            </div>
-            <div class="col-sm-4 mb-2">
-              <div class="usuario-info-label-sidebar text-start">Tamaño de habitacion:</div>
-            </div>
-            <div class="col-sm-8 mb-2">
-              <div class="usuario-info-text-sidebar text-start">Familiar</div>
-            </div>
-            <div class="col-sm-4 mb-2">
-              <div class="usuario-info-label-sidebar text-start">Numero de camas de la habitacion:</div>
-            </div>
-            <div class="col-sm-8 mb-2">
-              <div class="usuario-info-text-sidebar text-start">4</div>
-            </div>
-            <div class="col-sm-4 mb-2">
-              <div class="usuario-info-label-sidebar text-start">Baño para discapacitados:</div>
-            </div>
-            <div class="col-sm-8 mb-2">
-              <div class="usuario-info-text-sidebar text-start">Si</div>
-            </div>
-            <div class="col-sm-4 mb-2">
-              <div class="usuario-info-label-sidebar text-start">Posibilidad de mascota:</div>
-            </div>
-            <div class="col-sm-8 mb-2">
-              <div class="usuario-info-text-sidebar text-start">Si</div>
-            </div>
-            <div class="col-sm-4 mb-2">
-              <div class="usuario-info-label-sidebar text-start">Puntaje:</div>
-            </div>
-            <div class="col-sm-8 mb-2">
-              <div class="usuario-info-text-sidebar text-start"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i></div>
-            </div>
+          <div class="row" id="modal-habitacion-info">
           </div>
         </div>
 
@@ -417,6 +377,7 @@
 </div>
 <!-- Optional JavaScript -->
 <script src="../js/EnableTextbox.js"></script>
+<script src="../js/usuario.js"></script>
       <script>
           $(window).scroll(function () {
               $('nav').toggleClass('scrolled', $(this).scrollTop() > 50);

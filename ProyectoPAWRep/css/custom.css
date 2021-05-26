@@ -38,7 +38,7 @@ li.nav-item{
 }
 header.tablero_bienvenida{
     padding-top: 12rem;
-    padding-bottom: 10rem;
+    padding-bottom: 15rem;
     background-image: url("../img/welcome.png");
     background-repeat: no-repeat;
     background-attachment: scroll;

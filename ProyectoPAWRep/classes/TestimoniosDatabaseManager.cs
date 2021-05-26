@@ -24,7 +24,7 @@ namespace ProyectoPAWRep.classes
             testimonio.Cliente_id + "','" +
             testimonio.Comentario + "'," +
             testimonio.Puntaje.ToString() + ",'" +
-            testimonio.Habitacion_id + "')";
+            testimonio.Habitacion_id + "',CURRENT_TIMESTAMP)";
 
             var cmd = new SqlCommand(strSQL, base.SqlConnection);
 

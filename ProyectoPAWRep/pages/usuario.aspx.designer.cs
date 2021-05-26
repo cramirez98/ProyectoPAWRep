@@ -96,6 +96,132 @@ namespace ProyectoPAWRep.pages
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl info_panel_ciudad;
 
         /// <summary>
+        /// Control info_reserva_alertspace.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl info_reserva_alertspace;
+
+        /// <summary>
+        /// Control info_reserva_seccion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl info_reserva_seccion;
+
+        /// <summary>
+        /// Control info_reserva_alertacancelacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl info_reserva_alertacancelacion;
+
+        /// <summary>
+        /// Control info_reserva_fechapago.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl info_reserva_fechapago;
+
+        /// <summary>
+        /// Control info_reserva_fechainicio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl info_reserva_fechainicio;
+
+        /// <summary>
+        /// Control info_reserva_fechafinalizacion.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl info_reserva_fechafinalizacion;
+
+        /// <summary>
+        /// Control info_reserva_valorpago.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl info_reserva_valorpago;
+
+        /// <summary>
+        /// Control info_reserva_habitacion_numero.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl info_reserva_habitacion_numero;
+
+        /// <summary>
+        /// Control info_reserva_habitacion_tamaño.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl info_reserva_habitacion_tamaño;
+
+        /// <summary>
+        /// Control info_reserva_habitacion_numerocamas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl info_reserva_habitacion_numerocamas;
+
+        /// <summary>
+        /// Control info_reserva_habitacion_bañodiscapacitados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl info_reserva_habitacion_bañodiscapacitados;
+
+        /// <summary>
+        /// Control info_reserva_habitacion_mascotas.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl info_reserva_habitacion_mascotas;
+
+        /// <summary>
+        /// Control info_reserva_botoncancelar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton info_reserva_botoncancelar;
+
+        /// <summary>
+        /// Control reservas_table_info.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl reservas_table_info;
+
+        /// <summary>
         /// Control ScriptManager1.
         /// </summary>
         /// <remarks>
@@ -105,6 +231,15 @@ namespace ProyectoPAWRep.pages
         protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
+        /// Control ImagePerfilPaginaModificar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage ImagePerfilPaginaModificar;
+
+        /// <summary>
         /// Control alertaspace.
         /// </summary>
         /// <remarks>
@@ -112,6 +247,15 @@ namespace ProyectoPAWRep.pages
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl alertaspace;
+
+        /// <summary>
+        /// Control FotoPerfil.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload FotoPerfil;
 
         /// <summary>
         /// Control Nombres.

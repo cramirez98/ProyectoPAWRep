@@ -189,7 +189,7 @@ namespace ProyectoPAWRep.pages
 
                 foreach (DataRow row in reserva_data.Tables[0].Rows)
                 {
-                    if ( Utilities.CheckIfReservaIsValid( DateTime.Parse(row["FechaFinalizacion"].ToString())) )
+                    if ( Utilities.CheckIfReservaIsValid( DateTime.Parse(row["FechaFinalizacion"].ToString())) && row["Cancelada"].ToString().Equals("0") )
                     {
                         posibilidad_de_reserva = false;
                         break;

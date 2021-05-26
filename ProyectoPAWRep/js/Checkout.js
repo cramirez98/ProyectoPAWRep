@@ -113,7 +113,37 @@
             }
         }
     } else if ($("#nav-profile").hasClass("active")) {
-
+        if ($("#paypalemail").val() == "") {
+            $("#ValCorreoPaypal").removeClass("d-none");
+            $("#ValCorreoPaypal").addClass("d-block");
+            validation = false;
+        } else {
+            if ($("#ValCorreoPaypal").hasClass("d-block")) {
+                $("#ValCorreoPaypal").removeClass("d-block");
+                $("#ValCorreoPaypal").addClass("d-none");
+            }
+        }
+        if ($("#paypalpass").val() == "") {
+            $("#ValPassPaypal").removeClass("d-none");
+            $("#ValPassPaypal").addClass("d-block");
+            validation = false;
+        } else {
+            if ($("#ValPassPaypal").hasClass("d-block")) {
+                $("#ValPassPaypal").removeClass("d-block");
+                $("#ValPassPaypal").addClass("d-none");
+            }
+        }
+    } else {
+        if ($("#pseemail").val() == "") {
+            $("#ValEmailPSE").removeClass("d-none");
+            $("#ValEmailPSE").addClass("d-block");
+            validation = false;
+        } else {
+            if ($("#ValEmailPSE").hasClass("d-block")) {
+                $("#ValEmailPSE").removeClass("d-block");
+                $("#ValEmailPSE").addClass("d-none");
+            }
+        }
     }
 
     if (validation) {

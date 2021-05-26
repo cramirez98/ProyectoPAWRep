@@ -159,7 +159,7 @@
                         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                           <h2 class="text-center fw-bold">Informacion de la reserva activa</h2>
                             <div class="container">
-                                <div class="row">
+                                <div class="row" runat="server" id="info_reserva_seccion">
 <!--                                   <div class="alert alert-primary" role="alert">
                                     <h4 class="alert-heading"><i class="fas fa-inbox"></i> No posees ninguna reserva activa</h4>
                                     <p>No poseemos ningún registro de que poseas una reserva activa, cuando realices una reservación para una habitación, en este lugar aparecerá la información de dicha reserva
@@ -168,7 +168,7 @@
                                     <hr>
                                     <p class="mb-0">Encuentra la habitacion ideal y preparate para una experiencia inolvidable, solo debes revisar las habitaciones disponibles dando <a href="#" class="alert-link">click aquí</a>!</p>
                                   </div> -->
-                                  <div class="col-sm-12">
+                                  <div class="col-sm-12" runat="server" id="info_reserva_alertacancelacion">
                                     <div class="alert alert-danger d-flex align-items-center alert-dismissible fade show" role="alert">
                                       <span class="fa fa-exclamation-triangle flex-shrink-0 me-2"></span>
                                       <div>
@@ -178,68 +178,61 @@
                                     </div>
                                   </div>
                                   <div class="col-sm-3 mb-2">
-                                    <div class="usuario-info-label-sidebar text-start">Estado:</div>
-                                  </div>
-                                  <div class="col-sm-9 mb-2">
-                                    <span class="badge rounded-pill bg-success">Activa</span>
-                                  </div>
-                                  <hr>
-                                  <div class="col-sm-3 mb-2">
                                     <div class="usuario-info-label-sidebar text-start">Fecha de pago:</div>
                                   </div>
                                   <div class="col-sm-9 mb-2">
-                                    <div class="usuario-info-text-sidebar text-start">20/07/2020</div>
+                                    <div class="usuario-info-text-sidebar text-start" runat="server" id="info_reserva_fechapago">20/07/2020</div>
                                   </div>
                                   <div class="col-sm-3 mb-2">
                                     <div class="usuario-info-label-sidebar text-start">Fecha de llegada:</div>
                                   </div>
                                   <div class="col-sm-9 mb-2">
-                                    <div class="usuario-info-text-sidebar text-start">01/09/2020</div>
+                                    <div class="usuario-info-text-sidebar text-start" runat="server" id="info_reserva_fechainicio">01/09/2020</div>
                                   </div>
                                   <div class="col-sm-3 mb-2">
                                     <div class="usuario-info-label-sidebar text-start">Fecha de salida:</div>
                                   </div>
                                   <div class="col-sm-9 mb-2">
-                                    <div class="usuario-info-text-sidebar text-start">07/09/2020</div>
+                                    <div class="usuario-info-text-sidebar text-start" runat="server" id="info_reserva_fechafinalizacion">07/09/2020</div>
                                   </div>
                                   <div class="col-sm-3 mb-2">
                                     <div class="usuario-info-label-sidebar text-start">Valor del pago:</div>
                                   </div>
                                   <div class="col-sm-9 mb-2">
-                                    <div class="usuario-info-text-sidebar text-start">300.000 pesos</div>
+                                    <div class="usuario-info-text-sidebar text-start" runat="server" id="info_reserva_valorpago">300.000 pesos</div>
                                   </div>
                                   <hr>
                                   <div class="col-sm-3 mb-2">
                                     <div class="usuario-info-label-sidebar text-start">Habitación reservada:</div>
                                   </div>
                                   <div class="col-sm-9 mb-2">
-                                    <div class="usuario-info-text-sidebar text-start">407</div>
+                                    <div class="usuario-info-text-sidebar text-start" runat="server" id="info_reserva_habitacion_numero">407</div>
                                   </div>
                                   <div class="col-sm-3 mb-2">
                                     <div class="usuario-info-label-sidebar text-start">Tamaño de habitacion:</div>
                                   </div>
                                   <div class="col-sm-9 mb-2">
-                                    <div class="usuario-info-text-sidebar text-start">Familiar</div>
+                                    <div class="usuario-info-text-sidebar text-start" runat="server" id="info_reserva_habitacion_tamaño">Familiar</div>
                                   </div>
                                   <div class="col-sm-3 mb-2">
                                     <div class="usuario-info-label-sidebar text-start">Numero de camas de la habitacion:</div>
                                   </div>
                                   <div class="col-sm-9 mb-2">
-                                    <div class="usuario-info-text-sidebar text-start">4</div>
+                                    <div class="usuario-info-text-sidebar text-start" runat="server" id="info_reserva_habitacion_numerocamas">4</div>
                                   </div>
                                   <div class="col-sm-3 mb-2">
                                     <div class="usuario-info-label-sidebar text-start">Baño para discapacitados:</div>
                                   </div>
                                   <div class="col-sm-9 mb-2">
-                                    <div class="usuario-info-text-sidebar text-start">Si</div>
+                                    <div class="usuario-info-text-sidebar text-start" runat="server" id="info_reserva_habitacion_bañodiscapacitados">Si</div>
                                   </div>
                                   <div class="col-sm-3 mb-2">
                                     <div class="usuario-info-label-sidebar text-start">Posibilidad de mascota:</div>
                                   </div>
                                   <div class="col-sm-9 mb-2">
-                                    <div class="usuario-info-text-sidebar text-start">Si</div>
+                                    <div class="usuario-info-text-sidebar text-start" runat="server" id="info_reserva_habitacion_mascotas">Si</div>
                                   </div>
-                                  <div class="col-sm-12 text-center">
+                                  <div class="col-sm-12 text-center" runat="server" id="info_reserva_botoncancelar">
                                     <button type="button" class="btn btn-outline-danger btn-lg round-edges-20"><i class="fas fa-calendar-times"></i> Cancelar la reserva</button>
                                   </div>
                                 </div>
