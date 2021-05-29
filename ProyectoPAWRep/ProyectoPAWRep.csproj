@@ -129,6 +129,7 @@
     <Content Include="js\usuario.js" />
     <Content Include="pages\adminaboutus.aspx" />
     <Content Include="pages\adminpanel.aspx" />
+    <Content Include="pages\AgregarUsuario.aspx" />
     <Content Include="pages\cerrarsesion.aspx" />
     <Content Include="pages\checkout.aspx" />
     <Content Include="pages\CrearDescuento.aspx" />
@@ -182,6 +183,13 @@
     </Compile>
     <Compile Include="pages\adminpanel.aspx.designer.cs">
       <DependentUpon>adminpanel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\AgregarUsuario.aspx.cs">
+      <DependentUpon>AgregarUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\AgregarUsuario.aspx.designer.cs">
+      <DependentUpon>AgregarUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\cerrarsesion.aspx.cs">
       <DependentUpon>cerrarsesion.aspx</DependentUpon>
