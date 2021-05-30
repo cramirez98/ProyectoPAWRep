@@ -158,8 +158,16 @@
                         </div>
                       </div>
                     </div> 
-                    <div class="d-grid gap-2 col-6 mx-auto mt-3">
-                      <button class="btn btn-primary btn-lg" name="button-advanceSearch" data-initializedb="false" type="button">Aplicar criterios</button>
+                    <div class="d-flex flex-row justify-content-center mt-3">
+                    <div class="dropdown">
+                      <button class="btn btn-primary dropdown-toggle" name="button-advanceSearch" data-initializedb="false" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Terminos de busqueda avanzada
+                      </button>
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><button class="dropdown-item" id="AplicarBusquedaAvanzada" type="button">Aplicar criterios de busqueda avanzada</button></li>
+                        <li><button class="dropdown-item" id="DescartarBusquedaAvanzada" type="button">Descartar criterios de busqueda avanzada</button></li>
+                      </ul>
+                    </div>
                     </div>        
                   </div>
                 </div>

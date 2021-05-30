@@ -52,7 +52,10 @@ function CreatePaginationObject(changed_order, changedsearchterms) {
     return PaginationObject;
 }
 function LoadHabitaciones(PaginationObject) {
-    console.log('{paginationobj: ' + JSON.stringify(PaginationObject) + '}');
+    if (PaginationObject.advanceSearch)
+    {
+
+    }
     $.ajax({
         type: "POST",
         url: "habitaciones.aspx/ActualizarInformacion",
@@ -71,12 +74,19 @@ function LoadHabitaciones(PaginationObject) {
         }
     });
 }
-$("button[name=button-advanceSearch]").click(function () {
-    if ($(this).data("initializedb") == false) {
-        $(this).data("initializedb", true);
+$("button#AplicarBusquedaAvanzada").click(function () {
+    if ($('button[name="button-advanceSearch"]').data("initializedb") == false) {
+        $('button[name="button-advanceSearch"]').data("initializedb", true);
     }
 
     LoadHabitaciones(CreatePaginationObject(false, true));
+});
+$("button#DescartarBusquedaAvanzada").click(function () {
+    if ($('button[name="button-advanceSearch"]').data("initializedb") == true) {
+        $('button[name="button-advanceSearch"]').data("initializedb", false);
+    }
+
+    LoadHabitaciones(CreatePaginationObject(true, false));
 });
 $(".sorter").click(function () {
     object_clicked = $(this);

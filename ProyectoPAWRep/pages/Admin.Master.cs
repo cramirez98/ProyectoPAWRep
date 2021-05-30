@@ -29,12 +29,12 @@ namespace ProyectoPAWRep.pages
                 }
                 else
                 {
-                    //Response.Redirect("inicio.aspx");
+                    Response.Redirect("usuario.aspx");
                 }
             }
             else
             {
-                //Response.Redirect("iniciosesion.aspx");
+                Response.Redirect("iniciosesion.aspx");
             }
         }
     }

@@ -160,16 +160,16 @@ namespace ProyectoPAWRep.pages
                             break;
                     }
                 }
-
+                int numero_paginas = paginationobj.Numero_paginas > 0 ? paginationobj.Numero_paginas : Utilities.CalculateNumberOfPages(habitaciones_data_ordered.Tables[0].Rows.Count, elementos_por_pagina_web_method);
                 if (paginationobj.Changed_order)
                 {
-                    response += Utilities.GenerateHabitacionCards(Utilities.ManuallyOffcet(habitaciones_data_ordered, 0, fetchtop));
-                    response += "<---CambioDePagina--->" + Utilities.GeneratePagination(paginationobj.Numero_paginas, fetchtop);
+                    response += Utilities.GenerateHabitacionCards(Utilities.ManuallyOffcet(habitaciones_data_ordered, 0, elementos_por_pagina_web_method));
+                    response += "<---CambioDePagina--->" + Utilities.GeneratePagination(numero_paginas, elementos_por_pagina_web_method);
                 }
                 else
                 {
-                    response += Utilities.GenerateHabitacionCards(Utilities.ManuallyOffcet(habitaciones_data_ordered, offset, fetchtop));
-                    response += "<---CambioDePagina--->" + Utilities.GeneratePagination(paginationobj.Numero_paginas, fetchtop, paginationobj.Pagina_a_cargar);
+                    response += Utilities.GenerateHabitacionCards(Utilities.ManuallyOffcet(habitaciones_data_ordered, offset, elementos_por_pagina_web_method));
+                    response += "<---CambioDePagina--->" + Utilities.GeneratePagination(paginationobj.Numero_paginas, elementos_por_pagina_web_method, paginationobj.Pagina_a_cargar);
                 }
             }
             return response;
