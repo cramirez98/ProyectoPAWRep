@@ -13,6 +13,8 @@ namespace ProyectoPAWRep.pages
 {
     public partial class habitaciones : System.Web.UI.Page
     {
+        public int elementos_por_pagina = 2;
+        public static int elementos_por_pagina_web_method = 2;
         protected void Page_Load(object sender, EventArgs e)
         {
             HabitacionesDatabaseManager habitacionesDatabaseManager = new HabitacionesDatabaseManager("SQLConnection", "[dbo].[Habitaciones]");
@@ -21,9 +23,7 @@ namespace ProyectoPAWRep.pages
                 new string[,] { {"Ocupada","=","0"} },
                 null
             );
-
-            int elementos_por_pagina = 2;
-            int numero_paginas = Utilities.CalculateNumberOfPages(total_habitaciones, elementos_por_pagina);
+            int numero_paginas = Utilities.CalculateNumberOfPages(total_habitaciones, this.elementos_por_pagina);
 
             if(numero_paginas == 1)
             {
@@ -65,63 +65,113 @@ namespace ProyectoPAWRep.pages
         [WebMethod]
         public static string ActualizarInformacion(PaginationObject paginationobj)
         {
-            HabitacionesDatabaseManager habitacionesDatabaseManager = new HabitacionesDatabaseManager("SQLConnection", "[dbo].[Habitaciones]");
+            HabitacionesDatabaseManager habitacionesDatabase = new HabitacionesDatabaseManager("SQLConnection", "[dbo].[Habitaciones]");
+            DataSet habitaciones_data;
+            DataSet habitaciones_data_ordered = new DataSet();
+            int offset = (paginationobj.Pagina_a_cargar - 1) * paginationobj.Elementos_por_pagina;
+            int fetchtop = paginationobj.Elementos_por_pagina;
+            string direccion = paginationobj.Direction;
+            string orderby = paginationobj.Order_by;
             string response = "";
-            DataSet data_sorted = new DataSet();
-            DataSet habitaciones = new DataSet();
 
-            int numero_paginas;
-            int offcet = (paginationobj.Pagina_a_cargar - 1) * paginationobj.Elementos_por_pagina;
-            int fetchTop = paginationobj.Elementos_por_pagina;
             if (paginationobj.AdvanceSearch)
             {
-                habitaciones = habitacionesDatabaseManager.ReadDatabaseRecord(
-                    new string[] { "*" },
-                    new string[,] { { "Ocupada", "=", "0" } },
+
+                habitaciones_data = habitacionesDatabase.ReadDatabaseRecord(
+                    new string[] {"*"},
+                    null,
                     null
                 );
 
-                offcet = 0;
-                numero_paginas = Utilities.CalculateNumberOfPages(habitaciones.Tables[0].Rows.Count, paginationobj.Elementos_por_pagina);
+                habitaciones_data = Utilities.FilterData(habitaciones_data, paginationobj);
+
+                habitaciones_data_ordered = new DataSet();
+                switch (orderby)
+                {
+                    case "Precio":
+                        habitaciones_data_ordered = Utilities.OrderByPrice(habitaciones_data, direccion);
+                        break;
+                    case "Puntaje":
+                        habitaciones_data_ordered = Utilities.OrderByPuntaje(habitaciones_data, direccion);
+                        break;
+                    case "NumeroCamas":
+                        habitaciones_data_ordered = Utilities.OrderByNumeroCamas(habitaciones_data, direccion);
+                        break;
+                    default:
+                        habitaciones_data_ordered = habitaciones_data;
+                        break;
+                }
+                int numero_paginas = Utilities.CalculateNumberOfPages(habitaciones_data_ordered.Tables[0].Rows.Count, elementos_por_pagina_web_method);
+                if (paginationobj.Changed_order || paginationobj.Changedsearchterms)
+                {
+                    if (numero_paginas > 0)
+                    {
+                        response += Utilities.GenerateHabitacionCards(Utilities.ManuallyOffcet(habitaciones_data_ordered, 0, elementos_por_pagina_web_method));
+                    }
+                    else
+                    {
+                        response += Utilities.GenerateAlarm("<i class='fas fa-exclamation-circle'></i> No hay habitaciones para mostrar.", "secondary", false);
+                    }
+                    response += "<---CambioDePagina--->" + Utilities.GeneratePagination(numero_paginas, fetchtop, 0);
+                }
+                else
+                {
+                    if (numero_paginas > 0)
+                    {
+                        response += Utilities.GenerateHabitacionCards(Utilities.ManuallyOffcet(habitaciones_data_ordered, offset, fetchtop));
+                    }
+                    else
+                    {
+                        response += Utilities.GenerateAlarm("<i class='fas fa-exclamation-circle'></i> No hay habitaciones para mostrar.", "secondary", false);
+                    }
+                    response += "<---CambioDePagina--->" + Utilities.GeneratePagination(paginationobj.Numero_paginas, fetchtop, paginationobj.Pagina_a_cargar);
+                }
             }
             else
             {
-                habitaciones = habitacionesDatabaseManager.ReadDatabaseRecord(
-                    new string[] { "*" },
-                    new string[,] { { "Ocupada", "=", "0" } },
-                    null
-                );
+                if (orderby.Equals("NumeroCamas"))
+                {
+                    habitaciones_data_ordered = habitacionesDatabase.ReadDatabaseRecord(
+                        new string[] { "*" },
+                        null,
+                        null,
+                        orderby,
+                        direccion
+                    );
+                }
+                else
+                {
+                    habitaciones_data = habitacionesDatabase.ReadDatabaseRecord(
+                        new string[] { "*" },
+                        null,
+                        null
+                    );
+                    habitaciones_data_ordered = new DataSet();
+                    switch (orderby)
+                    {
+                        case "Precio":
+                            habitaciones_data_ordered = Utilities.OrderByPrice(habitaciones_data, direccion);
+                            break;
+                        case "Puntaje":
+                            habitaciones_data_ordered = Utilities.OrderByPuntaje(habitaciones_data, direccion);
+                            break;
+                        default:
+                            habitaciones_data_ordered = habitaciones_data;
+                            break;
+                    }
+                }
+
+                if (paginationobj.Changed_order)
+                {
+                    response += Utilities.GenerateHabitacionCards(Utilities.ManuallyOffcet(habitaciones_data_ordered, 0, fetchtop));
+                    response += "<---CambioDePagina--->" + Utilities.GeneratePagination(paginationobj.Numero_paginas, fetchtop);
+                }
+                else
+                {
+                    response += Utilities.GenerateHabitacionCards(Utilities.ManuallyOffcet(habitaciones_data_ordered, offset, fetchtop));
+                    response += "<---CambioDePagina--->" + Utilities.GeneratePagination(paginationobj.Numero_paginas, fetchtop, paginationobj.Pagina_a_cargar);
+                }
             }
-
-            string orderby = paginationobj.Order_by;
-            string direction = paginationobj.Direction;
-            if (orderby == "Precio")
-            {
-                data_sorted = Utilities.OrderByPrice(habitaciones, direction);
-            }
-            else if(orderby == "NumeroCamas")
-            {
-
-            }
-            else
-            {
-
-            }
-
-
-            if (paginationobj.Changed_order)
-            {
-                offcet = 0;
-                response = Utilities.GenerateHabitacionCards(Utilities.ManuallyOffcet(data_sorted, offcet, paginationobj.Elementos_por_pagina));
-
-                response += "<---CambioDePagina--->" + Utilities.GeneratePagination(paginationobj.Numero_paginas, paginationobj.Elementos_por_pagina, 1);
-            }
-            else
-            {
-
-            }
-  
-
             return response;
         }
     }

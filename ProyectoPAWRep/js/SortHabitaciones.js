@@ -1,14 +1,35 @@
 ﻿
-function CreatePaginationObject(changed_order) {
+function CreatePaginationObject(changed_order, changedsearchterms) {
     var PaginationObject = {};
 
     if ($("button[name=button-advanceSearch]").data("initializedb") == true) {
         PaginationObject.numero_paginas = $("[name=pagination-markup]").data("total-pages");
         PaginationObject.elementos_por_pagina = $("[name=pagination-markup]").data("elements-page");
-        PaginationObject.order_by = $(".sorter.active").id;
+        PaginationObject.order_by = $(".sorter.active").data("orderby");
         PaginationObject.direction = $(".sorter.active").data("sort").toUpperCase();
         PaginationObject.advanceSearch = "true";
-        PaginationObject.changed_order = "false";
+        PaginationObject.changed_order = changed_order;
+        var strings = $('input[name="formfechainiciofinalizacion"]').val().split(" - ");
+        PaginationObject.fechaInicio = strings[0];
+        PaginationObject.fechaFinalizacion = strings[1];
+        PaginationObject.minPrecio = document.getElementsByName('min-value').value;
+        PaginationObject.maxPrecio = document.getElementsByName('max-value').value;
+        PaginationObject.numeroEstrellas = $('input[name="ASEstrellas"]').val();
+        PaginationObject.changedsearchterms = changedsearchterms;
+
+
+        if ($('input[name="ASMascotas"]').is(":checked")) {
+            PaginationObject.mascotas = "1";
+        } else {
+            PaginationObject.mascotas = "0";
+        }
+        if ($('input[name="ASBañosDiscapacitados"]').is(":checked")) {
+            PaginationObject.bañosPDiscapacitadas = "1";
+        } else {
+            PaginationObject.bañosPDiscapacitadas = "0";
+        }
+        PaginationObject.tamaño = $('select[name="ASTamaño"]').val();
+        PaginationObject.numeroCamas = $("input[name='camasrange']").val();
     } else {
         if (changed_order) {
             PaginationObject.numero_paginas = $("[name=pagination-markup]").data("total-pages");
@@ -31,6 +52,7 @@ function CreatePaginationObject(changed_order) {
     return PaginationObject;
 }
 function LoadHabitaciones(PaginationObject) {
+    console.log('{paginationobj: ' + JSON.stringify(PaginationObject) + '}');
     $.ajax({
         type: "POST",
         url: "habitaciones.aspx/ActualizarInformacion",
@@ -54,7 +76,7 @@ $("button[name=button-advanceSearch]").click(function () {
         $(this).data("initializedb", true);
     }
 
-    LoadHabitaciones(CreatePaginationObject(false));
+    LoadHabitaciones(CreatePaginationObject(false, true));
 });
 $(".sorter").click(function () {
     object_clicked = $(this);
@@ -82,25 +104,25 @@ $(".sorter").click(function () {
         object_clicked.addClass('active');
     }
 
-    LoadHabitaciones(CreatePaginationObject(true));
+    LoadHabitaciones(CreatePaginationObject(true, false));
 });
 
 $('[name=seccion_paginacion]').on('click', "button[name=button-page]", function () {
-    var PaginationObject = CreatePaginationObject(false);
+    var PaginationObject = CreatePaginationObject(false,false);
     PaginationObject.pagina_a_cargar = $(this).data("button-page");
     LoadHabitaciones(PaginationObject);
 });
 
 $('[name=seccion_paginacion]').on('click', "button[name=button-pagination-before]", function () {
     var pagina_actual = $("[name=button-page]:disabled").data("button-page");
-    var PaginationObject = CreatePaginationObject(false);
+    var PaginationObject = CreatePaginationObject(false, false);
     PaginationObject.pagina_a_cargar = parseInt(pagina_actual) - 1;
     LoadHabitaciones(PaginationObject);
 });
 
 $('[name=seccion_paginacion]').on('click', "button[name=button-pagination-after]", function () {
     var pagina_actual = $("[name=button-page]:disabled").data("button-page");
-    var PaginationObject = CreatePaginationObject(false);
+    var PaginationObject = CreatePaginationObject(false, false);
     PaginationObject.pagina_a_cargar = parseInt(pagina_actual) + 1;
     LoadHabitaciones(PaginationObject);
 });

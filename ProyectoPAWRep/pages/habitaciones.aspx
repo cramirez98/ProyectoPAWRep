@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="../css/custom.css" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     <link rel="stylesheet" href="../css/RangeSlider.css">
+    <link href="../css/StartRating.css" rel="stylesheet" />
     <!-- Javascript -->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/7e4e3039b1.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <script type="text/javascript" src="/js/RangeSlider.js"></script>
     <!-- Load google fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;700&family=Recursive:wght@300;400&display=swap" rel="stylesheet">
@@ -21,16 +21,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
     <script>
-      $(function() {
-        $('input[name="datetimes"]').daterangepicker({
-          timePicker: true,
-          startDate: moment().startOf('hour'),
-          endDate: moment().startOf('hour').add(32, 'hour'),
-          locale: {
-            format: 'M/DD hh:mm A'
-          }
+        $(function () {
+            $('input[name="formfechainiciofinalizacion"]').daterangepicker({
+                "startDate": moment().add(2, 'day'),
+                "minDate": moment().add(2, 'day'),
+                endDate: moment().add(6, 'day'),
+                locale: {
+                    format: 'Y-MM-DD'
+                }
+            });
         });
-      });
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -42,14 +42,33 @@
                     <h4 class="text-center fw-bold">Busqueda avanzada</h4>
                     <hr>
 
-                    <div class="accordion" id="accordionExample">
+                    <div class="accordion accordion-flush" id="accordionExample">
+                      <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingZero">
+                          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#horasalidaentrada" aria-expanded="true" aria-controls="horasalidaentrada">
+                            Disponibilidad
+                          </button>
+                        </h2>
+                        <div id="horasalidaentrada" class="accordion-collapse collapse show" aria-labelledby="headingZero">
+                          <div class="accordion-body">
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Fecha y hora de llegada y de salida</label>
+
+                                <div class="input-group">
+                                  <span class="input-group-text" id="basic-addon1"><i class="fa fa-calendar-alt"></i></span>
+                                  <input type="text" class="form-control" name="formfechainiciofinalizacion" />
+                                </div>
+                            </div> 
+                          </div>
+                        </div>
+                      </div>
                       <div class="accordion-item">
                         <h2 class="accordion-header" id="headingOne">
-                          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#preciopornoche" aria-expanded="true" aria-controls="preciopornoche">
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#preciopornoche" aria-expanded="false" aria-controls="preciopornoche">
                             Precio por noche
                           </button>
                         </h2>
-                        <div id="preciopornoche" class="accordion-collapse collapse show" aria-labelledby="headingOne">
+                        <div id="preciopornoche" class="accordion-collapse collapse" aria-labelledby="headingOne">
                           <div class="accordion-body">
                             <div class="container-fluid">
                               <div class="row">
@@ -79,12 +98,11 @@
                         </h2>
                         <div id="size_room" class="accordion-collapse collapse" aria-labelledby="headingTwo">
                           <div class="accordion-body">
-                            <select class="form-select mb-3" aria-label=".form-select-lg example">
-                              <option selected>Seleccione un tamaño</option>
-                              <option value="1">Pequeña</option>
-                              <option value="2">Mediana</option>
-                              <option value="3">Grande</option>
-                              <option value="3">Piso ejecutivo</option>
+                            <select class="form-select mb-3" name="ASTamaño" aria-label=".form-select-lg example">
+                              <option value="Pequeña">Pequeña</option>
+                              <option value="Mediana" selected>Mediana</option>
+                              <option value="Grande">Grande</option>
+                              <option value="Piso ejecutivo">Piso ejecutivo</option>
                             </select>                           
                           </div>
                         </div>
@@ -98,13 +116,13 @@
                         <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree">
                           <div class="accordion-body">
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" id="gridCheck">
+                              <input class="form-check-input" type="checkbox" name="ASMascotas">
                               <label class="form-check-label" for="gridCheck">
                                 Posibilidad de mascotas
                               </label>
                             </div>
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" id="gridCheck">
+                              <input class="form-check-input" type="checkbox" name="ASBañosDiscapacitados">
                               <label class="form-check-label" for="gridCheck">
                                 Baño para personas discapacitadas
                               </label>
@@ -133,7 +151,9 @@
                         </h2>
                         <div id="collapseFifth" class="accordion-collapse collapse" aria-labelledby="headingFifth">
                           <div class="accordion-body">
-                            <h1>Star rating </h1>
+                              <p id="ASEstrellasLabel">Se buscaran habitaciones con un puntaje mayor a 0 estrellas.</p>
+                          <div class="rating"> <input type="radio" name="rating" value="5" id="5"><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"><label for="1">☆</label></div>
+                              <input type="hidden" name="ASEstrellas" value="" />
                           </div>
                         </div>
                       </div>
@@ -244,6 +264,7 @@
       </div>
 <!-- Optional JavaScript -->
     <script src="../js/SortHabitaciones.js"></script>
+        <script type="text/javascript" src="/js/RangeSlider.js"></script>
       <script>
           $(window).scroll(function () {
               $('nav').toggleClass('scrolled', $(this).scrollTop() > 50);
@@ -255,10 +276,15 @@
           });
           $(document).ready(function () {
               $("[name='camasrange']").val(1);
+              $('input[name="ASEstrellas"]').val(0);
               var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
               var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
                   return new bootstrap.Tooltip(tooltipTriggerEl)
               })
+          });
+          $("[name=rating]").change(function () {
+              $('input[name="ASEstrellas"]').val($(this).val());
+              $("#ASEstrellasLabel").text("Se buscaran habitaciones con un puntaje mayor a " + $(this).val() + " estrellas.");
           });
       </script>
 </asp:Content>

@@ -281,7 +281,7 @@ namespace ProyectoPAWRep.classes
 
                 cards += "</div> </div> <hr> <div class='row'> <p class='habitacion-descripcion'>"+row["Descripcion"]+ "</p> </div> </div> </div> <div class='row'> <div class='col-lg-8'> <div class='row mb-1'> <div class='habitacion-services-title'>Características especiales</div> </div>";
 
-                cards += "<div class='row d-flex'> <span class='fa-stack fa-2x fs-5' data-bs-toggle='tooltip' data-bs-placement='top' title='"+ (row["BañosPDiscapacitadas"].ToString() == "1" ? "Si posee baños para discapacitados" : "No posee baños para discapacitados") + "'> <i class='fas fa-square fa-stack-2x iconbackground-" + (row["BañosPDiscapacitadas"].ToString() == "1" ? "true" : "false") + "'></i> <i class='fab fa-accessible-icon fa-stack-1x fa-inverse'></i> </span> <span class='fa-stack fa-2x fs-5' data-bs-toggle='tooltip' data-bs-placement='top' title='" + (row["Mascotas"].ToString() == "1" ? "Si admite mascotas" : "No admite mascotas") + "'> <i class='fas fa-square fa-stack-2x iconbackground-" + (row["Mascotas"].ToString() == "1" ? "true" : "false") + "'></i> <i class='fa fa-dog fa-stack-1x fa-inverse'></i> </span> </div> </div>";
+                cards += "<div class='row d-flex'> <span class='fa-stack fa-2x fs-5' data-bs-toggle='tooltip' data-bs-placement='top' title='"+ (row["BañosPDiscapacitadas"].ToString() == "1" ? "Si posee baños para discapacitados" : "No posee baños para discapacitados") + "'> <i class='fas fa-square fa-stack-2x iconbackground-" + (row["BañosPDiscapacitadas"].ToString() == "1" ? "true" : "false") + "'></i> <i class='fab fa-accessible-icon fa-stack-1x fa-inverse'></i> </span> <span class='fa-stack fa-2x fs-5' data-bs-toggle='tooltip' data-bs-placement='top' title='" + (row["Mascotas"].ToString() == "1" ? "Si admite mascotas" : "No admite mascotas") + "'> <i class='fas fa-square fa-stack-2x iconbackground-" + (row["Mascotas"].ToString() == "1" ? "true" : "false") + "'></i> <i class='fa fa-dog fa-stack-1x fa-inverse'></i> </span> <span class='fa-stack fa-2x fs-5' data-bs-toggle='tooltip' data-bs-placement='top' title='" + row["NumeroCamas"].ToString() + " camas" + "'> <i class='fas fa-square fa-stack-2x icon-caracteristicas-outter'></i> <i class='fas fa-bed fa-stack-1x fa-inverse'></i> </span> </div> </div>";
 
                 cards += "<div class='col-lg-4 d-flex justify-content-center justify-content-md-end'> <a href='habitacion_pagina.aspx?h="+row["Numero"].ToString()+ "' class='btn btn-primary btn-lg mt-2 mt-md-0' target='_blank'><i class='fa fa-eye' aria-hidden='true'></i> Ver mas detalles</a> </div> </div> </div> </div>";
             }
@@ -478,9 +478,9 @@ namespace ProyectoPAWRep.classes
         {
             DataSet cropped_data = new DataSet();
 
-            if (offcet+fetchtop > data.Tables[0].Rows.Count)
+            if (offcet + fetchtop > data.Tables[0].Rows.Count)
             {
-                offcet = data.Tables[0].Rows.Count - offcet;
+                fetchtop = data.Tables[0].Rows.Count - offcet;
             }
 
             DataTable dtNew = data.Tables[0].Select().Skip(offcet).Take(fetchtop).CopyToDataTable();
@@ -528,7 +528,159 @@ namespace ProyectoPAWRep.classes
 
             return sorted_data;
         }
+        public static DataSet OrderByPuntaje(DataSet data, string direction)
+        {
+            TestimoniosDatabaseManager testimoniosDatabaseManager = new TestimoniosDatabaseManager("SQLConnection", "[dbo].[Testimonios]");
+            DataSet data_testimonios;
+            //System.Diagnostics.Debug.WriteLine(data.Tables[0].Columns["Precio"].DataType.Name.ToString());
+            data.Tables[0].Columns.Add(new DataColumn("PuntajePromedio", typeof(decimal)));
+            foreach (DataRow row in data.Tables[0].Rows)
+            {
+                data_testimonios = testimoniosDatabaseManager.ReadDatabaseRecord(
+                    new string[] {"*"},
+                    new string[,] { {"Habitacion_ID","=","'"+row["ID"]+"'"} },
+                    null
+                );
 
+                if(data_testimonios.Tables[0].Rows.Count > 0)
+                {
+                    row["PuntajePromedio"] = CalculateTestimonialsMean(data_testimonios);
+                }
+                else
+                {
+                    row["PuntajePromedio"] = 0;
+                }
+            }
+            DataSet sorted_data = new DataSet();
+            DataView dv = data.Tables[0].DefaultView;
+            dv.Sort = "PuntajePromedio " + direction;
+
+            sorted_data.Tables.Add(dv.ToTable());
+
+            return sorted_data;
+        }
+        public static DataSet OrderByNumeroCamas(DataSet data, string direction)
+        {
+            DataSet sorted_data = new DataSet();
+            DataView dv = data.Tables[0].DefaultView;
+            dv.Sort = "NumeroCamas " + direction;
+
+            sorted_data.Tables.Add(dv.ToTable());
+
+            return sorted_data;
+        }
+        public static DataSet FilterData(DataSet habitacion_data, PaginationObject paginationObject)
+        {
+            TestimoniosDatabaseManager testimoniosDatabaseManager = new TestimoniosDatabaseManager("SQLConnection", "[dbo].[Testimonios]");
+            DescuentosDatabaseManager descuentosDatabaseManager = new DescuentosDatabaseManager("SQLConnection", "[dbo].[Descuentos]");
+            ReservasDatabaseManager reservasDatabaseManager = new ReservasDatabaseManager("SQLConnection", "[dbo].[Reservas]");
+
+            DataSet filtered_data = new DataSet();
+            DataSet descuentos_data = new DataSet();
+            DataSet testimonios_data = new DataSet();
+            DataSet reservas_data = new DataSet();
+
+            habitacion_data.Tables[0].Columns.Add(new DataColumn("PuntajePromedio", typeof(decimal)));
+            habitacion_data.Tables[0].Columns.Add(new DataColumn("Reservada", typeof(int)));
+            habitacion_data.Tables[0].Columns.Add(new DataColumn("PrecioConDescuento", typeof(decimal)));
+
+            foreach (DataRow row in habitacion_data.Tables[0].Rows)
+            {
+                testimonios_data = testimoniosDatabaseManager.ReadDatabaseRecord(
+                    new string[] { "*" },
+                    new string[,] { { "Habitacion_ID", "=", "'" + row["ID"] + "'" } },
+                    null
+                );
+
+                if (testimonios_data.Tables[0].Rows.Count > 0)
+                {
+                    row["PuntajePromedio"] = CalculateTestimonialsMean(testimonios_data);
+                }
+                else
+                {
+                    row["PuntajePromedio"] = 0;
+                }
+
+                if (!String.IsNullOrEmpty(row["Descuento_ID"] as string))
+                {
+                    descuentos_data = descuentosDatabaseManager.ReadDatabaseRecord(
+                        new string[] { "*" },
+                        new string[,] { { "ID", "=", "'" + row["Descuento_ID"] as string + "'" } },
+                        null
+                    );
+
+                    if (CheckIfDiscountIsValid(DateTime.Parse(descuentos_data.Tables[0].Rows[0]["FechaFinalizacion"].ToString()), DateTime.Parse(descuentos_data.Tables[0].Rows[0]["FechaInicio"].ToString())))
+                    {
+                        row["PrecioConDescuento"] = Convert.ToDecimal(CalculateDiscountPrice(double.Parse(row["Precio"].ToString()), int.Parse(descuentos_data.Tables[0].Rows[0]["Porcentaje"].ToString())));
+                    }
+                    else
+                    {
+                        row["PrecioConDescuento"] = row["Precio"];
+                    }
+                }
+                else
+                {
+                    row["PrecioConDescuento"] = row["Precio"];
+                }
+
+                reservas_data = reservasDatabaseManager.ReadDatabaseRecord(
+                    new string[] {"*"},
+                    new string[,] { 
+                        {"Habitacion_ID","=","'"+row["ID"]+"'"},
+                        {"Cancelada","=","0" },
+                    },
+                    new string[] {"AND"}
+                );
+
+                if(reservas_data.Tables[0].Rows.Count > 0)
+                {
+                    bool disponible = CheckIfHabitacionEstaDisponible(reservas_data, paginationObject.FechaInicio, paginationObject.FechaFinalizacion);
+
+                    row["Reservada"] = disponible ? 0 : 1;
+                }
+                else
+                {
+                    row["Reservada"] = 0;
+                }
+            }
+            filtered_data.Tables.Add(habitacion_data.Tables[0].Clone());
+            DataRow[] datarows = habitacion_data.Tables[0].Select("Reservada = 0 AND PrecioConDescuento <= " + paginationObject.MaxPrecio + " AND PrecioConDescuento >= " + paginationObject.MinPrecio + " AND Tamaño = '" + paginationObject.Tamaño + "' AND BañosPDiscapacitadas = " + paginationObject.BañosPDiscapacitadas + " AND Mascotas = " + paginationObject.Mascotas + " AND NumeroCamas = " + paginationObject.NumeroCamas + " AND PuntajePromedio >= " + paginationObject.NumeroEstrellas);
+
+            foreach (DataRow row in datarows)
+            {
+                filtered_data.Tables[0].ImportRow(row);
+            }
+
+            filtered_data.Tables[0].Columns.Remove("PrecioConDescuento");
+            filtered_data.Tables[0].Columns.Remove("PuntajePromedio");
+            return filtered_data;
+        }
+        public static bool CheckIfHabitacionEstaDisponible(DataSet reservas_data, DateTime fechainicio, DateTime fechafinalizacion)
+        {
+            bool disponible = true;
+
+            foreach (DataRow row in reservas_data.Tables[0].Rows)
+            {
+                DateTime fechaInicio_reserva = DateTime.Parse(row["FechaInicio"].ToString());
+                DateTime fechaFinalizacion_reserva = DateTime.Parse(row["FechaFinalizacion"].ToString());
+
+                if((fechafinalizacion - fechaInicio_reserva).TotalSeconds > 0 && (fechaFinalizacion_reserva - fechafinalizacion).TotalSeconds > 0)
+                {
+                    disponible = false;
+                }else if((fechainicio - fechaInicio_reserva).TotalSeconds >= 0)
+                {
+                    if ((fechaFinalizacion_reserva - fechainicio).TotalSeconds >= 0)
+                    {
+                        disponible = false;
+                    }
+                }else if((fechaInicio_reserva - fechainicio).TotalSeconds >= 0 && (fechafinalizacion - fechaFinalizacion_reserva).TotalSeconds >= 0)
+                {
+                    disponible = false;
+                }
+            }
+
+            return disponible;
+        }
         public static int CalculateNumberOfPages(int total_habitaciones, int elementos_por_pagina)
         {
             double division = (double)total_habitaciones / elementos_por_pagina;

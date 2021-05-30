@@ -20,10 +20,13 @@ namespace ProyectoPAWRep.pages
 
             if(datos.Tables[0].Rows.Count > 0)
             {
-                DHabitacionNumero.DataTextField = datos.Tables[0].Columns["Numero"].ToString();
-                DHabitacionNumero.DataValueField = datos.Tables[0].Columns["Numero"].ToString();
-                DHabitacionNumero.DataSource = datos.Tables[0];
-                DHabitacionNumero.DataBind();
+                if (!IsPostBack)
+                {
+                    DHabitacionNumero.DataTextField = datos.Tables[0].Columns["Numero"].ToString();
+                    DHabitacionNumero.DataValueField = datos.Tables[0].Columns["Numero"].ToString();
+                    DHabitacionNumero.DataSource = datos.Tables[0];
+                    DHabitacionNumero.DataBind();
+                }
             }
             else
             {
@@ -41,11 +44,19 @@ namespace ProyectoPAWRep.pages
             int habitacion_a_eliminar = int.Parse(DHabitacionNumero.SelectedValue.ToString());
 
             HabitacionesDatabaseManager habitacionesDatabaseManager = new HabitacionesDatabaseManager("SQLConnection", "[dbo].[Habitaciones]");
+            ReservasDatabaseManager reservasDatabaseManager = new ReservasDatabaseManager("SQLConnection", "[dbo].[Reservas]");
+
+            string habitacion_a_eliminar_id = habitacionesDatabaseManager.GetHabitacionIDByNumber(habitacion_a_eliminar.ToString());
 
             string[,] conditions = new string[,] { { "Numero", "=", habitacion_a_eliminar.ToString() } };
             string[] logic_conditions = null;
 
             bool success = habitacionesDatabaseManager.RemoveDatabaseRecord(conditions, logic_conditions);
+
+            reservasDatabaseManager.RemoveDatabaseRecord(
+                new string[,] { {"Habitacion_ID","=","'"+ habitacion_a_eliminar_id + "'"} },
+                null
+            );
 
             if (success)
             {

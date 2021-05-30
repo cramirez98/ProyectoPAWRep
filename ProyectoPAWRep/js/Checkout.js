@@ -165,7 +165,7 @@
         paymentObject.correou = $("#CheckoutNumeroHabitacion").data("correou");
         paymentObject.metododepago = $(this).data("metodo");
 
-        alert('{paymentobj: ' + JSON.stringify(paymentObject) + '}');
+        //alert('{paymentobj: ' + JSON.stringify(paymentObject) + '}');
 
         $.ajax({
             type: "POST",

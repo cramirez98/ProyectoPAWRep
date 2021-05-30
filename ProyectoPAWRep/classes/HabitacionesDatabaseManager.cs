@@ -49,5 +49,11 @@ namespace ProyectoPAWRep.classes
                 return false;
             }
         }
+
+        public string GetHabitacionIDByNumber(string numero)
+        {
+            DataSet data = base.ReadDatabaseRecord(new string[] { "ID" }, new string[,] { { "Numero", "=", numero } },null);
+            return data.Tables[0].Rows[0]["ID"].ToString();
+        }
     }
 }

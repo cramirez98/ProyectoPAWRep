@@ -16,6 +16,7 @@ namespace ProyectoPAWRep.classes
 
         private bool advanceSearch;
         private bool changed_order;
+        private bool changedsearchterms;
         private DateTime fechaInicio;
         private DateTime fechaFinalizacion;
         private double minPrecio;
@@ -43,5 +44,6 @@ namespace ProyectoPAWRep.classes
         public string Order_by { get => order_by; set => order_by = value; }
         public string Direction { get => direction; set => direction = value; }
         public bool Changed_order { get => changed_order; set => changed_order = value; }
+        public bool Changedsearchterms { get => changedsearchterms; set => changedsearchterms = value; }
     }
 }
