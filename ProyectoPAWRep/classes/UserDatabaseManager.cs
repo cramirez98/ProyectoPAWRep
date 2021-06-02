@@ -50,5 +50,11 @@ namespace ProyectoPAWRep.classes
                 return false;
             }
         }
+
+        public string GetIDByCorreo(string correo)
+        {
+            DataSet data = ReadDatabaseRecord(new string[] { "ID" }, new string[,] { { "Correo", "=", correo } }, null);
+            return data.Tables[0].Rows[0]["ID"].ToString();
+        }
     }
 }

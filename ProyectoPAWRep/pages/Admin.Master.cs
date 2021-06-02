@@ -26,6 +26,8 @@ namespace ProyectoPAWRep.pages
                 if (user_data.Tables[0].Rows[0]["Tipo"].ToString() == "Administrador")
                 {
                     imagen_perfil_load.Attributes["src"] = user_data.Tables[0].Rows[0]["ImagenPerfil"].ToString();
+
+
                 }
                 else
                 {
@@ -34,7 +36,7 @@ namespace ProyectoPAWRep.pages
             }
             else
             {
-                Response.Redirect("iniciosesion.aspx");
+                //Response.Redirect("iniciosesion.aspx");
             }
         }
     }

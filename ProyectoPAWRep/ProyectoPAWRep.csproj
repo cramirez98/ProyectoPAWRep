@@ -120,6 +120,7 @@
     <Content Include="js\Checkout.js" />
     <Content Include="js\EnableTextbox.js" />
     <Content Include="js\EnableTextboxHabitacion.js" />
+    <Content Include="js\LoadInformationReservas.js" />
     <Content Include="js\main.js" />
     <Content Include="js\Pagination.js" />
     <Content Include="js\RangeSlider.js" />
@@ -134,12 +135,16 @@
     <Content Include="pages\checkout.aspx" />
     <Content Include="pages\CrearDescuento.aspx" />
     <Content Include="pages\CrearHabitacion.aspx" />
+    <Content Include="pages\CrearReserva.aspx" />
+    <Content Include="pages\EliminarDescuento.aspx" />
     <Content Include="pages\EliminarHabitacion.aspx" />
     <Content Include="pages\habitaciones.aspx" />
     <Content Include="pages\habitacion_pagina.aspx" />
     <Content Include="pages\inicio.aspx" />
     <Content Include="pages\iniciosesion.aspx" />
+    <Content Include="pages\ModificarDescuento.aspx" />
     <Content Include="pages\ModificarHabitacion.aspx" />
+    <Content Include="pages\ModificarReserva.aspx" />
     <Content Include="pages\registro.aspx" />
     <Content Include="pages\usuario.aspx" />
     <Content Include="pages\usuarioa.aspx" />
@@ -219,6 +224,20 @@
     <Compile Include="pages\CrearHabitacion.aspx.designer.cs">
       <DependentUpon>CrearHabitacion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pages\CrearReserva.aspx.cs">
+      <DependentUpon>CrearReserva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\CrearReserva.aspx.designer.cs">
+      <DependentUpon>CrearReserva.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\EliminarDescuento.aspx.cs">
+      <DependentUpon>EliminarDescuento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\EliminarDescuento.aspx.designer.cs">
+      <DependentUpon>EliminarDescuento.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\EliminarHabitacion.aspx.cs">
       <DependentUpon>EliminarHabitacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -254,12 +273,26 @@
     <Compile Include="pages\iniciosesion.aspx.designer.cs">
       <DependentUpon>iniciosesion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pages\ModificarDescuento.aspx.cs">
+      <DependentUpon>ModificarDescuento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\ModificarDescuento.aspx.designer.cs">
+      <DependentUpon>ModificarDescuento.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\ModificarHabitacion.aspx.cs">
       <DependentUpon>ModificarHabitacion.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="pages\ModificarHabitacion.aspx.designer.cs">
       <DependentUpon>ModificarHabitacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\ModificarReserva.aspx.cs">
+      <DependentUpon>ModificarReserva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\ModificarReserva.aspx.designer.cs">
+      <DependentUpon>ModificarReserva.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\Normal.Master.cs">
       <DependentUpon>Normal.Master</DependentUpon>

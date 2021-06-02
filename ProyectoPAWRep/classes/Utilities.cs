@@ -700,5 +700,96 @@ namespace ProyectoPAWRep.classes
 
             return numero_paginas;
         }
+
+        public static DataSet SeleccionarHabitacionesOcupadas(DataSet habitaciones_data, DateTime fecha_inicio, DateTime fecha_finalizacion)
+        {
+            DataSet habitaciones_disponibles = new DataSet();
+            ReservasDatabaseManager reservasDatabaseManager = new ReservasDatabaseManager("SQLConnection", "[dbo].[Reservas]");
+            DataSet reservas_data = new DataSet();
+
+            habitaciones_data.Tables[0].Columns.Add(new DataColumn("Disponible", typeof(int)));
+
+            foreach (DataRow row in habitaciones_data.Tables[0].Rows)
+            {
+                reservas_data = reservasDatabaseManager.ReadDatabaseRecord(new string[] { "*" }, new string[,] { { "Habitacion_ID", "=", "'" + row["ID"] + "'" } }, null);
+
+
+                if (reservas_data.Tables[0].Rows.Count > 0)
+                {
+                    bool disponible = CheckIfHabitacionEstaDisponible(reservas_data, fecha_inicio, fecha_finalizacion);
+
+                    row["Disponible"] = disponible ? 1 : 0;
+                }
+                else
+                {
+                    row["Disponible"] = 1;
+                }
+            }
+
+            habitaciones_disponibles.Tables.Add(habitaciones_data.Tables[0].Clone());
+            DataRow[] datarows = habitaciones_data.Tables[0].Select("Disponible = 0");
+
+            foreach (DataRow row in datarows)
+            {
+                habitaciones_disponibles.Tables[0].ImportRow(row);
+            }
+
+            return habitaciones_disponibles;
+
+        }
+
+        public static string GenerateTableModificarReserva(DataSet data)
+        {
+            string table_rows = "";
+            UserDatabaseManager userDatabaseManager = new UserDatabaseManager("SQLConnection", "[dbo].[Usuarios]");
+            DataSet usuario_data = new DataSet();
+            int contador = 1;
+
+            if (data.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow row in data.Tables[0].Rows)
+                {
+                    table_rows += "<tr>";
+                    usuario_data = userDatabaseManager.ReadDatabaseRecord(
+                        new string[] { "Nombres", "Apellidos" },
+                        new string[,] { { "ID", "=", "'" + row["Cliente_ID"] + "'" } },
+                        null
+                    );
+
+                    table_rows += "<th scope='row'>" + contador + "</th>";
+                    table_rows += "<td>" + usuario_data.Tables[0].Rows[0]["Nombres"] + " " + usuario_data.Tables[0].Rows[0]["Apellidos"] + "</td>";
+                    table_rows += "<td>" + DateTime.Parse(row["FechaInicio"].ToString()).ToString("yyy/MM/dd") + "</td>";
+                    table_rows += "<td>" + DateTime.Parse(row["FechaFinalizacion"].ToString()).ToString("yyy/MM/dd") + "</td>";
+                    table_rows += "<td class='text-center'>" + row["NumeroPersonas"] + "</td>";
+                    if (row["Cancelada"].ToString().Equals("1"))
+                    {
+                        table_rows += "<td><span class='badge bg-danger'>Cancelada</span></td>";
+                    }
+                    else
+                    {
+                        if (CheckIfReservaIsValid(DateTime.Parse(row["FechaFinalizacion"].ToString())))
+                        {
+                            table_rows += "<td><span class='badge bg-success'>Activa</span></td>";
+                        }
+                        else
+                        {
+                            table_rows += "<td><span class='badge bg-secondary'>Vencida</span></td>";
+                        }
+                    }
+                    table_rows += "<td>" + MoneyFormat(row["ValorPago"].ToString()) + "</td>";
+                    table_rows += "<td>" + DateTime.Parse(row["FechaPago"].ToString()).ToString("yyy/MM/dd") + "</td>";
+                    table_rows += "<td><button type='button' name='CargarDatosModificarReserva' class='btn btn-outline-primary round-edges-20' data-loadreserva='" + row["ID"].ToString() + "'> <i class='fa fa-eye' aria-hidden='true'></i> Seleccionar reserva </button></td>";
+
+                    table_rows += "</tr>";
+                    contador++;
+                }
+            }
+            else
+            {
+                table_rows = "<tr><td colspan='8'>No se han encontrado reservas para la habitación seleccionada.</td><tr>";
+            }
+
+            return table_rows;
+        }
     }
 }

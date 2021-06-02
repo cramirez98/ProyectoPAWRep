@@ -55,9 +55,9 @@
                 <div class="collapse" id="Habitaciones">
                   <div class="sidebar-collapse mb-1">
                     <div class="d-grid gap-1">
-                      <a href="CrearHabitacion.aspx" class="link-sidebar-option"><i class="fa fa-plus-square me-1"></i> Agregar habitación</a>
+                      <a href="CrearHabitacion.aspx" class="link-sidebar-option"><i class="fa fa-plus-square me-1"></i> Crear habitación</a>
                       <a href="EliminarHabitacion.aspx" class="link-sidebar-option"><i class="fa fa-minus-square me-1"></i> Eliminar habitación</a>
-                      <a href="ModificarHabitacion.aspx" class="link-sidebar-option"><i class="fa fa-edit me-1"></i> Editar habitación</a>
+                      <a href="ModificarHabitacion.aspx" class="link-sidebar-option"><i class="fa fa-edit me-1"></i> Modificar habitación</a>
                     </div>
                   </div>
                 </div>
@@ -98,9 +98,9 @@
                 <div class="collapse" id="Descuentos">
                   <div class="sidebar-collapse mb-3">
                     <div class="d-grid gap-1">
-                      <a href="CrearDescuento.aspx" class="link-sidebar-option"><i class="fa fa-plus-square me-1"></i> Agregar descuento</a>
-                      <a class="link-sidebar-option"><i class="fa fa-minus-square me-1"></i> Eliminar descuento</a>
-                      <a class="link-sidebar-option"><i class="fa fa-edit me-1"></i> Editar descuento</a>
+                      <a href="CrearDescuento.aspx" class="link-sidebar-option"><i class="fa fa-plus-square me-1"></i> Crear descuento</a>
+                      <a class="link-sidebar-option" href="EliminarDescuento.aspx"><i class="fa fa-minus-square me-1"></i> Eliminar descuento</a>
+                      <a class="link-sidebar-option" href="ModificarDescuento.aspx"><i class="fa fa-edit me-1"></i> Modificar descuento</a>
                     </div>
                   </div>
                 </div>
@@ -121,9 +121,9 @@
                 <div class="collapse" id="Reservas">
                   <div class="sidebar-collapse mb-3">
                     <div class="d-grid gap-1">
-                      <a class="link-sidebar-option"><i class="fa fa-plus-square me-1"></i> Agregar reserva</a>
-                      <a class="link-sidebar-option"><i class="fa fa-minus-square me-1"></i> Eliminar reserva</a>
-                      <a class="link-sidebar-option"><i class="fa fa-edit me-1"></i> Editar reserva</a>
+                      <a class="link-sidebar-option" href="CrearReserva.aspx"><i class="fa fa-plus-square me-1"></i> Crear reserva</a>
+                      <a class="link-sidebar-option" href="EliminarReserva.aspx"><i class="fa fa-minus-square me-1"></i> Eliminar reserva</a>
+                      <a class="link-sidebar-option" href="ModificarReserva"><i class="fa fa-edit me-1"></i> Modificar reserva</a>
                     </div>
                   </div>
                 </div>
@@ -150,8 +150,8 @@
                             <img src="img/nelson.jpeg" class="rounded-circle" alt="..." width="50" height="50" runat="server" id="imagen_perfil_load">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-                          <li><a class="dropdown-item" href="login.html">Perfil</a></li>
-                          <li><a class="dropdown-item" href="registro.html">Cerrar sesion</a></li>
+                          <li><a class="dropdown-item" href="PerfilAdmin.aspx">Perfil</a></li>
+                          <li><a class="dropdown-item" href="cerrarsesion.aspx">Cerrar sesion</a></li>
                         </ul>
                       </li>
                     </ul>   

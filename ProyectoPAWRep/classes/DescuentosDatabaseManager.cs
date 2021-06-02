@@ -40,5 +40,11 @@ namespace ProyectoPAWRep.classes
                 return false;
             }
         }
+
+        public string GetDescuentoIDByName(string name)
+        {
+            DataSet data = ReadDatabaseRecord(new string[] { "ID" }, new string[,] { { "Nombre", "=", "'"+ name + "'" } }, null);
+            return data.Tables[0].Rows[0]["ID"].ToString();
+        }
     }
 }
