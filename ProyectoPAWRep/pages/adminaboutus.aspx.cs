@@ -41,7 +41,7 @@ namespace ProyectoPAWRep.pages
                     {"Vision","'"+AboutUsVision.Text+"'"},
                     {"Principios","'"+AboutUsPrincipios.Text+"'"}
                 },
-                new string[,] { {"ID","=", "'3BA2A906-5F15-4F39-98CA-6909C1087266'" } },
+                null,
                 null
             );
 

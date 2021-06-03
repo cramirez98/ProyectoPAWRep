@@ -23,20 +23,28 @@ namespace ProyectoPAWRep.pages
 
         protected void BtnRegistrarse_Click(object sender, EventArgs e)
         {
-
-            
-
-            Usuario usuario = new Usuario(Nombres.Text, Apellidos.Text, Correo.Text, Contraseña.Text, Celular.Text, Cedula.Text, Ciudad.Text, int.Parse(Edad.Text), "Cliente", Direccion.Text);
             UserDatabaseManager UserDatabaseManager = new UserDatabaseManager("SQLConnection", "[dbo].[Usuarios]");
-            bool connection_success = UserDatabaseManager.AddDatabaseRecord(usuario);
 
-            if (connection_success)
+            bool exists = UserDatabaseManager.CheckIfExists(new string[] { "*" }, new string[,] { { "Correo", "=", "'" + Correo.Text + "'" } }, null);
+
+            if (!exists)
             {
-                alerta.InnerHtml = Utilities.GenerateBigAlarm("Registro completado!", "El registro de tu cuenta ha terminado con exito.", "Para iniciar sesion da <a href='iniciosesion.aspx' class='alert-link'>click aquí</a>","success");
+                Val3Correo.Visible = false;
+                Usuario usuario = new Usuario(Nombres.Text, Apellidos.Text, Correo.Text, Contraseña.Text, Celular.Text, Cedula.Text, Ciudad.Text, int.Parse(Edad.Text), "Cliente", Direccion.Text);
+                bool connection_success = UserDatabaseManager.AddDatabaseRecord(usuario);
+
+                if (connection_success)
+                {
+                    alerta.InnerHtml = Utilities.GenerateBigAlarm("Registro completado!", "El registro de tu cuenta ha terminado con exito.", "Para iniciar sesion da <a href='iniciosesion.aspx' class='alert-link'>click aquí</a>", "success");
+                }
+                else
+                {
+                    alerta.InnerHtml = Utilities.GenerateBigAlarm("Error en tu registro!", "El registro de tu cuenta no ha sido posible de realizarse, esto puede ser debido a problemas con el servidor o a que no llenaste algun campo correctamente.", "Revisa los datos ingresados en el formulario!", "danger");
+                }
             }
             else
             {
-                alerta.InnerHtml = Utilities.GenerateBigAlarm("Error en tu registro!", "El registro de tu cuenta no ha sido posible de realizarse, esto puede ser debido a problemas con el servidor o a que no llenaste algun campo correctamente.", "Revisa los datos ingresados en el formulario!", "danger");
+                Val3Correo.Visible = true;
             }
         }
     }

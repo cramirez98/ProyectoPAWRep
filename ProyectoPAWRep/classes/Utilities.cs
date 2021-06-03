@@ -150,41 +150,48 @@ namespace ProyectoPAWRep.classes
             HabitacionesDatabaseManager habitacionesDatabaseManager = new HabitacionesDatabaseManager("SQLConnection", "[dbo].[Habitaciones]");
             DataSet habitacion_data = new DataSet();
             int contador = 1;
-            foreach (DataRow row in reservas_data.Tables[0].Rows)
+            if (reservas_data.Tables[0].Rows.Count > 0)
             {
-                table_rows += "<tr>";
-                habitacion_data = habitacionesDatabaseManager.ReadDatabaseRecord(
-                    new string[] {"Numero"},
-                    new string[,] { {"ID","=","'"+row["Habitacion_ID"]+"'"} },
-                    null
-                );
-
-                table_rows += "<th scope='row'>" + contador + "</th>";
-                table_rows += "<td>"+DateTime.Parse(row["FechaInicio"].ToString()).ToString("yyy/MM/dd") +"</td>";
-                table_rows += "<td>" + DateTime.Parse(row["FechaFinalizacion"].ToString()).ToString("yyy/MM/dd") + "</td>";
-                table_rows += "<td>" + DateTime.Parse(row["FechaPago"].ToString()).ToString("yyy/MM/dd") + "</td>";
-                table_rows += "<td>" + MoneyFormat( row["ValorPago"].ToString() ) + "</td>";
-                table_rows += "<td class='text-center'>" + row["NumeroPersonas"] + "</td>";
-
-                if (row["Cancelada"].ToString().Equals("1"))
+                foreach (DataRow row in reservas_data.Tables[0].Rows)
                 {
-                    table_rows += "<td><span class='badge bg-danger'>Cancelada</span></td>";
-                }
-                else
-                {
-                    if (CheckIfReservaIsValid(DateTime.Parse(row["FechaFinalizacion"].ToString())))
+                    table_rows += "<tr>";
+                    habitacion_data = habitacionesDatabaseManager.ReadDatabaseRecord(
+                        new string[] { "Numero" },
+                        new string[,] { { "ID", "=", "'" + row["Habitacion_ID"] + "'" } },
+                        null
+                    );
+
+                    table_rows += "<th scope='row'>" + contador + "</th>";
+                    table_rows += "<td>" + DateTime.Parse(row["FechaInicio"].ToString()).ToString("yyy/MM/dd") + "</td>";
+                    table_rows += "<td>" + DateTime.Parse(row["FechaFinalizacion"].ToString()).ToString("yyy/MM/dd") + "</td>";
+                    table_rows += "<td>" + DateTime.Parse(row["FechaPago"].ToString()).ToString("yyy/MM/dd") + "</td>";
+                    table_rows += "<td>" + MoneyFormat(row["ValorPago"].ToString()) + "</td>";
+                    table_rows += "<td class='text-center'>" + row["NumeroPersonas"] + "</td>";
+
+                    if (row["Cancelada"].ToString().Equals("1"))
                     {
-                        table_rows += "<td><span class='badge bg-success'>Activa</span></td>";
+                        table_rows += "<td><span class='badge bg-danger'>Cancelada</span></td>";
                     }
                     else
                     {
-                        table_rows += "<td><span class='badge bg-secondary'>Vencida</span></td>";
+                        if (CheckIfReservaIsValid(DateTime.Parse(row["FechaFinalizacion"].ToString())))
+                        {
+                            table_rows += "<td><span class='badge bg-success'>Activa</span></td>";
+                        }
+                        else
+                        {
+                            table_rows += "<td><span class='badge bg-secondary'>Vencida</span></td>";
+                        }
                     }
-                }
 
-                table_rows += "<td><button type='button' name='CargarDatosModal' class='btn btn-outline-primary round-edges-20' data-bs-toggle='modal' data-numeroh='" + habitacion_data.Tables[0].Rows[0]["Numero"].ToString() + "' data-bs-target='#exampleModal'> <i class='fa fa-eye' aria-hidden='true'></i> Ver habitación </button></td>";
-                table_rows += "</tr>";
-                contador++;
+                    table_rows += "<td><button type='button' name='CargarDatosModal' class='btn btn-outline-primary round-edges-20' data-bs-toggle='modal' data-numeroh='" + habitacion_data.Tables[0].Rows[0]["Numero"].ToString() + "' data-bs-target='#exampleModal'> <i class='fa fa-eye' aria-hidden='true'></i> Ver habitación </button></td>";
+                    table_rows += "</tr>";
+                    contador++;
+                }
+            }
+            else
+            {
+                table_rows += "<tr><td colspan='8'>No hay reservas para mostrar</td></tr>";
             }
             return table_rows;
         }
@@ -223,67 +230,74 @@ namespace ProyectoPAWRep.classes
         {
             string cards = "";
 
-            foreach (DataRow row in data.Tables[0].Rows)
+            if(data.Tables[0].Rows.Count > 0)
             {
-
-                cards += "<div class='habitacion-card mb-2'> <div class='container-fluid'> <div class='row g-1'> <div class='col-xxl-3 text-center text-xxl-start'>";
-                cards += "<img src='" + GetIconPhoto(XDocument.Parse(row["Fotos"].ToString())) + "' class='img-fluid rounded-3 img-thumbnail' alt='...' width='210' height='210'>";
-                cards += "</div> <div class='col-xxl-9'> <div class='row g-0'> <div class='col-lg-8 col-sm-8'> <div class='d-flex flex-column'> <div class='d-flex'>";
-
-                TestimoniosDatabaseManager testimoniosDatabaseManager = new TestimoniosDatabaseManager("SQLConnection", "[dbo].[Testimonios]");
-
-                DataSet testimonios_data = testimoniosDatabaseManager.ReadDatabaseRecord(
-                    new string[] {"*"},
-                    new string[,] { {"Habitacion_ID","=","'"+row["ID"]+"'"} },
-                    null
-                );
-                if (testimonios_data.Tables[0].Rows.Count > 0)
+                foreach (DataRow row in data.Tables[0].Rows)
                 {
-                    double promedio = CalculateTestimonialsMean(testimonios_data);
-                    double width_star = (promedio / 5)*100;
-                    string width_star_s = width_star.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
-                    cards += "<div class='habitacion-puntaje'>"+ testimonios_data.Tables[0].Rows.Count.ToString() + " opiniones <div class='stars-outer'> <div class='stars-inner' style='width: " + width_star_s + "%;'></div> </div> </div> <div class='fs-12 fc-gray fw-bold ff-oswaldo'>" + promedio.ToString() + "</div> </div>";
-                }
-                else
-                {
-                    cards += "<div class='habitacion-puntaje'>No hay opiniones <div class='stars-outer'> <div class='stars-inner' style='width: " + "0" + "%;'></div> </div> </div> <div class='fs-12 fc-gray fw-bold ff-oswaldo'>" + "0" + "</div> </div>";
-                }
 
-                cards += "<div class='habitacion-titulo'>Habitación " + row["Numero"].ToString() + "</div> <div class='habitacion-subtitulo'>" + row["Tamaño"].ToString() + "</div> </div> </div> <div class='col-lg-4 col-sm-4 mb-2'> ";
-                
-                // Agregar precio con descuento o sin descuento
-                if(row["Descuento_ID"].ToString() == "")
-                {
-                    cards += "<div class='d-flex text-start text-lg-end flex-column'> <div class='habitacion-info-precio'> "+ MoneyFormat(row["Precio"].ToString()) + " </div> <div class='habitacion-precio-desc'>Por noche</div> </div>";
-                }
-                else
-                {
-                    DescuentosDatabaseManager descuentosDatabaseManager = new DescuentosDatabaseManager("SQLConnection", "[dbo].[Descuentos]");
+                    cards += "<div class='habitacion-card mb-2'> <div class='container-fluid'> <div class='row g-1'> <div class='col-xxl-3 text-center text-xxl-start'>";
+                    cards += "<img src='" + GetIconPhoto(XDocument.Parse(row["Fotos"].ToString())) + "' class='img-fluid rounded-3 img-thumbnail' alt='...' width='210' height='210'>";
+                    cards += "</div> <div class='col-xxl-9'> <div class='row g-0'> <div class='col-lg-8 col-sm-8'> <div class='d-flex flex-column'> <div class='d-flex'>";
 
-                    DataSet data_descuento = descuentosDatabaseManager.ReadDatabaseRecord(
+                    TestimoniosDatabaseManager testimoniosDatabaseManager = new TestimoniosDatabaseManager("SQLConnection", "[dbo].[Testimonios]");
+
+                    DataSet testimonios_data = testimoniosDatabaseManager.ReadDatabaseRecord(
                         new string[] { "*" },
-                        new string[,] { { "ID", "=", "'" + row["Descuento_ID"] + "'" } },
+                        new string[,] { { "Habitacion_ID", "=", "'" + row["ID"] + "'" } },
                         null
                     );
-
-                    bool validDiscount = CheckIfDiscountIsValid(DateTime.Parse(data_descuento.Tables[0].Rows[0]["FechaFinalizacion"].ToString()), DateTime.Parse(data_descuento.Tables[0].Rows[0]["FechaInicio"].ToString()));
-
-                    if (validDiscount)
+                    if (testimonios_data.Tables[0].Rows.Count > 0)
                     {
-                        double precio_con_descuento = CalculateDiscountPrice(double.Parse(row["Precio"].ToString()), int.Parse(data_descuento.Tables[0].Rows[0]["Porcentaje"].ToString()));
-                        cards += "<div class='d-flex text-start text-lg-end flex-column'> <div class='d-flex justify-content-lg-end'> <div class='habitacion-info-precio text-decoration-line-through text-muted fs-5'> "+ MoneyFormat(row["Precio"].ToString()) + " </div> <span class='fc-blue ff-oswaldo'>"+ data_descuento.Tables[0].Rows[0]["Porcentaje"].ToString() + "% OFF</span> </div> <div class='habitacion-info-precio fc-orange'> "+MoneyFormat(precio_con_descuento.ToString())+" </div> <div class='habitacion-precio-desc'>Por noche</div> </div>";
+                        double promedio = CalculateTestimonialsMean(testimonios_data);
+                        double width_star = (promedio / 5) * 100;
+                        string width_star_s = width_star.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+                        cards += "<div class='habitacion-puntaje'>" + testimonios_data.Tables[0].Rows.Count.ToString() + " opiniones <div class='stars-outer'> <div class='stars-inner' style='width: " + width_star_s + "%;'></div> </div> </div> <div class='fs-12 fc-gray fw-bold ff-oswaldo'>" + promedio.ToString() + "</div> </div>";
                     }
                     else
                     {
+                        cards += "<div class='habitacion-puntaje'>No hay opiniones <div class='stars-outer'> <div class='stars-inner' style='width: " + "0" + "%;'></div> </div> </div> <div class='fs-12 fc-gray fw-bold ff-oswaldo'>" + "0" + "</div> </div>";
+                    }
+
+                    cards += "<div class='habitacion-titulo'>Habitación " + row["Numero"].ToString() + "</div> <div class='habitacion-subtitulo'>" + row["Tamaño"].ToString() + "</div> </div> </div> <div class='col-lg-4 col-sm-4 mb-2'> ";
+
+                    // Agregar precio con descuento o sin descuento
+                    if (row["Descuento_ID"].ToString() == "")
+                    {
                         cards += "<div class='d-flex text-start text-lg-end flex-column'> <div class='habitacion-info-precio'> " + MoneyFormat(row["Precio"].ToString()) + " </div> <div class='habitacion-precio-desc'>Por noche</div> </div>";
                     }
+                    else
+                    {
+                        DescuentosDatabaseManager descuentosDatabaseManager = new DescuentosDatabaseManager("SQLConnection", "[dbo].[Descuentos]");
+
+                        DataSet data_descuento = descuentosDatabaseManager.ReadDatabaseRecord(
+                            new string[] { "*" },
+                            new string[,] { { "ID", "=", "'" + row["Descuento_ID"] + "'" } },
+                            null
+                        );
+
+                        bool validDiscount = CheckIfDiscountIsValid(DateTime.Parse(data_descuento.Tables[0].Rows[0]["FechaFinalizacion"].ToString()), DateTime.Parse(data_descuento.Tables[0].Rows[0]["FechaInicio"].ToString()));
+
+                        if (validDiscount)
+                        {
+                            double precio_con_descuento = CalculateDiscountPrice(double.Parse(row["Precio"].ToString()), int.Parse(data_descuento.Tables[0].Rows[0]["Porcentaje"].ToString()));
+                            cards += "<div class='d-flex text-start text-lg-end flex-column'> <div class='d-flex justify-content-lg-end'> <div class='habitacion-info-precio text-decoration-line-through text-muted fs-5'> " + MoneyFormat(row["Precio"].ToString()) + " </div> <span class='fc-blue ff-oswaldo'>" + data_descuento.Tables[0].Rows[0]["Porcentaje"].ToString() + "% OFF</span> </div> <div class='habitacion-info-precio fc-orange'> " + MoneyFormat(precio_con_descuento.ToString()) + " </div> <div class='habitacion-precio-desc'>Por noche</div> </div>";
+                        }
+                        else
+                        {
+                            cards += "<div class='d-flex text-start text-lg-end flex-column'> <div class='habitacion-info-precio'> " + MoneyFormat(row["Precio"].ToString()) + " </div> <div class='habitacion-precio-desc'>Por noche</div> </div>";
+                        }
+                    }
+
+                    cards += "</div> </div> <hr> <div class='row'> <p class='habitacion-descripcion'>" + row["Descripcion"] + "</p> </div> </div> </div> <div class='row'> <div class='col-lg-8'> <div class='row mb-1'> <div class='habitacion-services-title'>Características especiales</div> </div>";
+
+                    cards += "<div class='row d-flex'> <span class='fa-stack fa-2x fs-5' data-bs-toggle='tooltip' data-bs-placement='top' title='" + (row["BañosPDiscapacitadas"].ToString() == "1" ? "Si posee baños para discapacitados" : "No posee baños para discapacitados") + "'> <i class='fas fa-square fa-stack-2x iconbackground-" + (row["BañosPDiscapacitadas"].ToString() == "1" ? "true" : "false") + "'></i> <i class='fab fa-accessible-icon fa-stack-1x fa-inverse'></i> </span> <span class='fa-stack fa-2x fs-5' data-bs-toggle='tooltip' data-bs-placement='top' title='" + (row["Mascotas"].ToString() == "1" ? "Si admite mascotas" : "No admite mascotas") + "'> <i class='fas fa-square fa-stack-2x iconbackground-" + (row["Mascotas"].ToString() == "1" ? "true" : "false") + "'></i> <i class='fa fa-dog fa-stack-1x fa-inverse'></i> </span> <span class='fa-stack fa-2x fs-5' data-bs-toggle='tooltip' data-bs-placement='top' title='" + row["NumeroCamas"].ToString() + " camas" + "'> <i class='fas fa-square fa-stack-2x icon-caracteristicas-outter'></i> <i class='fas fa-bed fa-stack-1x fa-inverse'></i> </span> </div> </div>";
+
+                    cards += "<div class='col-lg-4 d-flex justify-content-center justify-content-md-end'> <a href='habitacion_pagina.aspx?h=" + row["Numero"].ToString() + "' class='btn btn-primary btn-lg mt-2 mt-md-0' target='_blank'><i class='fa fa-eye' aria-hidden='true'></i> Ver mas detalles</a> </div> </div> </div> </div>";
                 }
-
-                cards += "</div> </div> <hr> <div class='row'> <p class='habitacion-descripcion'>"+row["Descripcion"]+ "</p> </div> </div> </div> <div class='row'> <div class='col-lg-8'> <div class='row mb-1'> <div class='habitacion-services-title'>Características especiales</div> </div>";
-
-                cards += "<div class='row d-flex'> <span class='fa-stack fa-2x fs-5' data-bs-toggle='tooltip' data-bs-placement='top' title='"+ (row["BañosPDiscapacitadas"].ToString() == "1" ? "Si posee baños para discapacitados" : "No posee baños para discapacitados") + "'> <i class='fas fa-square fa-stack-2x iconbackground-" + (row["BañosPDiscapacitadas"].ToString() == "1" ? "true" : "false") + "'></i> <i class='fab fa-accessible-icon fa-stack-1x fa-inverse'></i> </span> <span class='fa-stack fa-2x fs-5' data-bs-toggle='tooltip' data-bs-placement='top' title='" + (row["Mascotas"].ToString() == "1" ? "Si admite mascotas" : "No admite mascotas") + "'> <i class='fas fa-square fa-stack-2x iconbackground-" + (row["Mascotas"].ToString() == "1" ? "true" : "false") + "'></i> <i class='fa fa-dog fa-stack-1x fa-inverse'></i> </span> <span class='fa-stack fa-2x fs-5' data-bs-toggle='tooltip' data-bs-placement='top' title='" + row["NumeroCamas"].ToString() + " camas" + "'> <i class='fas fa-square fa-stack-2x icon-caracteristicas-outter'></i> <i class='fas fa-bed fa-stack-1x fa-inverse'></i> </span> </div> </div>";
-
-                cards += "<div class='col-lg-4 d-flex justify-content-center justify-content-md-end'> <a href='habitacion_pagina.aspx?h="+row["Numero"].ToString()+ "' class='btn btn-primary btn-lg mt-2 mt-md-0' target='_blank'><i class='fa fa-eye' aria-hidden='true'></i> Ver mas detalles</a> </div> </div> </div> </div>";
+            }
+            else
+            {
+                cards += GenerateAlarm("<i class='fas fa-exclamation-circle'></i> No hay habitaciones para mostrar", "secondary",false);
             }
 
             return cards;
@@ -478,14 +492,21 @@ namespace ProyectoPAWRep.classes
         {
             DataSet cropped_data = new DataSet();
 
-            if (offcet + fetchtop > data.Tables[0].Rows.Count)
+            if(data.Tables[0].Rows.Count > 0)
             {
-                fetchtop = data.Tables[0].Rows.Count - offcet;
+                if (offcet + fetchtop > data.Tables[0].Rows.Count)
+                {
+                    fetchtop = data.Tables[0].Rows.Count - offcet;
+                }
+
+                DataTable dtNew = data.Tables[0].Select().Skip(offcet).Take(fetchtop).CopyToDataTable();
+
+                cropped_data.Tables.Add(dtNew);
             }
-
-            DataTable dtNew = data.Tables[0].Select().Skip(offcet).Take(fetchtop).CopyToDataTable();
-
-            cropped_data.Tables.Add(dtNew);
+            else
+            {
+                cropped_data.Tables.Add(data.Tables[0].Clone());
+            }
 
             return cropped_data;
         }

@@ -96,7 +96,7 @@
                                         <div class="d-flex flex-column justify-content-start">
                                             <asp:RegularExpressionValidator ID="ValCorreo" class="text-danger small validacion-text" runat="server" ErrorMessage="Debe ingresar un correo valido" ValidationExpression="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$" ControlToValidate="Correo" ValidationGroup="Requeridos" Display="Dynamic"></asp:RegularExpressionValidator>
                                             <asp:RequiredFieldValidator ID="Val2Correo" class="text-danger small validacion-text" runat="server" ControlToValidate="Correo" ErrorMessage="No puede estar vacío" ValidationGroup="Requeridos" Display="Dynamic"></asp:RequiredFieldValidator>      
-                                            <div runat="server" id="Val3Correo"></div>
+                                            <div runat="server" class="text-danger small validacion-text" id="Val3Correo" Visible="false">El correo ingresado ya esta en uso.</div>
                                         </div>
                                       </div>
                                       <div class="col-xl-6">
@@ -121,7 +121,7 @@
 
 
                                 <div class="mb-3 text-center m-3">
-                                    <p>Ya posee una cuenta? <a href="/login.html">Ingrese aquí</a></p>
+                                    <p>Ya posee una cuenta? <a href="iniciosesion.aspx">Ingrese aquí</a></p>
                                 </div>
                         </div>
                     </div>
