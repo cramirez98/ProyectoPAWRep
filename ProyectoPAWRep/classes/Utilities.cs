@@ -812,5 +812,157 @@ namespace ProyectoPAWRep.classes
 
             return table_rows;
         }
+
+        public static string GeneratePagosTable(DataSet pagos_data)
+        {
+            string table_rows = "";
+
+            int contador = 1;
+
+            if(pagos_data.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow row in pagos_data.Tables[0].Rows)
+                {
+                    table_rows += "<tr>";
+                    table_rows += "<th scope='row'>" + contador + "</th>";
+                    table_rows += "<td>" + row["Nombres"] + " " + row["Apellidos"] + "</td>";
+                    table_rows += "<td>" + row["Correo"] + "</td>";
+                    table_rows += "<td>" + row["Cedula"] + "</td>";
+                    table_rows += "<td>" + row["Direccion"] + "</td>";
+                    table_rows += "<td>" + row["Telefono"] + "</td>";
+                    table_rows += "<td>" + MoneyFormat(row["ValorPago"].ToString()) + "</td>";
+                    table_rows += "<td><span class='badge bg-primary'>"+row["Metodo"].ToString()+"</span></td>";
+                    table_rows += "<td>" + DateTime.Parse(row["FechaPago"].ToString()).ToString("yyy/MM/dd") + "</td>";
+                    table_rows += "<td>" + row["Concepto"].ToString() + "</td>";
+                    table_rows += "</tr>";
+                    contador++;
+                }
+            }
+            else
+            {
+                table_rows = "<tr><td colspan='10'>No hay pagos para mostrar.</td><tr>";
+            }
+
+            return table_rows;
+        }
+
+        public static string GenerateUsersTable(DataSet user_data)
+        {
+            string table_rows = "";
+
+            int contador = 1;
+
+            if (user_data.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow row in user_data.Tables[0].Rows)
+                {
+                    table_rows += "<tr>";
+                    table_rows += "<th scope='row'>" + contador + "</th>";
+                    table_rows += "<td>" + row["Nombres"] + "</td>";
+                    table_rows += "<td>" + row["Apellidos"] + "</td>";
+                    table_rows += "<td>" + row["Correo"] + "</td>";
+                    table_rows += "<td>" + row["Celular"] + "</td>";
+                    table_rows += "<td>" + row["Cedula"] + "</td>";
+                    table_rows += "<td>" + row["Direccion"] + "</td>";
+                    table_rows += "<td>" + row["Ciudad"] + "</td>";
+                    table_rows += "<td>" + row["Edad"] + "</td>";
+                    table_rows += row["Tipo"].ToString().Equals("Cliente") ? "<td><span class='badge bg-dark'>" + row["Tipo"].ToString() + "</span></td>" : "<td><span class='badge bg-warning'>" + row["Tipo"].ToString() + "</span></td>";
+                    table_rows += "<td>" + DateTime.Parse(row["FechaRegistro"].ToString()).ToString("yyy/MM/dd") + "</td>";
+                    table_rows += "<td><div class='btn-group'> <button type='button' class='btn btn-primary btn-sm'>Acciones</button> <button type='button' class='btn btn-primary dropdown-toggle dropdown-toggle-split' data-bs-toggle='dropdown' aria-expanded='false'> <span class='visually-hidden'>Toggle Dropdown</span> </button> <ul class='dropdown-menu'> <li><a class='dropdown-item' href='ModificarUsuario.aspx?u=" + row["Correo"] + "'><i class='fas fa-pen-square'></i> Modificar</a></li> <li><button type='button' class='dropdown-item' data-action='eliminar'><input value='" + row["ID"] + "' type='hidden'><i class='fas fa-minus-circle'></i> Eliminar</button></li> </ul> </div></td>";
+                    table_rows += "</tr>";
+                    contador++;
+                }
+            }
+            else
+            {
+                table_rows = "<tr><td colspan='11'>No hay usuarios para mostrar.</td><tr>";
+            }
+
+            return table_rows;
+        }
+
+        public static string GenerateDescuentosTable(DataSet user_data)
+        {
+            string table_rows = "";
+
+            int contador = 1;
+
+            if (user_data.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow row in user_data.Tables[0].Rows)
+                {
+                    table_rows += "<tr>";
+                    table_rows += "<th scope='row'>" + contador + "</th>";
+                    table_rows += "<td>" + row["Nombre"] + "</td>";
+                    table_rows += "<td>" + row["Porcentaje"] + "</td>";
+                    table_rows += "<td>" + DateTime.Parse(row["FechaInicio"].ToString()).ToString("yyy/MM/dd") + "</td>";
+                    table_rows += "<td>" + DateTime.Parse(row["FechaFinalizacion"].ToString()).ToString("yyy/MM/dd") + "</td>";
+                    table_rows += CheckIfDiscountIsValid(DateTime.Parse(row["FechaFinalizacion"].ToString()), DateTime.Parse(row["FechaInicio"].ToString())) ? "<td><span class='badge bg-warning'>Activo</span></td>" : "<td><span class='badge bg-dark'>Inactivo</span></td>";
+                    table_rows += "<td><div class='btn-group'> <button type='button' class='btn btn-primary btn-sm'>Acciones</button> <button type='button' class='btn btn-primary dropdown-toggle dropdown-toggle-split' data-bs-toggle='dropdown' aria-expanded='false'> <span class='visually-hidden'>Toggle Dropdown</span> </button> <ul class='dropdown-menu'> <li><a class='dropdown-item' href='ModificarDescuento.aspx?d=" + row["Nombre"] + "'><i class='fas fa-pen-square'></i> Modificar</a></li> <li><button type='button' class='dropdown-item' data-action='eliminar'><input value='" + row["ID"] + "' type='hidden'><i class='fas fa-minus-circle'></i> Eliminar</button></li> </ul> </div></td>";
+                    table_rows += "</tr>";
+                    contador++;
+                }
+            }
+            else
+            {
+                table_rows = "<tr><td colspan='6'>No hay descuentos para mostrar.</td><tr>";
+            }
+
+            return table_rows;
+        }
+
+        public static string GenerateTableReservas(DataSet data)
+        {
+            string table_rows = "";
+            UserDatabaseManager userDatabaseManager = new UserDatabaseManager("SQLConnection", "[dbo].[Usuarios]");
+            DataSet usuario_data = new DataSet();
+            int contador = 1;
+
+            if (data.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow row in data.Tables[0].Rows)
+                {
+                    table_rows += "<tr>";
+                    usuario_data = userDatabaseManager.ReadDatabaseRecord(
+                        new string[] { "Nombres", "Apellidos" },
+                        new string[,] { { "ID", "=", "'" + row["Cliente_ID"] + "'" } },
+                        null
+                    );
+
+                    table_rows += "<th scope='row'>" + contador + "</th>";
+                    table_rows += "<td>" + usuario_data.Tables[0].Rows[0]["Nombres"] + " " + usuario_data.Tables[0].Rows[0]["Apellidos"] + "</td>";
+                    table_rows += "<td>" + DateTime.Parse(row["FechaInicio"].ToString()).ToString("yyy/MM/dd") + "</td>";
+                    table_rows += "<td>" + DateTime.Parse(row["FechaFinalizacion"].ToString()).ToString("yyy/MM/dd") + "</td>";
+                    table_rows += "<td class='text-center'>" + row["NumeroPersonas"] + "</td>";
+                    if (row["Cancelada"].ToString().Equals("1"))
+                    {
+                        table_rows += "<td><span class='badge bg-danger'>Cancelada</span></td>";
+                    }
+                    else
+                    {
+                        if (CheckIfReservaIsValid(DateTime.Parse(row["FechaFinalizacion"].ToString())))
+                        {
+                            table_rows += "<td><span class='badge bg-success'>Activa</span></td>";
+                        }
+                        else
+                        {
+                            table_rows += "<td><span class='badge bg-secondary'>Vencida</span></td>";
+                        }
+                    }
+                    table_rows += "<td>" + MoneyFormat(row["ValorPago"].ToString()) + "</td>";
+                    table_rows += "<td>" + DateTime.Parse(row["FechaPago"].ToString()).ToString("yyy/MM/dd") + "</td>";
+                    table_rows += "<td><div class='btn-group'> <button type='button' class='btn btn-primary btn-sm'>Acciones</button> <button type='button' class='btn btn-primary dropdown-toggle dropdown-toggle-split' data-bs-toggle='dropdown' aria-expanded='false'> <span class='visually-hidden'>Toggle Dropdown</span> </button> <ul class='dropdown-menu'> <li><form action='ModificarReserva.aspx' method='post'><input value='" + row["ID"] + "' type='hidden' name='reserva_id'><button type='submit' class='dropdown-item'><i class='fas fa-pen-square'></i> Modificar</button></form></li> <li><button type='button' class='dropdown-item' data-action='eliminar'><input value='" + row["ID"] + "' type='hidden'><i class='fas fa-minus-circle'></i> Eliminar</button></li> </ul> </div></td>";
+
+                    table_rows += "</tr>";
+                    contador++;
+                }
+            }
+            else
+            {
+                table_rows = "<tr><td colspan='8'>No se han encontrado reservas.</td><tr>";
+            }
+
+            return table_rows;
+        }
     }
 }

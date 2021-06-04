@@ -39,7 +39,7 @@ namespace ProyectoPAWRep.pages
 
                 habitaciones_cartas_lugar.InnerHtml = Utilities.GenerateHabitacionCards(habitaciones);
 
-                seccion_paginacion.InnerHtml = Utilities.GeneratePagination(10, elementos_por_pagina);
+                seccion_paginacion.InnerHtml = Utilities.GeneratePagination(0, elementos_por_pagina);
             }
             else if(numero_paginas > 1)
             {

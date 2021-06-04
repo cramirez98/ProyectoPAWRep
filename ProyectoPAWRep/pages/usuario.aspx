@@ -198,16 +198,7 @@
                                 </thead>
                                 <tbody runat="server" id="reservas_table_info">
                                   <tr>
-                                    <th scope="row">1</th>
-                                    <td>4</td>
-                                    <td>11/12/2020</td>
-                                    <td>19/12/2020</td>
-                                    <td>30/11/2020</td>
-                                    <td>$ 12.350.400 COP</td>
-                                    <td><span class="badge bg-danger">Cancelada</span></td>
-                                    <td><button type="button" class="btn btn-outline-primary round-edges-20" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                      <i class="fa fa-eye" aria-hidden="true"></i> Ver habitación
-                                    </button></td>
+                                       <td colspan="8">No hay reservas para mostrar.</td>
                                   </tr>
                                 </tbody>
                               </table>

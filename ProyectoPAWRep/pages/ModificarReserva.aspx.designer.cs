@@ -87,6 +87,15 @@ namespace ProyectoPAWRep.pages
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl alertaspace;
 
         /// <summary>
+        /// Control reserva_id_input_hidden.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText reserva_id_input_hidden;
+
+        /// <summary>
         /// Control MReservaCliente.
         /// </summary>
         /// <remarks>
@@ -148,6 +157,24 @@ namespace ProyectoPAWRep.pages
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CheckBox MReservaEstado;
+
+        /// <summary>
+        /// Control MReservaFechaInicioHidden.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox MReservaFechaInicioHidden;
+
+        /// <summary>
+        /// Control MReservaFechaFinalizacionHidden.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox MReservaFechaFinalizacionHidden;
 
         /// <summary>
         /// Control BtnModificarReserva.

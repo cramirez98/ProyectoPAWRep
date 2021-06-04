@@ -27,12 +27,15 @@ namespace ProyectoPAWRep.pages
 
                 if (fetched_data > 0)
                 {
-                    DataSet data = descuentosDatabaseManager.ReadDatabaseRecord(
-                        new string[] { "*" },
-                        new string[,] { { "Nombre", "=", "'" + nombre_descuento_a_cargar + "'" } },
-                        null
-                    );
-                    CargarInformacionDescuento(data);
+                    if (!IsPostBack)
+                    {
+                        DataSet data = descuentosDatabaseManager.ReadDatabaseRecord(
+                            new string[] { "*" },
+                            new string[,] { { "Nombre", "=", "'" + nombre_descuento_a_cargar + "'" } },
+                            null
+                        );
+                        CargarInformacionDescuento(data);
+                    }
                 }
                 else
                 {

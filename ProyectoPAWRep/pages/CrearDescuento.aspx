@@ -10,11 +10,11 @@
                 </div>
                 <div class="row">
                   <div class="admin-content">
-                    <form class="row g-3" runat="server" style="margin-top: -50pt;">
-                        <div runat="server" id="alertaspace"></div>
+                    <form class="row g-3" runat="server" style="margin-top: -40pt;">
                     <asp:ScriptManager ID="ScriptManager1" runat="server">
                     </asp:ScriptManager>
                       <h1>Información del descuento</h1>
+                        <div runat="server" id="alertaspace" class="my-1"></div>
                       <div class="col-md-4">
                         <label for="CDescuentoNombre" class="form-label">Nombre del descuento</label>
                         <asp:TextBox ID="CDescuentoNombre" class="form-control" runat="server"></asp:TextBox>

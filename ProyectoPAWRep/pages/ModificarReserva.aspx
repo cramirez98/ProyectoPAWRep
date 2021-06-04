@@ -53,6 +53,7 @@
                     <h1>Información de la reserva</h1>
                         <div runat="server" id="alertaspace"></div>
                         <div class="col-xl-6 mb-2">
+                            <input runat="server" id="reserva_id_input_hidden" class="d-none" value="" ClientIDMode="Static">
                             <label for="MReservaCliente" class="form-label">Cliente que tendra la reserva</label>
                             <asp:DropDownList ID="MReservaCliente" class="form-select form-control-lg" runat="server" ClientIDMode="Static">
                             </asp:DropDownList>
@@ -94,7 +95,9 @@
                               </label>
                             </div>
                             </div>
-                        <div class="col-12 text-center">
+                        <asp:TextBox ID="MReservaFechaInicioHidden" class="form-control" runat="server" ClientIDMode="Static"></asp:TextBox>
+                        <asp:TextBox ID="MReservaFechaFinalizacionHidden" class="form-control" runat="server" ClientIDMode="Static"></asp:TextBox>
+                        <div class="col-12 text-center mt-3">
                             <asp:Button ID="BtnModificarReserva" class="btn btn-primary btn-lg" runat="server" Text="Modificar reserva" OnClick="BtnModificarReserva_Click"/>
                         </div>
                             </div>
@@ -105,16 +108,24 @@
 <script src="../js/LoadInformationReservas.js"></script>
 <script>
 $(document).ready(function () {
-    $('[id$=MReservaFechas]').daterangepicker({
-        "startDate": moment(),
-        "minDate": moment(),
-        endDate: moment().add(6, 'day'),
-        locale: {
-            format: 'Y-MM-DD'
-        },
-    }, function (start, end, label) {
-        console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
-    });
+    if ($('[id$=MReservaFechaInicioHidden]').val() != "" && $('[id$=MReservaFechaFinalizacionHidden]').val() != "") {
+
+        $('[id$=MReservaFechas]').daterangepicker({
+            "startDate": $('[id$=MReservaFechaInicioHidden]').val(),
+            "minDate": $('[id$=MReservaFechaInicioHidden]').val(),
+            endDate: $('[id$=MReservaFechaFinalizacionHidden]').val(),
+            locale: {
+                format: 'Y-MM-DD'
+            },
+        }, function (start, end, label) {
+            console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+        });
+        $('[id$=MReservaFechaInicioHidden]').hide();
+        $('[id$=MReservaFechaFinalizacionHidden]').hide();
+    } else {
+        $('[id$=MReservaFechaInicioHidden]').hide();
+        $('[id$=MReservaFechaFinalizacionHidden]').hide();
+    }
 });
 </script>
 </asp:Content>

@@ -22,6 +22,17 @@
             {
                 $("[id$=MReservaEstado]").prop('checked', false)
             }
+            $("[id$=reserva_id_input_hidden]").val(strings[6]);
+            $('[id$=MReservaFechas]').daterangepicker({
+                "startDate": strings[2],
+                "minDate": moment().subtract(29, 'days'),
+                endDate: strings[3],
+                locale: {
+                    format: 'Y-MM-DD'
+                },
+            }, function (start, end, label) {
+                console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
+            });
         }
     });
 });

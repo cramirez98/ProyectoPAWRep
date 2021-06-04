@@ -44,7 +44,7 @@
                 <hr class="new3">
                 <div class="sidebar-title">Habitaciones</div>
 
-                <a href="adminhabitaciones.aspx" class="sidebar-link mb-1"><i class="fas fa-hotel me-1"> </i>Ver habitaciones</a>
+                <a href="VerHabitaciones.aspx" class="sidebar-link mb-1"><i class="fas fa-hotel me-1"> </i>Ver habitaciones</a>
 
                 <div class="d-flex justify-content-between mb-1">
                   <div class="sidebar-text">
@@ -65,7 +65,7 @@
                 <hr class="new3">
                 <div class="sidebar-title">Usuarios</div>
 
-                <a href="http://" class="sidebar-link mb-2"><i class="fa fa-users me-1"> </i>Ver usuarios</a>
+                <a href="VerUsuarios.aspx" class="sidebar-link mb-2"><i class="fa fa-users me-1"> </i>Ver usuarios</a>
 
                 <div class="d-flex justify-content-between mb-2">
                   <div class="sidebar-text">
@@ -87,7 +87,7 @@
                 <hr class="new3">
                 <div class="sidebar-title">Descuentos</div>
 
-                <a href="http://" class="sidebar-link mb-2"><i class="fa fa-tags me-1"> </i>Ver descuentos</a>
+                <a href="VerDescuentos.aspx" class="sidebar-link mb-2"><i class="fa fa-tags me-1"> </i>Ver descuentos</a>
 
                 <div class="d-flex justify-content-between mb-1">
                   <div class="sidebar-text">
@@ -110,7 +110,7 @@
                 <hr class="new3">
                 <div class="sidebar-title">Reservas</div>
 
-                <a href="http://" class="sidebar-link mb-2"><i class="fa fa-concierge-bell me-1"> </i>Ver reservas</a>
+                <a href="VerReservas.aspx" class="sidebar-link mb-2"><i class="fa fa-concierge-bell me-1"> </i>Ver reservas</a>
 
                 <div class="d-flex justify-content-between mb-1">
                   <div class="sidebar-text">
@@ -123,7 +123,7 @@
                     <div class="d-grid gap-1">
                       <a class="link-sidebar-option" href="CrearReserva.aspx"><i class="fa fa-plus-square me-1"></i> Crear reserva</a>
                       <a class="link-sidebar-option" href="EliminarReserva.aspx"><i class="fa fa-minus-square me-1"></i> Eliminar reserva</a>
-                      <a class="link-sidebar-option" href="ModificarReserva"><i class="fa fa-edit me-1"></i> Modificar reserva</a>
+                      <a class="link-sidebar-option" href="ModificarReserva.aspx"><i class="fa fa-edit me-1"></i> Modificar reserva</a>
                     </div>
                   </div>
                 </div>
@@ -167,23 +167,11 @@
   </div>
 <!-- Optional JavaScript -->
 <script src="@@path/vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
-<script src="/js/SorterLogic.js"></script>
 <script src="/js/Admin.js"></script>
       <script>
           $(window).scroll(function () {
               $('nav').toggleClass('scrolled', $(this).scrollTop() > 50);
               $('nav').toggleClass('scrolled-nav', $(this).scrollTop() > 50);
-          });
-          $("[name='camasrange']").on('input', function () {
-              val = $("[name='camasrange']").val();
-              $("[name='camasrange_label']").html("<b>Numero de camas:</b> " + val);
-          });
-          $(document).ready(function () {
-              $("[name='camasrange']").val(1);
-              var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-              var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-                  return new bootstrap.Tooltip(tooltipTriggerEl)
-              })
           });
       </script>                      
 </body>

@@ -75,12 +75,13 @@
 <script>
 $(document).ready(function () {
     if ($('[id$=MDescuentoFechaInicioHidden]').val() != "") {
+        $("[id$=seccion_info_reserva]").removeClass("d-none");
         var fecha_inicio = Date.parse($('[id$=MDescuentoFechaInicioHidden]').val());
         var fecha_finalizacion = Date.parse($('[id$=MDescuentoFechaFinalizacionHidden]').val());
         $('[id$=MDescuentoFechaInicio]').daterangepicker({
             "singleDatePicker": true,
             "startDate": $('[id$=MDescuentoFechaInicioHidden]').val(),
-            "minDate": $('[id$=MDescuentoFechaInicioHidden]').val(),
+            "minDate": moment().subtract(29, 'days'),
             locale: {
                 format: 'Y-MM-DD'
             },
@@ -91,7 +92,7 @@ $(document).ready(function () {
         $('[id$=MDescuentoFechaFinal]').daterangepicker({
             "singleDatePicker": true,
             "startDate": $('[id$=MDescuentoFechaFinalizacionHidden]').val(),
-            "minDate": $('[id$=MDescuentoFechaFinalizacionHidden]').val(),
+            "minDate": moment().subtract(29, 'days'),
             locale: {
                 format: 'Y-MM-DD'
             },
