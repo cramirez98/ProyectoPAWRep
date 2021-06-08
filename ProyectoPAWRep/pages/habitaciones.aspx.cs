@@ -20,7 +20,7 @@ namespace ProyectoPAWRep.pages
             HabitacionesDatabaseManager habitacionesDatabaseManager = new HabitacionesDatabaseManager("SQLConnection", "[dbo].[Habitaciones]");
             int total_habitaciones = habitacionesDatabaseManager.CountFetchedData(
                 new string[] { "*" },
-                new string[,] { {"Ocupada","=","0"} },
+                null,
                 null
             );
             int numero_paginas = Utilities.CalculateNumberOfPages(total_habitaciones, this.elementos_por_pagina);
@@ -29,7 +29,7 @@ namespace ProyectoPAWRep.pages
             {
                 DataSet habitaciones = habitacionesDatabaseManager.ReadDatabaseRecord(
                 new string[] { "*" },
-                new string[,] { { "Ocupada", "=", "0" } },
+                null,
                 null,
                 "Precio",
                 "ASC",
@@ -45,7 +45,7 @@ namespace ProyectoPAWRep.pages
             {
                 DataSet habitaciones = habitacionesDatabaseManager.ReadDatabaseRecord(
                new string[] { "*" },
-               new string[,] { { "Ocupada", "=", "0" } },
+               null,
                null,
                "Precio",
                "ASC",

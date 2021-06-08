@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/pages/Admin.Master" AutoEventWireup="true" CodeBehind="EliminarDescuento.aspx.cs" Inherits="ProyectoPAWRep.pages.EliminarDescuento" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <title>Elimninar Descuento</title>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
               <div class="container-fluid px-4 py-3">

@@ -22,6 +22,7 @@
             {
                 $("[id$=MReservaEstado]").prop('checked', false)
             }
+            $('#BtnModificarReserva').attr("disabled", false);
             $("[id$=reserva_id_input_hidden]").val(strings[6]);
             $('[id$=MReservaFechas]').daterangepicker({
                 "startDate": strings[2],

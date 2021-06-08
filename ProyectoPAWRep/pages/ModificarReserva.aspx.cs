@@ -12,6 +12,7 @@ namespace ProyectoPAWRep.pages
 {
     public partial class ModificarReserva : System.Web.UI.Page
     {
+        public static bool sended = false;
         public ReservasDatabaseManager reservasDatabaseManager = new ReservasDatabaseManager("SQLConnection", "[dbo].[Reservas]");
         public HabitacionesDatabaseManager habitacionesDatabaseManager = new HabitacionesDatabaseManager("SQLConnection", "[dbo].[Habitaciones]");
         public UserDatabaseManager userDatabaseManager = new UserDatabaseManager("SQLConnection", "[dbo].[Usuarios]");
@@ -75,7 +76,9 @@ namespace ProyectoPAWRep.pages
                 }
                 else
                 {
-                    seccion_info_reserva.Attributes["class"] = "row mt-2";
+
+                        seccion_info_reserva.Attributes["class"] = "row mt-2";
+
                     seccion_tabla_info_reservas.Visible = false;
                 }
 
@@ -134,6 +137,7 @@ namespace ProyectoPAWRep.pages
         }
         protected void BtnModificarReserva_Click(object sender, EventArgs e)
         {
+            sended = true;
             string reserva_id = reserva_id_input_hidden.Attributes["value"];
             string habitacion_id = habitacionesDatabaseManager.GetHabitacionIDByNumber(MReservaHabitacion.SelectedValue.ToString());
             string cliente_id = userDatabaseManager.GetIDByCorreo("'" + MReservaCliente.SelectedValue.ToString() + "'");

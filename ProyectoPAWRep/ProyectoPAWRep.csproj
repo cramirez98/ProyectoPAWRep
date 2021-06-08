@@ -120,6 +120,7 @@
     <Content Include="js\Checkout.js" />
     <Content Include="js\EnableTextbox.js" />
     <Content Include="js\EnableTextboxHabitacion.js" />
+    <Content Include="js\EnableTextboxPlugin.js" />
     <Content Include="js\LoadInformationReservas.js" />
     <Content Include="js\main.js" />
     <Content Include="js\Pagination.js" />
@@ -130,7 +131,7 @@
     <Content Include="js\usuario.js" />
     <Content Include="pages\adminaboutus.aspx" />
     <Content Include="pages\adminpanel.aspx" />
-    <Content Include="pages\AgregarUsuario.aspx" />
+    <Content Include="pages\CrearUsuario.aspx" />
     <Content Include="pages\cerrarsesion.aspx" />
     <Content Include="pages\checkout.aspx" />
     <Content Include="pages\CrearDescuento.aspx" />
@@ -138,6 +139,7 @@
     <Content Include="pages\CrearReserva.aspx" />
     <Content Include="pages\EliminarDescuento.aspx" />
     <Content Include="pages\EliminarHabitacion.aspx" />
+    <Content Include="pages\EliminarUsuario.aspx" />
     <Content Include="pages\habitaciones.aspx" />
     <Content Include="pages\habitacion_pagina.aspx" />
     <Content Include="pages\inicio.aspx" />
@@ -145,6 +147,7 @@
     <Content Include="pages\ModificarDescuento.aspx" />
     <Content Include="pages\ModificarHabitacion.aspx" />
     <Content Include="pages\ModificarReserva.aspx" />
+    <Content Include="pages\ModificarUsuario.aspx" />
     <Content Include="pages\registro.aspx" />
     <Content Include="pages\usuario.aspx" />
     <Content Include="pages\VerDescuentos.aspx" />
@@ -192,12 +195,12 @@
     <Compile Include="pages\adminpanel.aspx.designer.cs">
       <DependentUpon>adminpanel.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pages\AgregarUsuario.aspx.cs">
-      <DependentUpon>AgregarUsuario.aspx</DependentUpon>
+    <Compile Include="pages\CrearUsuario.aspx.cs">
+      <DependentUpon>CrearUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="pages\AgregarUsuario.aspx.designer.cs">
-      <DependentUpon>AgregarUsuario.aspx</DependentUpon>
+    <Compile Include="pages\CrearUsuario.aspx.designer.cs">
+      <DependentUpon>CrearUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\cerrarsesion.aspx.cs">
       <DependentUpon>cerrarsesion.aspx</DependentUpon>
@@ -248,6 +251,13 @@
     <Compile Include="pages\EliminarHabitacion.aspx.designer.cs">
       <DependentUpon>EliminarHabitacion.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pages\EliminarUsuario.aspx.cs">
+      <DependentUpon>EliminarUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\EliminarUsuario.aspx.designer.cs">
+      <DependentUpon>EliminarUsuario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="pages\habitaciones.aspx.cs">
       <DependentUpon>habitaciones.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -296,6 +306,13 @@
     </Compile>
     <Compile Include="pages\ModificarReserva.aspx.designer.cs">
       <DependentUpon>ModificarReserva.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\ModificarUsuario.aspx.cs">
+      <DependentUpon>ModificarUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\ModificarUsuario.aspx.designer.cs">
+      <DependentUpon>ModificarUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\Normal.Master.cs">
       <DependentUpon>Normal.Master</DependentUpon>

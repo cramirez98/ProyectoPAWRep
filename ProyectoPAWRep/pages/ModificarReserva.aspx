@@ -49,9 +49,9 @@
                                 </table>
                           </div>
                       </div>
+                    <div runat="server" id="alertaspace"></div>
                         <div runat="server" id="seccion_info_reserva" class="row mt-2 d-none" ClienteIDMode="static">
                     <h1>Información de la reserva</h1>
-                        <div runat="server" id="alertaspace"></div>
                         <div class="col-xl-6 mb-2">
                             <input runat="server" id="reserva_id_input_hidden" class="d-none" value="" ClientIDMode="Static">
                             <label for="MReservaCliente" class="form-label">Cliente que tendra la reserva</label>
@@ -98,7 +98,7 @@
                         <asp:TextBox ID="MReservaFechaInicioHidden" class="form-control" runat="server" ClientIDMode="Static"></asp:TextBox>
                         <asp:TextBox ID="MReservaFechaFinalizacionHidden" class="form-control" runat="server" ClientIDMode="Static"></asp:TextBox>
                         <div class="col-12 text-center mt-3">
-                            <asp:Button ID="BtnModificarReserva" class="btn btn-primary btn-lg" runat="server" Text="Modificar reserva" OnClick="BtnModificarReserva_Click"/>
+                            <asp:Button ID="BtnModificarReserva" class="btn btn-primary btn-lg" ClientIDMode="Static" runat="server" data-buttonsubmit="true" Text="Modificar reserva" OnClick="BtnModificarReserva_Click" disabled/>
                         </div>
                             </div>
                     </form>
@@ -109,7 +109,7 @@
 <script>
 $(document).ready(function () {
     if ($('[id$=MReservaFechaInicioHidden]').val() != "" && $('[id$=MReservaFechaFinalizacionHidden]').val() != "") {
-
+        $('#BtnModificarReserva').attr("disabled", false);
         $('[id$=MReservaFechas]').daterangepicker({
             "startDate": $('[id$=MReservaFechaInicioHidden]').val(),
             "minDate": $('[id$=MReservaFechaInicioHidden]').val(),

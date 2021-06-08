@@ -11,17 +11,8 @@ namespace ProyectoPAWRep.pages
 {
 
 
-    public partial class AgregarUsuario
+    public partial class ModificarUsuario
     {
-
-        /// <summary>
-        /// Control alertaspace.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alertaspace;
 
         /// <summary>
         /// Control ScriptManager1.
@@ -33,13 +24,85 @@ namespace ProyectoPAWRep.pages
         protected global::System.Web.UI.ScriptManager ScriptManager1;
 
         /// <summary>
-        /// Control Nombres.
+        /// Control seleccionar_usuario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Nombres;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl seleccionar_usuario;
+
+        /// <summary>
+        /// Control MUsuarioLoad.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList MUsuarioLoad;
+
+        /// <summary>
+        /// Control cargarinformacionusuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton cargarinformacionusuario;
+
+        /// <summary>
+        /// Control informacion_usuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl informacion_usuario;
+
+        /// <summary>
+        /// Control alertaspace.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl alertaspace;
+
+        /// <summary>
+        /// Control IDUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox IDUsuario;
+
+        /// <summary>
+        /// Control ImagePerfilPaginaModificar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage ImagePerfilPaginaModificar;
+
+        /// <summary>
+        /// Control MUFotoPerfil.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload MUFotoPerfil;
+
+        /// <summary>
+        /// Control MUNombres.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox MUNombres;
 
         /// <summary>
         /// Control ValNombres.
@@ -51,13 +114,13 @@ namespace ProyectoPAWRep.pages
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ValNombres;
 
         /// <summary>
-        /// Control Apellidos.
+        /// Control MUApellidos.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Apellidos;
+        protected global::System.Web.UI.WebControls.TextBox MUApellidos;
 
         /// <summary>
         /// Control ValApellidos.
@@ -69,13 +132,13 @@ namespace ProyectoPAWRep.pages
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ValApellidos;
 
         /// <summary>
-        /// Control Celular.
+        /// Control MUCelular.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Celular;
+        protected global::System.Web.UI.WebControls.TextBox MUCelular;
 
         /// <summary>
         /// Control ValCelular.
@@ -96,13 +159,13 @@ namespace ProyectoPAWRep.pages
         protected global::System.Web.UI.WebControls.RequiredFieldValidator Val2Celular;
 
         /// <summary>
-        /// Control Cedula.
+        /// Control MUCedula.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Cedula;
+        protected global::System.Web.UI.WebControls.TextBox MUCedula;
 
         /// <summary>
         /// Control ValCedula.
@@ -123,13 +186,13 @@ namespace ProyectoPAWRep.pages
         protected global::System.Web.UI.WebControls.RequiredFieldValidator Val2Cedula;
 
         /// <summary>
-        /// Control Edad.
+        /// Control MUEdad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Edad;
+        protected global::System.Web.UI.WebControls.TextBox MUEdad;
 
         /// <summary>
         /// Control ValEdad.
@@ -159,13 +222,13 @@ namespace ProyectoPAWRep.pages
         protected global::System.Web.UI.WebControls.RangeValidator Val3Edad;
 
         /// <summary>
-        /// Control Direccion.
+        /// Control MUDireccion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Direccion;
+        protected global::System.Web.UI.WebControls.TextBox MUDireccion;
 
         /// <summary>
         /// Control Val2Direccion.
@@ -177,13 +240,13 @@ namespace ProyectoPAWRep.pages
         protected global::System.Web.UI.WebControls.RequiredFieldValidator Val2Direccion;
 
         /// <summary>
-        /// Control Ciudad.
+        /// Control MUCiudad.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Ciudad;
+        protected global::System.Web.UI.WebControls.TextBox MUCiudad;
 
         /// <summary>
         /// Control ValCiudad.
@@ -195,13 +258,13 @@ namespace ProyectoPAWRep.pages
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ValCiudad;
 
         /// <summary>
-        /// Control Correo.
+        /// Control MUCorreo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Correo;
+        protected global::System.Web.UI.WebControls.TextBox MUCorreo;
 
         /// <summary>
         /// Control ValCorreo.
@@ -231,22 +294,22 @@ namespace ProyectoPAWRep.pages
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Val3Correo;
 
         /// <summary>
-        /// Control Contraseña.
+        /// Control MUContraseña.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Contraseña;
+        protected global::System.Web.UI.WebControls.TextBox MUContraseña;
 
         /// <summary>
-        /// Control RContraseña.
+        /// Control MURContraseña.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox RContraseña;
+        protected global::System.Web.UI.WebControls.TextBox MURContraseña;
 
         /// <summary>
         /// Control ValPass.
@@ -267,12 +330,21 @@ namespace ProyectoPAWRep.pages
         protected global::System.Web.UI.WebControls.RequiredFieldValidator Val2Pass;
 
         /// <summary>
-        /// Control BtnCrearUsuario.
+        /// Control MUTipo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnCrearUsuario;
+        protected global::System.Web.UI.WebControls.DropDownList MUTipo;
+
+        /// <summary>
+        /// Control BtnModificarUsuario.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtnModificarUsuario;
     }
 }

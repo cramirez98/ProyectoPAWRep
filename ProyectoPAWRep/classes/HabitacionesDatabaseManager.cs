@@ -19,7 +19,7 @@ namespace ProyectoPAWRep.classes
 
         public bool AddDatabaseRecord(Habitacion habitacion)
         {
-            string strSQL = "INSERT INTO " + base.Table + "([ID] ,[Numero] ,[Descripcion] ,[Fotos] ,[Precio] ,[Tamaño] ,[NumeroCamas] ,[Puntaje] ,[Mascotas] ,[BañosPDiscapacitadas] ,[Ocupada] ,[Cliente_ID] ,[Descuento_ID]) VALUES " +
+            string strSQL = "INSERT INTO " + base.Table + "([ID] ,[Numero] ,[Descripcion] ,[Fotos] ,[Precio] ,[Tamaño] ,[NumeroCamas] ,[Mascotas] ,[BañosPDiscapacitadas] ,[Descuento_ID]) VALUES " +
             "(NEWID()," +
             habitacion.Numero + ",'" +
             habitacion.Descripcion + "',N'" +
@@ -27,11 +27,8 @@ namespace ProyectoPAWRep.classes
             habitacion.Precios + ",'" +
             habitacion.Tamaño + "'," +
             habitacion.Camas + "," +
-            habitacion.Puntaje + "," +
             habitacion.Mascotas + "," +
-            habitacion.Bañosdiscapacitados + "," +
-            habitacion.Ocupada + ",'" +
-            habitacion.Cliente_id + "','" +
+            habitacion.Bañosdiscapacitados + ",'" +
             habitacion.Descuento_id + "')";
 
 

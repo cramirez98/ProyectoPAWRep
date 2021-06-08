@@ -133,7 +133,7 @@ namespace ProyectoPAWRep.pages
                                                                 {"Direccion", "'"+Direccion.Text+"'"},
                                                                 {"Ciudad", "'"+Cedula.Text+"'"},
                                                                 {"Edad", "'"+Edad.Text+"'"},
-                                                                {"Contraseña", "'"+Contraseña.Text+"'"},
+                                                                {"Contraseña", "'"+Utilities.ComputarSHA256(Contraseña.Text)+"'"},
                                                                 {"ImagenPerfil", "'"+direccion_imagen+"'"}
                     };
                 }
@@ -146,7 +146,7 @@ namespace ProyectoPAWRep.pages
                                                                 {"Direccion", "'"+Direccion.Text+"'"},
                                                                 {"Ciudad", "'"+Cedula.Text+"'"},
                                                                 {"Edad", "'"+Edad.Text+"'"},
-                                                                {"Contraseña", "'"+Contraseña.Text+"'"}
+                                                                {"Contraseña", "'"+Utilities.ComputarSHA256(Contraseña.Text)+"'"}
                     };
                 }
             }

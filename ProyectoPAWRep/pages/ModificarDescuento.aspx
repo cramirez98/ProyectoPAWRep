@@ -65,7 +65,7 @@
                         <asp:TextBox ID="MDescuentoFechaInicioHidden" class="form-control" runat="server" ClientIDMode="Static"></asp:TextBox>
                         <asp:TextBox ID="MDescuentoFechaFinalizacionHidden" class="form-control" runat="server" ClientIDMode="Static"></asp:TextBox>
                       <div class="col-12 text-center">
-                        <button type="submit" id="BtnModificarDescuento" runat="server" ValidationGroup="Requeridos" class="btn btn-primary btn-lg" onserverclick="BtnModificarDescuento_ServerClick">Modificar descuento</button>
+                        <button type="submit" id="BtnModificarDescuento" runat="server" ValidationGroup="Requeridos" class="btn btn-primary btn-lg disabled" onserverclick="BtnModificarDescuento_ServerClick">Modificar descuento</button>
                       </div>
                     </form>
                   </div>

@@ -51,10 +51,19 @@ namespace ProyectoPAWRep.pages
                         null,
                         null
                     );
-                    MDescuentoNombreToLoad.DataTextField = data.Tables[0].Columns["Nombre"].ToString();
-                    MDescuentoNombreToLoad.DataValueField = data.Tables[0].Columns["Nombre"].ToString();
-                    MDescuentoNombreToLoad.DataSource = data.Tables[0];
-                    MDescuentoNombreToLoad.DataBind();
+                    if(data.Tables[0].Rows.Count > 0)
+                    {
+                        MDescuentoNombreToLoad.DataTextField = data.Tables[0].Columns["Nombre"].ToString();
+                        MDescuentoNombreToLoad.DataValueField = data.Tables[0].Columns["Nombre"].ToString();
+                        MDescuentoNombreToLoad.DataSource = data.Tables[0];
+                        MDescuentoNombreToLoad.DataBind();
+                    }
+                    else
+                    {
+                        MDescuentoNombreToLoad.Items.Clear();
+                        MDescuentoNombreToLoad.Items.Add(new ListItem("No hay descuentos", "h"));
+                        cargarinformaciondescuento.Visible = false;
+                    }
                 }
 
                 seleccionar_descuento.Visible = true;
@@ -65,6 +74,7 @@ namespace ProyectoPAWRep.pages
 
         public void CargarInformacionDescuento(DataSet descuento_info)
         {
+            BtnModificarDescuento.Attributes["class"] = "btn btn-primary btn-lg";
             MDescuentoFechaInicioHidden.Text = DateTime.Parse(descuento_info.Tables[0].Rows[0]["FechaInicio"].ToString()).ToString("yyy-MM-dd");
             MDescuentoFechaFinalizacionHidden.Text = DateTime.Parse(descuento_info.Tables[0].Rows[0]["FechaFinalizacion"].ToString()).ToString("yyy-MM-dd");
 

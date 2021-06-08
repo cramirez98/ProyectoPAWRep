@@ -69,15 +69,6 @@ namespace ProyectoPAWRep.pages
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl filas_tabla_reservas;
 
         /// <summary>
-        /// Control seccion_info_reserva.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl seccion_info_reserva;
-
-        /// <summary>
         /// Control alertaspace.
         /// </summary>
         /// <remarks>
@@ -85,6 +76,15 @@ namespace ProyectoPAWRep.pages
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl alertaspace;
+
+        /// <summary>
+        /// Control seccion_info_reserva.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl seccion_info_reserva;
 
         /// <summary>
         /// Control reserva_id_input_hidden.

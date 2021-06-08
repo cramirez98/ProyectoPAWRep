@@ -76,9 +76,9 @@
                 <div class="collapse" id="Usuarios">
                   <div class="sidebar-collapse mb-1">
                     <div class="d-grid gap-1">
-                      <a class="link-sidebar-option"><i class="fa fa-user-plus me-1"></i> Agregar usuario</a>
-                      <a class="link-sidebar-option"><i class="fa fa-user-minus me-1"></i> Eliminar usuario</a>
-                      <a class="link-sidebar-option"><i class="fa fa-user-edit me-1"></i> Editar usuario</a>
+                      <a href="CrearUsuario.aspx" class="link-sidebar-option"><i class="fa fa-user-plus me-1"></i> Crear usuario</a>
+                      <a href="EliminarUsuario.aspx" class="link-sidebar-option"><i class="fa fa-user-minus me-1"></i> Eliminar usuario</a>
+                      <a href="ModificarUsuario.aspx" class="link-sidebar-option"><i class="fa fa-user-edit me-1"></i> Modificar usuario</a>
                     </div>
                   </div>
                 </div>
