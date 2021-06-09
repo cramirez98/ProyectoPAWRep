@@ -41,6 +41,7 @@
                 <hr class="new3">
                 <a href="adminpanel.aspx" class="sidebar-link"><i class="fa fa-tachometer-alt me-1"> </i>Panel de información</a>
                 <a href="adminaboutus.aspx" class="sidebar-link mt-2"><i class="far fa-building me-1"></i>Seccion About Us</a>
+                <a href="MiInformacion.aspx" class="sidebar-link mt-2"><i class="fas fa-user-tie"></i>Tu información personal</a>
                 <hr class="new3">
                 <div class="sidebar-title">Habitaciones</div>
 

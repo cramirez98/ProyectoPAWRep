@@ -129,7 +129,7 @@
 
                                     </div>
                         <div class="col-12 text-center">
-                            <asp:Button ID="BtnModificarMiInfo" class="btn btn-primary btn-lg mt-4 d-none" runat="server" Text="Modificar tu información" OnClick="BtnModificarMiInfo_Click" ValidationGroup="Requeridos"/>
+                            <asp:Button ID="BtnModificarMiInfo" class="btn btn-primary btn-lg mt-4" runat="server" Text="Modificar tu información" OnClick="BtnModificarMiInfo_Click" ValidationGroup="Requeridos"/>
                         </div>
                             </div>
                     </form>
