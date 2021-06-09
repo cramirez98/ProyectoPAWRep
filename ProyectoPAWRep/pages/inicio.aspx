@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/bootstrap.css" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/custom.css" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <link href="../css/StartRating.css" rel="stylesheet" />
     <!-- Javascript -->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
@@ -168,12 +169,12 @@
   </div>      
 </div> 
 
-<div class="seccion bg-bblue" id="Testimonios">
+<div class="seccion bg-bblue" runat="server" id="Testimonios">
   <div class="seccion-titulo">Testimonios de nuestros clientes</div>
   <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
         <div class="carousel-inner">
-          <div class="container">
-          <div class="carousel-item text-center active" data-bs-interval="100000000">
+          <div class="container" runat="server" id="testimonios_seccion">
+          <div class="carousel-item text-center active">
 
               <div class="opinion-cards">                
                 <div class="testimonio">

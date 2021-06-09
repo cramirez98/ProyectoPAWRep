@@ -50,6 +50,20 @@ namespace ProyectoPAWRep.pages
                 aboutusmisionvision.InnerHtml = "<b>Mision: </b>" + aboutusinfo.Tables[0].Rows[0]["Mision"].ToString() + "<br>" + "<b>Vision: </b>" + aboutusinfo.Tables[0].Rows[0]["Vision"].ToString();
                 aboutusprincipios.InnerText = aboutusinfo.Tables[0].Rows[0]["Principios"].ToString();
             }
+
+            TestimoniosDatabaseManager testimoniosDatabaseManager = new TestimoniosDatabaseManager("SQLConnection", "[dbo].[Testimonios]");
+
+            DataSet ultimostestimonios = testimoniosDatabaseManager.ReadDatabaseRecord(new string[] { "*" }, null, null, "FechaTestimonio", "DESC", 0, 5);
+
+            if (ultimostestimonios.Tables[0].Rows.Count > 0)
+            {
+                Testimonios.Visible = true;
+                testimonios_seccion.InnerHtml = Utilities.GenerateTestimonialsCarousel(ultimostestimonios);
+            }
+            else
+            {
+                Testimonios.Visible = false;
+            }
         }
     }
 }

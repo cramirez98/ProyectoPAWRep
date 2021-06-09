@@ -36,7 +36,7 @@ namespace ProyectoPAWRep.pages
             }
             else
             {
-                //Response.Redirect("iniciosesion.aspx");
+                Response.Redirect("iniciosesion.aspx");
             }
         }
     }

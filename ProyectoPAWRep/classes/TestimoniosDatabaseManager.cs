@@ -19,7 +19,7 @@ namespace ProyectoPAWRep.classes
 
         public bool AddDatabaseRecord(Testimonio testimonio)
         {
-            string strSQL = "INSERT INTO " + base.Table + " ([ID] ,[Cliente_ID] ,[Comentario] ,[Puntaje] ,[Habitacion_ID]) VALUES " +
+            string strSQL = "INSERT INTO " + base.Table + " ([ID] ,[Cliente_ID] ,[Comentario] ,[Puntaje] ,[Habitacion_ID] ,[FechaTestimonio]) VALUES " +
             "(NEWID(),'" +
             testimonio.Cliente_id + "','" +
             testimonio.Comentario + "'," +

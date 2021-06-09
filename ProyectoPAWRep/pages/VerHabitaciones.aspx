@@ -19,7 +19,7 @@
                 </div>
                 <div class="row">
                   <div class="admin-content">
-                      <h1>Listado de todos los descuentos que se han creado hasta el momento.</h1>
+                      <h1>Listado de todos las habitaciones que se han creado hasta el momento.</h1>
                               <table class="table">
                                 <thead class="table-blue">
                                   <tr>

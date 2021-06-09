@@ -36,6 +36,27 @@ namespace ProyectoPAWRep.pages
                         );
 
                         CargarInformacionUsuario(data);
+
+                        if (data.Tables[0].Rows.Count > 0)
+                        {
+                            data.Tables[0].Columns.Add(new DataColumn("NombresApellidosyCorreo", typeof(string)));
+
+                            foreach (DataRow row in data.Tables[0].Rows)
+                            {
+                                row["NombresApellidosyCorreo"] = row["Nombres"].ToString() + " " + row["Apellidos"].ToString() + " - " + row["Correo"];
+                            }
+
+                            MUsuarioLoad.DataTextField = data.Tables[0].Columns["NombresApellidosyCorreo"].ToString();
+                            MUsuarioLoad.DataValueField = data.Tables[0].Columns["Correo"].ToString();
+                            MUsuarioLoad.DataSource = data.Tables[0];
+                            MUsuarioLoad.DataBind();
+                        }
+                        else
+                        {
+                            MUsuarioLoad.Items.Clear();
+                            MUsuarioLoad.Items.Add(new ListItem("No hay usuarios", "h"));
+                            cargarinformacionusuario.Visible = false;
+                        }
                     }
                 }
                 else
@@ -103,6 +124,8 @@ namespace ProyectoPAWRep.pages
 
             MUTipo.SelectedValue = row["Tipo"].ToString();
 
+            BtnModificarUsuario.Attributes["class"] = "btn btn-primary btn-lg mt-4";
+
             informacion_usuario.Attributes["class"] = "row";
         }
 
@@ -154,7 +177,7 @@ namespace ProyectoPAWRep.pages
                 valores_a_modificar[8, 1] = "'"+ direccion_imagen + "'";
             }
 
-            if (!Utilities.ComputarSHA256(MUContraseña.Text).Equals(user_previus_data["Contraseña"].ToString()))
+            if (!MUContraseña.Text.Equals(user_previus_data["Contraseña"].ToString()))
             {
                 valores_a_modificar[2, 1] = "'"+Utilities.ComputarSHA256(MUContraseña.Text)+"'";
             }

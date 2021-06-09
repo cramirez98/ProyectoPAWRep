@@ -42,7 +42,7 @@ namespace ProyectoPAWRep.pages
             DataSet data_organizada = new DataSet();
             if (orderby.Equals("Mascotas") || orderby.Equals("BañosPDiscapacitadas"))
             {
-
+                data_organizada = Utilities.OrderByCaracteristicas(data_inicial, orderby, direction.Equals("ASC") ? "1" : "0");
             }
             else
             {
@@ -58,13 +58,15 @@ namespace ProyectoPAWRep.pages
                         data_organizada = Utilities.OrderByPuntaje(data_inicial, direction);
                         break;
                     case "Tamaño":
-                        data_organizada = habitacionesDatabaseManager.ReadDatabaseRecord(new string[] { "*" }, null, null, "case when [Tamaño] = 'Pequeña'");
+                        data_organizada = habitacionesDatabaseManager.ReadDatabaseRecord(new string[] { "*" }, null, null, "case when [Tamaño] = 'Pequeña' then 1 when [Tamaño] = 'Mediana' then 2 when [Tamaño] = 'Grande' then 3 when [Tamaño] = 'Piso Ejecutivo' then 4 else 5 end", direction);
                         break;
                     default:
                         data_organizada = data_inicial;
                         break;
                 }
             }
+
+            result = Utilities.GenerateHabitacionesTable(data_organizada);
 
             return result;
         }

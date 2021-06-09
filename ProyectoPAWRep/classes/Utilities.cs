@@ -1074,5 +1074,43 @@ namespace ProyectoPAWRep.classes
 
             return table_rows;
         }
+
+        public static DataSet OrderByCaracteristicas(DataSet habitacion_data, string caracteristica, string value)
+        {
+            DataSet filtered_data = new DataSet();
+
+            filtered_data.Tables.Add(habitacion_data.Tables[0].Clone());
+            DataRow[] datarows = habitacion_data.Tables[0].Select(caracteristica + " = " + value);
+
+            foreach (DataRow row in datarows)
+            {
+                filtered_data.Tables[0].ImportRow(row);
+            }
+
+            return filtered_data;
+        }
+
+        public static string GenerateTestimonialsCarousel(DataSet testimonials_data)
+        {
+            UserDatabaseManager userDatabaseManager = new UserDatabaseManager("SQLConnection", "[dbo].[Usuarios]");
+            DataSet user_data = new DataSet();
+            string carousel_items = "";
+
+            if (testimonials_data.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow row in testimonials_data.Tables[0].Rows)
+                {
+                    double width_star = (double.Parse(row["Puntaje"].ToString()) / 5) * 100.00;
+                    string width_star_s = width_star.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+
+                    user_data = userDatabaseManager.ReadDatabaseRecord(new string[] { "*" }, new string[,] { { "ID", "=", "'" + row["Cliente_ID"] + "'" } }, null);
+
+                    carousel_items += "<div class='carousel-item text-center active'> <div class='opinion-cards'> <div class='testimonio'> <div class='container'> <div class='row align-items-center'> <div class='col-md-3' > <div class='text-center'>";
+                    carousel_items += "<img src='"+ user_data.Tables[0].Rows[0]["ImagenPerfil"] + "' class='img-fluid rounded-circle' alt='...' width='200' height='200'> </div> </div> <div class='col-md-9'> <div class='testimonio-cuerpo'>";
+                    carousel_items += "<div class='testimonio-nombre'>" + user_data.Tables[0].Rows[0]["Nombres"] + " " + user_data.Tables[0].Rows[0]["Apellidos"] + "</div> <div class='testimonio-puntaje'> <div class='d-flex flex-row'> <div class='stars-outer'> <div class='stars-inner' style='width:"+ width_star_s + "%;'></div> </div> <div class='fc-gray fw-bold ff-oswaldo'>"+ row["Puntaje"].ToString() + "</div> </div> </div> </div> <div class='testimonio-texto'>" + row["Comentario"] + "</div> </div> </div> </div> </div> </div> </div> </div>";
+                }
+            }
+            return carousel_items;
+        }
     }
 }

@@ -32,7 +32,10 @@ namespace ProyectoPAWRep.pages
                         new string[,] { { "Numero", "=", numero_habitacion_a_cargar } },
                         null
                     );
-                    CargarInformacionHabitacion(data);
+                    if (!IsPostBack)
+                    {
+                        CargarInformacionHabitacion(data);
+                    }
                 }
                 else
                 {
@@ -48,10 +51,20 @@ namespace ProyectoPAWRep.pages
                         null,
                         null
                     );
-                    MHabitacionNumeroToLoad.DataTextField = data.Tables[0].Columns["Numero"].ToString();
-                    MHabitacionNumeroToLoad.DataValueField = data.Tables[0].Columns["Numero"].ToString();
-                    MHabitacionNumeroToLoad.DataSource = data.Tables[0];
-                    MHabitacionNumeroToLoad.DataBind();
+                    if(data.Tables[0].Rows.Count > 0)
+                    {
+                        MHabitacionNumeroToLoad.DataTextField = data.Tables[0].Columns["Numero"].ToString();
+                        MHabitacionNumeroToLoad.DataValueField = data.Tables[0].Columns["Numero"].ToString();
+                        MHabitacionNumeroToLoad.DataSource = data.Tables[0];
+                        MHabitacionNumeroToLoad.DataBind();
+                        cargarinformacionhabitacion.Visible = true;
+                    }
+                    else
+                    {
+                        MHabitacionNumeroToLoad.Items.Clear();
+                        MHabitacionNumeroToLoad.Items.Add(new ListItem("No hay habitaciones", "h"));
+                        cargarinformacionhabitacion.Visible = false;
+                    }
                 }
 
                 seleccionar_habitacion.Visible = true;
