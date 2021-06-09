@@ -72,8 +72,8 @@
                   <span class="fas fa-user"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="login.html">Iniciar sesion</a></li>
-                  <li><a class="dropdown-item" href="registro.html">Registrarse</a></li>
+                  <li><a class="dropdown-item" href="iniciosesion.aspx">Iniciar sesion</a></li>
+                  <li><a class="dropdown-item" href="registro.aspx">Registrarse</a></li>
                 </ul>
               </li>
             </ul>            

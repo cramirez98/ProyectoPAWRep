@@ -27,11 +27,11 @@ namespace ProyectoPAWRep.pages
 
                 if (connection_success)
                 {
-                    alertaspace.InnerHtml = Utilities.GenerateBigAlarm("Registro completado!", "El registro del usuario ha terminado con exito.", "Para iniciar sesion da <a href='iniciosesion.aspx' class='alert-link'>click aquí</a>", "success");
+                    alertaspace.InnerHtml = Utilities.GenerateBigAlarm("Registro completado!", "El registro del usuario ha terminado con exito.", "Puedes ver los usuarios registrados dando <a href='VerUsuarios.aspx' class='alert-link'>click aquí</a>", "success");
                 }
                 else
                 {
-                    alertaspace.InnerHtml = Utilities.GenerateBigAlarm("Error en tu registro!", "El registro del usuario no ha sido posible de realizarse, esto puede ser debido a problemas con el servidor o a que no llenaste algun campo correctamente.", "Revisa los datos ingresados en el formulario!", "danger");
+                    alertaspace.InnerHtml = Utilities.GenerateBigAlarm("Error en tu registro!", "El registro del usuario no ha sido posible de realizarse, esto puede ser debido a problemas con el servidor.", "Revisa los datos ingresados en el formulario!", "danger");
                 }
             }
             else

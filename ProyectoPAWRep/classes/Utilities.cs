@@ -37,6 +37,13 @@ namespace ProyectoPAWRep.classes
             }
             return builder.ToString();
         }
+
+        public static string TruncateLongString(this string str, int maxLength)
+        {
+            if (string.IsNullOrEmpty(str)) return str;
+
+            return str.Substring(0, Math.Min(str.Length, maxLength));
+        }
         public static string GenerateBigAlarm(string title, string body, string footer, string alarm_type, bool button = true)
         {
             string alarm;
@@ -960,6 +967,109 @@ namespace ProyectoPAWRep.classes
             else
             {
                 table_rows = "<tr><td colspan='8'>No se han encontrado reservas.</td><tr>";
+            }
+
+            return table_rows;
+        }
+
+        public static string GenerateHabitacionesTable(DataSet habitacion_data)
+        {
+            ReservasDatabaseManager reservasDatabaseManager = new ReservasDatabaseManager("SQLConnection", "[dbo].[Reservas]");
+            DescuentosDatabaseManager descuentosDatabaseManager = new DescuentosDatabaseManager("SQLConnection", "[dbo].[Descuentos]");
+            TestimoniosDatabaseManager testimoniosDatabaseManager = new TestimoniosDatabaseManager("SQLConnection", "[dbo].[Testimonios]");
+            string table_rows = "";
+
+            int contador = 1;
+
+            if (habitacion_data.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow row in habitacion_data.Tables[0].Rows)
+                {
+                    table_rows += "<tr>";
+                    table_rows += "<th scope='row'>" + contador + "</th>";
+                    table_rows += "<td>" + row["Numero"] + "</td>";
+
+                    table_rows += "<td><div data-bs-toggle='tooltip' data-bs-placement='bottom' title='"+ row["Descripcion"].ToString() + "'>"+ TruncateLongString(row["Descripcion"].ToString(), 20) + "...</div></td>";
+
+                    if (!String.IsNullOrEmpty(row["Descuento_ID"].ToString()))
+                    {
+                        DataRow descuento_rows = descuentosDatabaseManager.ReadDatabaseRecord(new string[] { "*" }, new string[,] { { "ID", "=", "'" + row["Descuento_ID"].ToString() + "'" } }, null).Tables[0].Rows[0];
+
+                        if (CheckIfDiscountIsValid(DateTime.Parse(descuento_rows["FechaFinalizacion"].ToString()), DateTime.Parse(descuento_rows["FechaInicio"].ToString())))
+                        {
+                            double precio_con_descuento = CalculateDiscountPrice(double.Parse(row["Precio"].ToString()), int.Parse(descuento_rows["Porcentaje"].ToString()));
+                            table_rows += "<td>" + "<div class='text-muted text-decoration-line-through'>"+ MoneyFormat(row["Precio"].ToString()) + "</div><br>" + MoneyFormat(precio_con_descuento.ToString()) + "</td>";
+                        }
+                        else
+                        {
+                            table_rows += "<td>" + MoneyFormat(row["Precio"].ToString()) + "</td>";
+                        }
+                    }
+                    else
+                    {
+                        table_rows += "<td>" + MoneyFormat(row["Precio"].ToString()) + "</td>";
+                    }
+                    table_rows += "<td>" + row["Tamaño"].ToString() + "</td>";
+                    table_rows += "<td>" + row["NumeroCamas"].ToString() + "</td>";
+
+
+                    DataSet reservas_data = reservasDatabaseManager.ReadDatabaseRecord(new string[] { "*" }, new string[,] { { "Habitacion_ID", "=", "'" + row["ID"] + "'" }, { "Cancelada", "=", "0" },{"FechaInicio",">=","'"+ DateTime.Now.ToString("yyy-MM-dd") + "'"} }, new string[] { "AND","AND" });
+
+                    if (reservas_data.Tables[0].Rows.Count > 0 )
+                    {
+                        bool disponible = CheckIfHabitacionEstaDisponible(reservas_data, DateTime.Now, DateTime.Now.AddDays(1));
+
+                        if (disponible)
+                        {
+                            table_rows += "<td><span class='badge bg-success'>Disponible</span></td>";
+                        }
+                        else
+                        {
+                            table_rows += "<td><span class='badge bg-danger'>Ocupada</span></td>";
+                        }
+                    }
+                    else
+                    {
+                        table_rows += "<td><span class='badge bg-success'>Disponible</span></td>";
+                    }
+
+                    table_rows += row["Mascotas"].ToString().Equals("1") ? "<td><span class='badge bg-success'>Si</span></td>" : "<td><span class='badge bg-danger'>No</span></td>";
+                    table_rows += row["BañosPDiscapacitadas"].ToString().Equals("1") ? "<td><span class='badge bg-success'>Si</span></td>" : "<td><span class='badge bg-danger'>No</span></td>";
+
+                    if (!String.IsNullOrEmpty(row["Descuento_ID"].ToString()))
+                    {
+                        DataRow descuento_rows = descuentosDatabaseManager.ReadDatabaseRecord(new string[] { "*" }, new string[,] { { "ID", "=", "'" + row["Descuento_ID"].ToString() + "'" } }, null).Tables[0].Rows[0];
+
+                        table_rows += "<td>" +descuento_rows["Nombre"].ToString() + "</td>";
+                    }
+                    else
+                    {
+                        table_rows += "<td>No posee</td>";
+                    }                
+
+                    DataSet testimonios_data = testimoniosDatabaseManager.ReadDatabaseRecord(
+                        new string[] { "*" },
+                        new string[,] { { "Habitacion_ID", "=", "'" + row["ID"] + "'" } },
+                        null
+                    );
+                    if (testimonios_data.Tables[0].Rows.Count > 0)
+                    {
+                        double promedio = CalculateTestimonialsMean(testimonios_data);
+                        table_rows += "<td><span class='badge bg-primary'>"+TruncateLongString(promedio.ToString(),3)+"</span></td>";
+                    }
+                    else
+                    {
+                        table_rows += "<td><span class='badge bg-secondary'>No tiene calificaciones</span></td>";
+                    }
+
+                    table_rows += "<td><div class='btn-group'> <button type='button' class='btn btn-primary btn-sm'>Acciones</button> <button type='button' class='btn btn-primary dropdown-toggle dropdown-toggle-split' data-bs-toggle='dropdown' aria-expanded='false'> <span class='visually-hidden'>Toggle Dropdown</span> </button> <ul class='dropdown-menu'><li><a class='dropdown-item' target='_blank' href='habitacion_pagina.aspx?h=" + row["Numero"] + "'><i class='far fa-eye'></i> Ver </a></li> <li><a class='dropdown-item' href='ModificarHabitacion.aspx?h=" + row["Numero"] + "'><i class='fas fa-pen-square'></i> Modificar</a></li> <li><button type='button' class='dropdown-item' data-action='eliminar'><input value='" + row["ID"] + "' type='hidden'><i class='fas fa-minus-circle'></i> Eliminar</button></li> </ul> </div></td>";
+                    table_rows += "</tr>";
+                    contador++;
+                }
+            }
+            else
+            {
+                table_rows = "<tr><td colspan='6'>No hay habitaciones para mostrar.</td><tr>";
             }
 
             return table_rows;

@@ -31,6 +31,11 @@ namespace ProyectoPAWRep.pages
                 CReservaHabitacion.DataValueField = habitaciones_data.Tables[0].Columns["Numero"].ToString();
                 CReservaHabitacion.DataSource = habitaciones_data.Tables[0];
                 CReservaHabitacion.DataBind();
+
+                if (habitaciones_data.Tables[0].Rows.Count == 0 || usuarios_data.Tables[0].Rows.Count == 0)
+                {
+                    BtnCrearReserva.Attributes["class"] = "btn btn-primary btn-lg disabled";
+                }
             }
         }
 

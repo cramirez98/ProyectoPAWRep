@@ -45,6 +45,7 @@ namespace ProyectoPAWRep.pages
 
             HabitacionesDatabaseManager habitacionesDatabaseManager = new HabitacionesDatabaseManager("SQLConnection", "[dbo].[Habitaciones]");
             ReservasDatabaseManager reservasDatabaseManager = new ReservasDatabaseManager("SQLConnection", "[dbo].[Reservas]");
+            TestimoniosDatabaseManager testimoniosDatabaseManager = new TestimoniosDatabaseManager("SQLConnection", "[dbo].[Testimonios]");
 
             string habitacion_a_eliminar_id = habitacionesDatabaseManager.GetHabitacionIDByNumber(habitacion_a_eliminar.ToString());
 
@@ -57,6 +58,8 @@ namespace ProyectoPAWRep.pages
                 new string[,] { {"Habitacion_ID","=","'"+ habitacion_a_eliminar_id + "'"} },
                 null
             );
+
+            testimoniosDatabaseManager.RemoveDatabaseRecord(new string[,] { { "Habitacion_ID", "=", "'" + habitacion_a_eliminar_id + "'" } }, null);
 
             if (success)
             {

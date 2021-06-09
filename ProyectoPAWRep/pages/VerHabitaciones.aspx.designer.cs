@@ -15,21 +15,12 @@ namespace ProyectoPAWRep.pages
     {
 
         /// <summary>
-        /// Control habitaciones_cartas_lugar.
+        /// Control ver_habitaciones_table_info.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl habitaciones_cartas_lugar;
-
-        /// <summary>
-        /// Control seccion_paginacion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl seccion_paginacion;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ver_habitaciones_table_info;
     }
 }

@@ -123,6 +123,7 @@
     <Content Include="js\EnableTextboxPlugin.js" />
     <Content Include="js\LoadInformationReservas.js" />
     <Content Include="js\main.js" />
+    <Content Include="js\OrderingTablePlugin.js" />
     <Content Include="js\Pagination.js" />
     <Content Include="js\RangeSlider.js" />
     <Content Include="js\RatingInput.js" />
