@@ -36,6 +36,7 @@ namespace ProyectoPAWRep.pages
         [WebMethod]
         public static string OrdenarHabitaciones(string orderby, string direction)
         {
+            string result = "";
             HabitacionesDatabaseManager habitacionesDatabaseManager = new HabitacionesDatabaseManager("SQLConnection", "[dbo].[Habitaciones]");
             DataSet data_inicial = habitacionesDatabaseManager.ReadDatabaseRecord(new string[] {"*"}, null, null);
             DataSet data_organizada = new DataSet();
@@ -51,15 +52,21 @@ namespace ProyectoPAWRep.pages
                         data_organizada = Utilities.OrderByPrice(data_inicial, direction);
                         break;
                     case "NumeroCamas":
+                        data_organizada = Utilities.OrderByNumeroCamas(data_inicial, direction);
                         break;
                     case "Puntaje":
+                        data_organizada = Utilities.OrderByPuntaje(data_inicial, direction);
                         break;
                     case "Tamaño":
+                        data_organizada = habitacionesDatabaseManager.ReadDatabaseRecord(new string[] { "*" }, null, null, "case when [Tamaño] = 'Pequeña'");
                         break;
                     default:
+                        data_organizada = data_inicial;
                         break;
                 }
             }
+
+            return result;
         }
     }
 }
