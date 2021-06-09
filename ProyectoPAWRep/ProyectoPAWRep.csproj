@@ -145,6 +145,7 @@
     <Content Include="pages\habitacion_pagina.aspx" />
     <Content Include="pages\inicio.aspx" />
     <Content Include="pages\iniciosesion.aspx" />
+    <Content Include="pages\MiInformacion.aspx" />
     <Content Include="pages\ModificarDescuento.aspx" />
     <Content Include="pages\ModificarHabitacion.aspx" />
     <Content Include="pages\ModificarReserva.aspx" />
@@ -286,6 +287,13 @@
     </Compile>
     <Compile Include="pages\iniciosesion.aspx.designer.cs">
       <DependentUpon>iniciosesion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pages\MiInformacion.aspx.cs">
+      <DependentUpon>MiInformacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pages\MiInformacion.aspx.designer.cs">
+      <DependentUpon>MiInformacion.aspx</DependentUpon>
     </Compile>
     <Compile Include="pages\ModificarDescuento.aspx.cs">
       <DependentUpon>ModificarDescuento.aspx</DependentUpon>

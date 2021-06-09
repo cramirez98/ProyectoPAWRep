@@ -41,22 +41,27 @@ namespace ProyectoPAWRep.pages
                 string[] logic_condiciones = new string[] { "" };
                 DataSet user_data = UserDatabaseManager.ReadDatabaseRecord(valores_a_traer, condiciones, logic_condiciones);
 
-                    
-
-                ReservasDatabaseManager reservasDatabaseManager = new ReservasDatabaseManager("SQLConnection", "[dbo].[Reservas]");
-
-                DataSet reservas_data = reservasDatabaseManager.ReadDatabaseRecord(
-                    new string[] { "*" },
-                    new string[,] { { "Cliente_ID", "=", "'" + Session["User_ID"] as string + "'" } },
-                    null,
-                    "FechaFinalizacion",
-                    "DESC"
-                );
-
-                if (!IsPostBack)
+                if (user_data.Tables[0].Rows[0]["Tipo"].ToString().Equals("Cliente"))
                 {
-                    ShowReservasInformation(reservas_data);
-                    ShowUserInformation(user_data);
+                    ReservasDatabaseManager reservasDatabaseManager = new ReservasDatabaseManager("SQLConnection", "[dbo].[Reservas]");
+
+                    DataSet reservas_data = reservasDatabaseManager.ReadDatabaseRecord(
+                        new string[] { "*" },
+                        new string[,] { { "Cliente_ID", "=", "'" + Session["User_ID"] as string + "'" } },
+                        null,
+                        "FechaFinalizacion",
+                        "DESC"
+                    );
+
+                    if (!IsPostBack)
+                    {
+                        ShowReservasInformation(reservas_data);
+                        ShowUserInformation(user_data);
+                    }
+                }
+                else
+                {
+                    Response.Redirect("MiInformacion.aspx");
                 }
             }
             else

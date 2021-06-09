@@ -23,7 +23,7 @@ namespace ProyectoPAWRep.pages
         {
             string contraseña_encriptada = Utilities.ComputarSHA256(Contraseña.Text);
             UserDatabaseManager UserDatabaseManager = new UserDatabaseManager("SQLConnection", "[dbo].[Usuarios]");
-            string[] valores_a_traer = new string[] { "ID" };
+            string[] valores_a_traer = new string[] { "ID","Tipo" };
             string[,] condiciones = new string[,] { { "Correo", "=", "'"+Correo.Text+"'" },{"Contraseña", "=", "'"+ contraseña_encriptada + "'"} };
             string[] logic_condiciones = new string[] {"AND"};
             DataSet data = UserDatabaseManager.ReadDatabaseRecord(valores_a_traer, condiciones, logic_condiciones);
@@ -32,7 +32,15 @@ namespace ProyectoPAWRep.pages
             {
                 string uid = data.Tables[0].Rows[0]["ID"].ToString();
                 Session["User_ID"] = uid;
-                Response.Redirect("usuario.aspx");
+
+                if (data.Tables[0].Rows[0]["Tipo"].ToString().Equals("Cliente"))
+                {
+                    Response.Redirect("usuario.aspx");
+                }
+                else
+                {
+                    Response.Redirect("adminpanel.aspx");
+                }
             }
             else
             {
